@@ -3,496 +3,1935 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SOVRANA</title>
+<title>Enny P — Sito ufficiale</title>
+<meta name="description" content="Sito ufficiale di Enny P. Cantante e rapper italo-colombiana, Warner Records Italy. Musica, date, merch, contatti.">
+<meta name="theme-color" content="#030405">
+<meta property="og:title" content="Enny P — Sito ufficiale">
+<meta property="og:description" content="Faccio what I want 24/7.">
+<meta property="og:image" content="img/viso.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  /* ============================================================
-     Palette campionata dai riflessi del video (petrolio + argento
-     + nero). L'oro non esiste nel girato: e' l'accento aggiunto.
-     ============================================================ */
-  :root{
-    --void:#040507;
-    --ink:#080D0D;
-    --petrol-d:#0C1517;
-    --petrol:#1A2A30;
-    --petrol-l:#273D46;
-    --teal:#3D5258;
-    --teal-lit:#8FBFC4;
-    --silver-d:#5C6C6E;
-    --silver:#A1ABA6;
-    --silver-l:#C3CEC6;
-    --silver-w:#EBF2E8;
-    --gold:#C9A227;
-    --gold-l:#E4D2A0;
+/* ==========================================================================
+   ENNY P — lingua visiva "sovrana + acido".
+   Il girato da' il petrolio, l'argento e il nero. Noi aggiungiamo due cose
+   che nel video non esistono: l'oro (il lusso) e il verde acido (il morso).
+   L'oro veste, l'acido attacca. Non si toccano mai nello stesso punto.
+   ========================================================================== */
+:root{
+  --void:#030405;
+  --ink:#080b0c;
+  --petrol-d:#0b1416;
+  --petrol:#16262b;
+  --petrol-l:#26393f;
+  --teal-lit:#8FBFC4;
+  --silver-d:#67757a;
+  --silver:#a7b2b0;
+  --silver-l:#cbd5cf;
+  --silver-w:#f2f7f1;
+  --gold:#C9A227;
+  --gold-l:#E8D7A4;
+  --acid:#C9FF2E;
+  --acid-d:#8fbf10;
+  --ice:#7EE9FF;
+  --mag:#FF2E73;
 
-    --serif:'Didot','Bodoni 72',Didot,'Times New Roman',serif;
-    --sans:'Helvetica Neue',Inter,-apple-system,BlinkMacSystemFont,sans-serif;
-    --mono:'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+  --disp:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --serif:'Bodoni Moda','Didot','Bodoni 72',Didot,'Times New Roman',serif;
+  --sans:'Archivo','Helvetica Neue',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'Space Mono','SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 
-    --stage:330vh;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{background:var(--void)}
-  body{
-    background:var(--void);color:var(--silver-l);
-    font-family:var(--sans);-webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  ::selection{background:var(--gold);color:var(--void)}
+  --stage:340vh;
+  --hair:rgba(167,178,176,.16);
+  --pad:clamp(1.4rem,6vw,5rem);
+  --ease:cubic-bezier(.16,.84,.28,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--void);scroll-behavior:auto}
+body{
+  background:var(--void);color:var(--silver-l);
+  font-family:var(--sans);font-size:16px;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--acid);color:var(--void)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 
-  .mono{
-    font-family:var(--mono);font-size:.6rem;letter-spacing:.34em;
-    text-transform:uppercase;color:var(--silver-d);
-  }
-  .gold{color:var(--gold-l)}
-  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+.wrap{max-width:1240px;margin:0 auto}
 
-  /* ---------------- loader ---------------- */
-  #loader{
-    position:fixed;inset:0;z-index:200;background:var(--void);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
-    transition:opacity 1s ease;
-  }
-  #loader.done{opacity:0;pointer-events:none}
-  #loader .mk{
-    font-family:var(--serif);font-size:clamp(1rem,2vw,1.3rem);
-    letter-spacing:.5em;color:var(--silver);padding-left:.5em;
-  }
-  #bar{width:min(220px,44vw);height:1px;background:#161c1e;overflow:hidden}
-  #bar span{display:block;height:100%;width:0;background:var(--gold);transition:width .2s linear}
+/* --------- micro-tipografia: l'HUD della macchina ------------------------ */
+.mono{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--silver-d);
+}
+.mono.a{color:var(--acid)}
+.gold{color:var(--gold-l)}
+.acid{color:var(--acid)}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.55}
+.rule.a{background:linear-gradient(90deg,transparent,var(--acid),transparent)}
 
-  /* ---------------- palco pinnato ---------------- */
-  #stage{position:relative;height:var(--stage)}
-  .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-  #seq{display:block;width:100%;height:100%}
+/* --------- display: Archivo espanso, il peso del nome -------------------- */
+.dsp{
+  font-family:var(--disp);font-weight:800;font-stretch:118%;
+  text-transform:uppercase;line-height:.84;letter-spacing:-.015em;
+  color:var(--silver-w);
+}
+.chrome{
+  background:linear-gradient(100deg,
+    #4a565a 0%,#e9f2ec 16%,#8d9a9c 30%,#ffffff 44%,
+    #7f8d90 58%,#e4ecdf 72%,#556366 88%,#9aa7a6 100%);
+  background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:sheen 11s linear infinite;
+}
+@keyframes sheen{0%{background-position:130% 0}100%{background-position:-130% 0}}
 
-  /* grana + vignettatura: tengono insieme il girato e la UI */
-  .vig{
-    position:absolute;inset:0;pointer-events:none;z-index:2;
-    background:
-      radial-gradient(130% 100% at 50% 45%,transparent 30%,rgba(4,5,7,.72) 100%),
-      linear-gradient(to bottom,rgba(4,5,7,.7),transparent 24%,transparent 72%,rgba(4,5,7,.9));
-  }
+/* --------- glitch RGB: si apre solo al passaggio ------------------------- */
+.gx{position:relative;display:inline-block}
+.gx::before,.gx::after{
+  content:attr(data-t);position:absolute;left:0;top:0;width:100%;
+  pointer-events:none;opacity:0;transition:opacity .18s ease;
+  -webkit-text-fill-color:currentColor;
+}
+.gx::before{color:var(--ice);mix-blend-mode:screen}
+.gx::after{color:var(--mag);mix-blend-mode:screen}
+.gx:hover::before{opacity:.85;animation:gxa .5s steps(2) infinite}
+.gx:hover::after{opacity:.85;animation:gxb .5s steps(2) infinite}
+@keyframes gxa{
+  0%{transform:translate(-.035em,-.012em);clip-path:inset(0 0 62% 0)}
+  50%{transform:translate(.028em,.014em);clip-path:inset(46% 0 18% 0)}
+  100%{transform:translate(-.02em,0);clip-path:inset(72% 0 0 0)}
+}
+@keyframes gxb{
+  0%{transform:translate(.035em,.012em);clip-path:inset(28% 0 44% 0)}
+  50%{transform:translate(-.03em,-.016em);clip-path:inset(0 0 78% 0)}
+  100%{transform:translate(.022em,0);clip-path:inset(58% 0 6% 0)}
+}
 
-  /* ---------------- il marchio ---------------- */
-  #mark{
-    position:absolute;inset:0;z-index:4;
-    display:flex;align-items:center;justify-content:center;
-    pointer-events:none;
-  }
-  #word{display:flex;white-space:nowrap;will-change:letter-spacing}
-  #word .l{
-    display:block;will-change:transform,opacity,filter;
-  }
-  #word .l i{
-    display:block;font-style:normal;
-    font-family:var(--serif);
-    font-size:clamp(2.1rem,10.4vw,8.6rem);
-    line-height:1;
-    background:linear-gradient(102deg,
-      var(--silver-d) 0%,var(--silver-w) 22%,var(--gold-l) 44%,
-      var(--silver-w) 62%,var(--silver) 82%,var(--silver-d) 100%);
-    background-size:280% 100%;
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
-    animation:beat 1.6s cubic-bezier(.4,0,.2,1) infinite, sheen 9s linear infinite;
-  }
-  /* battuta: respiro verticale, non un rimbalzo */
-  @keyframes beat{
-    0%,100%{transform:translateY(0) scaleY(1);opacity:.82}
-    38%    {transform:translateY(-.035em) scaleY(1.012);opacity:1}
-    70%    {transform:translateY(.008em) scaleY(.997);opacity:.9}
-  }
-  @keyframes sheen{
-    0%  {background-position:120% 0}
-    100%{background-position:-120% 0}
-  }
+/* --------- lo scioglimento (acido) -------------------------------------- */
+.melt{will-change:filter}
+.melt.melting{filter:url(#mlt)}
+.mimg.melting img{filter:url(#mltimg) saturate(1.1)}
 
-  /* la lama d'oro che taglia il marchio mentre viene divorato */
-  #blade{
-    position:absolute;left:0;top:50%;z-index:5;height:1px;width:0;
-    background:linear-gradient(90deg,transparent,var(--gold-l),var(--gold),transparent);
-    opacity:0;pointer-events:none;
-    box-shadow:0 0 18px rgba(228,210,160,.55);
-  }
+/* --------- pellicola: grana, righe, aloni ------------------------------- */
+.grain{
+  position:fixed;inset:-120%;z-index:150;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  animation:grain 7s steps(6) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}17%{transform:translate(-3%,-2%)}33%{transform:translate(2%,-4%)}
+  50%{transform:translate(-2%,3%)}67%{transform:translate(3%,2%)}83%{transform:translate(-3%,1%)}
+  100%{transform:translate(0,0)}
+}
+.scan{
+  position:fixed;inset:0;z-index:149;pointer-events:none;opacity:.2;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.22) 0 1px,transparent 1px 4px);
+  mix-blend-mode:multiply;
+}
+#spot{
+  position:fixed;top:0;left:0;z-index:1;pointer-events:none;
+  width:62vmax;height:62vmax;margin:-31vmax 0 0 -31vmax;opacity:0;
+  background:radial-gradient(circle,rgba(201,255,46,.09),rgba(201,255,46,.03) 42%,transparent 66%);
+  mix-blend-mode:screen;transition:opacity .8s ease;
+}
+#spot.on{opacity:1}
 
-  .corner{position:absolute;z-index:6;pointer-events:none}
-  .c-tl{top:clamp(18px,3.4vh,34px);left:clamp(18px,4vw,44px)}
-  .c-tr{top:clamp(18px,3.4vh,34px);right:clamp(18px,4vw,44px);text-align:right}
-  .c-bc{
-    left:0;right:0;bottom:clamp(18px,3.4vh,34px);
-    display:flex;align-items:center;justify-content:center;gap:.9rem;
-  }
-  .c-bc i{display:block;width:1px;height:30px;background:linear-gradient(var(--silver-d),transparent)}
+/* --------- barra di avanzamento ----------------------------------------- */
+#prog{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:135;
+  background:linear-gradient(90deg,var(--acid-d),var(--acid));
+  box-shadow:0 0 12px rgba(201,255,46,.6);
+}
 
-  #closing{
-    position:absolute;left:0;right:0;bottom:22vh;z-index:7;
-    text-align:center;opacity:0;pointer-events:none;
-    font-family:var(--mono);font-size:.62rem;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--gold-l);
-  }
+/* --------- cursore: punto acido che inverte ciò che tocca ---------------- */
+.cur{
+  position:fixed;top:0;left:0;z-index:160;pointer-events:none;
+  width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;
+  background:var(--acid);mix-blend-mode:difference;opacity:0;
+  transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),
+             opacity .3s ease,border-radius .35s var(--ease);
+}
+.cur.on{opacity:1}
+.cur.hot{width:64px;height:64px;margin:-32px 0 0 -32px}
+.curl{
+  position:fixed;top:0;left:0;z-index:161;pointer-events:none;
+  font-family:var(--mono);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--void);opacity:0;transform:translate(-50%,-50%);transition:opacity .25s ease;
+  white-space:nowrap;
+}
+.curl.on{opacity:1}
+@media (hover:none),(pointer:coarse){.cur,.curl,#spot{display:none}}
 
-  /* ---------------- sezioni ---------------- */
-  section.blk{padding:clamp(6rem,16vh,12rem) clamp(1.4rem,6vw,5rem)}
-  .inner{max-width:1180px;margin:0 auto}
-  .shead{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:3.4rem}
-  h2{
-    font-family:var(--serif);font-weight:400;
-    font-size:clamp(1.7rem,4.4vw,3.2rem);line-height:1.06;color:var(--silver-w);
-  }
-  h2 em{font-style:italic;color:var(--silver-d)}
+/* --------- loader -------------------------------------------------------- */
+#loader{
+  position:fixed;inset:0;z-index:200;background:var(--void);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;
+  transition:opacity .9s ease,clip-path .9s var(--ease);
+}
+#loader.done{opacity:0;pointer-events:none;clip-path:inset(0 0 100% 0)}
+#loader .mk{
+  font-family:var(--disp);font-weight:800;font-stretch:120%;text-transform:uppercase;
+  font-size:clamp(1.6rem,7vw,3.2rem);letter-spacing:.02em;color:var(--silver-w);
+}
+#bar{width:min(260px,52vw);height:2px;background:#12191b;overflow:hidden}
+#bar span{display:block;height:100%;width:0;background:var(--acid);transition:width .2s linear}
+#pct{font-family:var(--mono);font-size:.62rem;letter-spacing:.3em;color:var(--acid)}
 
-  .rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1)}
-  .rv.in{opacity:1;transform:none}
+/* --------- sipario fra le pagine ---------------------------------------- */
+#curt{
+  position:fixed;inset:0;z-index:140;pointer-events:none;background:var(--void);
+  opacity:0;transition:opacity .38s ease;
+  display:flex;align-items:center;justify-content:center;
+}
+#curt.on{opacity:1}
+#curt .t{
+  font-family:var(--disp);font-weight:800;font-stretch:120%;text-transform:uppercase;
+  font-size:clamp(2rem,9vw,5rem);color:var(--acid);letter-spacing:-.01em;
+  opacity:0;transform:translateY(14px) scaleY(.9);
+  transition:opacity .38s ease,transform .38s var(--ease);
+}
+#curt.on .t{opacity:1;transform:none}
 
-  /* archivio */
-  .arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(.7rem,1.6vw,1.3rem)}
-  .cell{
-    position:relative;aspect-ratio:16/10;overflow:hidden;
-    border:1px solid rgba(161,171,166,.14);
-    background:var(--ink);
-    transition:border-color .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);
-  }
-  .cell img{width:100%;height:100%;object-fit:cover;display:block;
-    filter:contrast(1.06) saturate(.92);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-  .cell figcaption{
-    position:absolute;left:.7rem;bottom:.6rem;z-index:2;
-    font-family:var(--mono);font-size:.54rem;letter-spacing:.26em;
-    text-transform:uppercase;color:var(--silver);
-    text-shadow:0 1px 8px rgba(0,0,0,.9);
-  }
-  .cell::after{
-    content:'';position:absolute;inset:0;pointer-events:none;
-    box-shadow:inset 0 0 0 1px rgba(201,162,39,0);transition:box-shadow .7s ease;
-  }
-  .cell:hover{border-color:rgba(201,162,39,.5);transform:translateY(-3px)}
-  .cell:hover img{transform:scale(1.05)}
-  .cell:hover::after{box-shadow:inset 0 0 34px rgba(201,162,39,.16)}
+/* --------- testata ------------------------------------------------------- */
+#hdr{
+  position:fixed;top:0;left:0;right:0;z-index:120;
+  padding:clamp(.9rem,2.2vh,1.4rem) var(--pad);
+  display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
+  transition:background .5s ease,backdrop-filter .5s ease,border-color .5s ease;
+  border-bottom:1px solid transparent;
+}
+#hdr.solid{
+  background:linear-gradient(to bottom,rgba(3,4,5,.96),rgba(3,4,5,.86));
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom-color:var(--hair);
+}
+#hdr .brand{
+  font-family:var(--serif);font-size:1.02rem;letter-spacing:.34em;
+  color:var(--silver-w);padding-left:.34em;white-space:nowrap;
+  display:flex;align-items:center;gap:.7em;
+}
+#hdr .brand i{width:6px;height:6px;background:var(--acid);border-radius:50%;
+  display:block;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+#hdr nav{display:flex;gap:clamp(1rem,2.4vw,2.1rem);align-items:center}
+#hdr nav a{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--silver-d);transition:color .35s ease;position:relative;padding-bottom:4px;
+}
+#hdr nav a::after{
+  content:'';position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--acid);transition:right .5s var(--ease);
+}
+#hdr nav a:hover,#hdr nav a[aria-current]{color:var(--silver-w)}
+#hdr nav a[aria-current]{color:var(--acid)}
+#hdr nav a:hover::after,#hdr nav a[aria-current]::after{right:0}
+.burger{
+  display:none;background:none;border:1px solid var(--hair);padding:.5rem .8rem;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--silver);cursor:pointer;transition:border-color .4s ease,color .4s ease,background .4s ease;
+}
+.burger:hover{border-color:var(--acid);color:var(--void);background:var(--acid)}
+.sheet{
+  position:fixed;inset:0;z-index:130;background:rgba(3,4,5,.97);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;
+  opacity:0;pointer-events:none;transition:opacity .45s ease;
+}
+.sheet.on{opacity:1;pointer-events:auto}
+.sheet a{
+  font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(1.9rem,9vw,3.4rem);color:var(--silver-l);line-height:1;padding:.12em 0;
+  transition:color .3s ease;
+}
+.sheet a:hover{color:var(--acid)}
+.sheet .x{position:absolute;top:1.3rem;right:var(--pad)}
+@media (max-width:880px){
+  #hdr nav{display:none}
+  .burger{display:block}
+}
 
-  /* sigillo */
-  #seal{position:relative;padding:clamp(6rem,18vh,13rem) clamp(1.4rem,6vw,5rem)}
-  .sealwrap{max-width:1180px;margin:0 auto;display:grid;gap:clamp(2.5rem,6vw,5rem);
-    grid-template-columns:minmax(0,1fr);align-items:center;justify-items:center;text-align:center}
-  #emblem{width:min(430px,74vw);height:auto;display:block;overflow:visible}
-  #emblem [data-draw]{
-    fill:none;stroke:var(--gold);stroke-width:.7;
-    stroke-linecap:round;vector-effect:non-scaling-stroke;
-  }
-  #emblem .fine{stroke:var(--silver-d);stroke-width:.5;opacity:.55}
-  .creed{
-    font-family:var(--serif);font-size:clamp(1.15rem,2.9vw,2.05rem);
-    line-height:1.42;color:var(--silver-l);max-width:26ch;
-  }
-  .creed b{font-weight:400;font-style:italic;color:var(--gold-l)}
+/* --------- palco: la mano ------------------------------------------------ */
+#stage{position:relative;height:var(--stage)}
+.pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#seq{display:block;width:100%;height:100%}
+.vig{
+  position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:
+    radial-gradient(130% 100% at 50% 45%,transparent 28%,rgba(3,4,5,.76) 100%),
+    linear-gradient(to bottom,rgba(3,4,5,.72),transparent 24%,transparent 68%,rgba(3,4,5,.96));
+}
+#mark{
+  position:absolute;inset:0;z-index:4;
+  display:flex;align-items:center;justify-content:center;pointer-events:none;
+}
+#word{display:flex;white-space:nowrap;will-change:letter-spacing}
+#word .l{display:block;will-change:transform,opacity,filter}
+#word .l i{
+  display:block;font-style:normal;
+  font-family:var(--disp);font-weight:800;font-stretch:122%;
+  font-size:clamp(2.9rem,15vw,11rem);line-height:1;letter-spacing:-.02em;
+  background:linear-gradient(100deg,
+    #4a565a 0%,#e9f2ec 15%,#8d9a9c 28%,#ffffff 42%,
+    #7f8d90 57%,#e4ecdf 71%,#556366 87%,#9aa7a6 100%);
+  background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:beat 1.6s cubic-bezier(.4,0,.2,1) infinite,sheen 9s linear infinite;
+}
+@keyframes beat{
+  0%,100%{transform:translateY(0) scaleY(1);opacity:.85}
+  38%    {transform:translateY(-.03em) scaleY(1.014);opacity:1}
+  70%    {transform:translateY(.008em) scaleY(.997);opacity:.92}
+}
+#blade{
+  position:absolute;left:0;top:50%;z-index:5;height:1px;width:0;
+  background:linear-gradient(90deg,transparent,var(--acid),var(--acid-d),transparent);
+  opacity:0;pointer-events:none;box-shadow:0 0 22px rgba(201,255,46,.6);
+}
+.corner{position:absolute;z-index:6;pointer-events:none}
+.c-tl{top:clamp(74px,11vh,110px);left:var(--pad)}
+.c-tr{top:clamp(74px,11vh,110px);right:var(--pad);text-align:right;line-height:2}
+.c-bc{
+  left:0;right:0;bottom:clamp(18px,3.4vh,34px);
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+}
+.c-bc i{display:block;width:1px;height:36px;background:linear-gradient(var(--acid),transparent)}
+#closing{
+  position:absolute;left:0;right:0;bottom:24vh;z-index:7;
+  text-align:center;opacity:0;pointer-events:none;
+}
+#closing .ln{
+  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:clamp(1.3rem,5vw,3rem);color:var(--silver-w);line-height:1.02;letter-spacing:-.01em;
+}
+#closing .ln b{color:var(--acid);font-weight:800}
+#closing .rule{max-width:200px;margin:1.4rem auto 1rem}
 
-  footer{padding:clamp(3rem,8vh,6rem) clamp(1.4rem,6vw,5rem) 5rem;text-align:center}
-  footer .rule{margin:0 auto 2rem;max-width:340px}
+/* --------- nastro scorrevole (la voce, a tutta larghezza) ---------------- */
+.tick{
+  position:relative;z-index:2;overflow:hidden;
+  border-top:1px solid var(--void);border-bottom:1px solid var(--void);
+  background:var(--acid);
+  transform:rotate(-1.4deg) scale(1.05);margin:clamp(2.5rem,7vh,4.5rem) 0;
+}
+.tick.gh{
+  background:transparent;border-color:var(--hair);transform:rotate(1deg) scale(1.05);
+}
+.tk{display:flex;width:max-content;animation:marq 34s linear infinite}
+.tick:hover .tk{animation-play-state:paused}
+.tk b{
+  font-family:var(--disp);font-weight:800;font-stretch:110%;text-transform:uppercase;
+  font-size:clamp(1.1rem,3.4vw,2.2rem);line-height:1;color:var(--void);
+  padding:.42em .5em;white-space:nowrap;letter-spacing:-.01em;
+}
+.tick.gh .tk b{
+  color:transparent;-webkit-text-stroke:1px var(--silver-d);
+}
+.tick.gh .tk b em{font-style:normal;-webkit-text-stroke:1px var(--acid);color:transparent}
+.tk s{text-decoration:none;padding:.42em 0;color:var(--void);font-size:clamp(.8rem,2.2vw,1.4rem);
+  display:flex;align-items:center}
+.tick.gh .tk s{color:var(--acid)}
+@keyframes marq{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-50%,0,0)}}
 
-  @media (max-width:720px){
-    :root{--stage:280vh}
-    .shead{flex-direction:column;align-items:flex-start;gap:.9rem}
+/* --------- impianto delle sezioni --------------------------------------- */
+section.sect{position:relative;padding:clamp(5rem,14vh,10rem) var(--pad);overflow:hidden}
+.ghost{
+  position:absolute;left:-3%;top:20%;z-index:0;pointer-events:none;user-select:none;
+  font-family:var(--disp);font-weight:800;font-stretch:125%;text-transform:uppercase;
+  font-size:clamp(5rem,20vw,15rem);line-height:.8;letter-spacing:-.02em;
+  color:transparent;-webkit-text-stroke:1px rgba(167,178,176,.09);
+  white-space:nowrap;will-change:transform;
+}
+.ghost.r{left:auto;right:-3%}
+section.sect > .wrap{position:relative;z-index:1}
+.shead{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;
+  margin-bottom:clamp(2rem,5vh,3.4rem);
+  border-bottom:1px solid var(--hair);padding-bottom:1.1rem;flex-wrap:wrap;
+}
+h2.h2{
+  font-family:var(--disp);font-weight:800;font-stretch:115%;text-transform:uppercase;
+  font-size:clamp(1.9rem,5.6vw,4rem);line-height:.9;color:var(--silver-w);letter-spacing:-.015em;
+}
+h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silver-d)}
+.lead{
+  font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.65rem);
+  line-height:1.5;color:var(--silver);max-width:34ch;font-style:italic;
+}
+.rv{opacity:0;transform:translateY(30px);
+  transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* bottoni */
+.btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.9rem 1.6rem;border:1px solid var(--acid);
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--acid);background:transparent;cursor:pointer;position:relative;overflow:hidden;
+  transition:color .45s ease,border-color .45s ease;will-change:transform;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;background:var(--acid);
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
+}
+.btn span,.btn b{position:relative;z-index:1;font-weight:inherit}
+.btn:hover{color:var(--void)}
+.btn:hover::before{transform:scaleX(1)}
+.btn.o{border-color:var(--hair);color:var(--silver)}
+.btn.o::before{background:var(--silver-w)}
+.btn.o:hover{color:var(--void);border-color:var(--silver-w)}
+.btn.g{border-color:rgba(201,162,39,.55);color:var(--gold-l)}
+.btn.g::before{background:var(--gold)}
+.btn.g:hover{color:var(--void);border-color:var(--gold)}
+
+/* testata di pagina interna */
+.phead{
+  position:relative;padding:clamp(9rem,22vh,14rem) var(--pad) clamp(2rem,6vh,4rem);
+  overflow:hidden;border-bottom:1px solid var(--hair);
+}
+.phead .bg{
+  position:absolute;inset:0;z-index:0;overflow:hidden;
+}
+.phead .bg img{
+  width:100%;height:100%;object-fit:cover;opacity:.72;
+  filter:grayscale(1) contrast(1.35) brightness(.9) sepia(.4) hue-rotate(142deg) saturate(2.6);
+  transform:scale(1.06);
+}
+.phead .bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(3,4,5,.94) 20%,rgba(3,4,5,.5) 62%,rgba(3,4,5,.2)),
+    linear-gradient(to bottom,rgba(3,4,5,.8),rgba(3,4,5,.25) 45%,var(--void));
+}
+.ptitle{
+  font-family:var(--disp);font-weight:800;font-stretch:122%;text-transform:uppercase;
+  font-size:clamp(2.9rem,13vw,9rem);line-height:.84;color:var(--silver-w);
+  letter-spacing:-.025em;
+}
+.phead .wrap > .mono{margin-bottom:1.1rem;color:var(--acid)}
+.phead .lead{margin-top:1.6rem}
+
+/* --------- uscita in evidenza ------------------------------------------- */
+.rel{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.cover{
+  position:relative;aspect-ratio:1;border:1px solid var(--hair);overflow:hidden;
+  background:radial-gradient(120% 90% at 30% 20%,var(--petrol-l),var(--petrol-d) 55%,var(--ink) 100%);
+}
+.cover img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.25) brightness(.78) sepia(.35) hue-rotate(140deg) saturate(2.4);
+  transition:filter 1s ease,transform 1.4s var(--ease);
+}
+.cover:hover img{filter:none;transform:scale(1.05)}
+.cover .lay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+  background:linear-gradient(to top,rgba(3,4,5,.8),transparent 55%);
+}
+.cover .t{
+  font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(2.2rem,7vw,4.2rem);line-height:.88;
+  color:var(--silver-w);text-align:center;letter-spacing:-.02em;
+  text-shadow:0 2px 30px rgba(0,0,0,.8);
+}
+.cover .rule{width:60%}
+.relmeta h3{
+  font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(2.4rem,8vw,5rem);
+  line-height:.88;color:var(--silver-w);margin:.5rem 0 1.4rem;letter-spacing:-.025em;
+}
+.plat{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.7rem;margin-top:1.6rem}
+.pl{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.05rem 1.2rem;border:1px solid var(--hair);background:rgba(11,20,22,.55);
+  transition:border-color .5s ease,background .5s ease,transform .5s var(--ease);
+  position:relative;overflow:hidden;
+}
+.pl b{font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--silver-l);position:relative;z-index:1}
+.pl span{font-family:var(--mono);font-size:.8rem;color:var(--silver-d);position:relative;z-index:1;
+  transition:transform .5s ease,color .5s ease}
+.pl::before{
+  content:'';position:absolute;inset:0;background:var(--acid);
+  transform:translateY(101%);transition:transform .5s var(--ease);
+}
+.pl:hover{border-color:var(--acid)}
+.pl:hover::before{transform:translateY(0)}
+.pl:hover b{color:var(--void)}
+.pl:hover span{color:var(--void);transform:translateX(6px)}
+
+/* --------- galleria: fermi immagine, taglio editoriale ------------------- */
+.gal{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(.6rem,1.4vw,1.1rem);align-items:start;
+}
+.g{position:relative;overflow:hidden;border:1px solid var(--hair);background:var(--ink);
+   will-change:transform}
+.g img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.28) brightness(.8) sepia(.34) hue-rotate(142deg) saturate(2.5);
+  transition:filter .9s ease,transform 1.5s var(--ease);
+}
+.g:hover img{filter:contrast(1.06) saturate(1.05);transform:scale(1.06)}
+.g figcaption{
+  position:absolute;left:.8rem;bottom:.7rem;z-index:3;
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--silver-w);text-shadow:0 1px 10px rgba(0,0,0,.95);
+  opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s var(--ease);
+}
+.g:hover figcaption{opacity:1;transform:none}
+.g::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(120deg,transparent 42%,rgba(201,255,46,.16) 50%,transparent 58%);
+  transform:translateX(-110%);transition:transform 1.1s var(--ease);
+}
+.g:hover::after{transform:translateX(110%)}
+.g-a{grid-column:span 7;aspect-ratio:16/10}
+.g-b{grid-column:span 5;aspect-ratio:4/5}
+.g-c{grid-column:span 4;aspect-ratio:1}
+.g-d{grid-column:span 4;aspect-ratio:1}
+.g-e{grid-column:span 4;aspect-ratio:1}
+.g-f{grid-column:span 5;aspect-ratio:4/5}
+.g-g{grid-column:span 7;aspect-ratio:16/10}
+@media (max-width:780px){
+  .g-a,.g-b,.g-c,.g-d,.g-e,.g-f,.g-g{grid-column:span 12;aspect-ratio:16/10}
+  .g-b,.g-f{aspect-ratio:4/5}
+}
+
+/* --------- seconda scena: il collo (scrub bloccato) --------------------- */
+#collo{position:relative;height:280vh}
+#collo .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#collo canvas{display:block;width:100%;height:100%}
+#collo .vig{
+  background:
+    radial-gradient(120% 90% at 60% 40%,transparent 24%,rgba(3,4,5,.72) 100%),
+    linear-gradient(to bottom,rgba(3,4,5,.8),transparent 26%,transparent 62%,var(--void));
+}
+.cl-txt{
+  position:absolute;inset:0;z-index:5;pointer-events:none;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 var(--pad);
+}
+.cl-txt .big{
+  font-family:var(--disp);font-weight:800;font-stretch:122%;text-transform:uppercase;
+  font-size:clamp(2.1rem,10vw,7.4rem);line-height:.84;letter-spacing:-.03em;
+  color:var(--silver-w);max-width:14ch;
+}
+.cl-txt .big u{text-decoration:none;color:var(--gold-l);display:block}
+.cl-txt .big i{font-style:normal;color:transparent;-webkit-text-stroke:1.4px var(--silver-w);display:block}
+.cl-txt .sub{
+  font-family:var(--serif);font-style:italic;color:var(--silver);
+  font-size:clamp(1rem,2.6vw,1.7rem);margin-top:1.4rem;
+}
+.cl-hud{
+  position:absolute;left:var(--pad);bottom:clamp(1.4rem,4vh,2.6rem);z-index:6;
+  display:flex;gap:1.4rem;align-items:center;
+}
+.cl-hud .trk{width:min(220px,30vw);height:1px;background:#1b2426;position:relative;overflow:hidden}
+.cl-hud .trk i{position:absolute;inset:0 auto 0 0;width:0;background:var(--acid)}
+
+/* --------- cavallo cromato: anello in loop ------------------------------ */
+.horse{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:clamp(2rem,5vw,4rem);align-items:center;
+}
+.horse .box{
+  position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--hair);overflow:hidden;
+}
+.horse canvas{display:block;width:100%;height:100%;mix-blend-mode:screen}
+.horse .box::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.3) 0 1px,transparent 1px 3px);
+  opacity:.5;
+}
+.horse .box .tag{
+  position:absolute;top:.8rem;left:.9rem;z-index:2;
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--acid);
+}
+.horse h3{
+  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:clamp(1.7rem,4.4vw,3.4rem);line-height:.9;letter-spacing:-.02em;color:var(--silver-w);
+  overflow-wrap:anywhere;
+}
+.horse h3 em{font-style:normal;color:transparent;-webkit-text-stroke:1.2px var(--acid)}
+.horse p{margin-top:1.4rem;font-family:var(--serif);font-style:italic;
+  font-size:clamp(1rem,2.2vw,1.4rem);color:var(--silver);line-height:1.5;max-width:30ch}
+@media (max-width:860px){.horse{grid-template-columns:1fr}}
+
+/* --------- date ---------------------------------------------------------- */
+.dates{border-top:1px solid var(--hair)}
+.date{
+  display:grid;grid-template-columns:minmax(96px,.55fr) minmax(0,1.1fr) minmax(0,1.5fr) 138px;
+  gap:clamp(.8rem,2.4vw,2rem);align-items:center;
+  padding:clamp(1.1rem,2.6vh,1.8rem) .2rem;border-bottom:1px solid var(--hair);
+  position:relative;transition:padding-left .5s var(--ease);
+}
+.date::before{
+  content:'';position:absolute;inset:0;background:var(--acid);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);z-index:0;
+}
+.date > *{position:relative;z-index:1}
+.date:hover{padding-left:1.2rem}
+.date:hover::before{transform:scaleY(1)}
+.date .d{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;color:var(--acid);transition:color .4s}
+.date .city{font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:clamp(1.2rem,3.4vw,2.2rem);color:var(--silver-w);line-height:.94;letter-spacing:-.015em;
+  transition:color .4s}
+.date .ven{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--silver-d);transition:color .4s}
+.date:hover .d,.date:hover .city,.date:hover .ven{color:var(--void)}
+.date:hover .btn{border-color:var(--void);color:var(--void)}
+.date:hover .btn::before{background:var(--void)}
+.date:hover .btn:hover{color:var(--acid)}
+.date:hover .so{border-color:rgba(3,4,5,.4);color:rgba(3,4,5,.65)}
+.date .act{justify-self:end}
+.date .btn{padding:.8rem 1.05rem}
+.so{
+  display:inline-block;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--silver-d);border:1px solid var(--hair);padding:.8rem 1.05rem;white-space:nowrap;
+  transition:color .4s,border-color .4s;
+}
+@media (max-width:760px){
+  .date{grid-template-columns:1fr auto;grid-template-areas:'d a' 'c a' 'v a';row-gap:.35rem}
+  .date .d{grid-area:d}.date .city{grid-area:c}.date .ven{grid-area:v}.date .act{grid-area:a;align-self:center}
+}
+
+/* --------- griglia insegne (merch) -------------------------------------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(.8rem,1.8vw,1.3rem)}
+.card{display:block;border:1px solid var(--hair);background:var(--ink);
+  transition:border-color .5s ease,transform .5s var(--ease)}
+.card .sq{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  background:radial-gradient(120% 90% at 35% 25%,var(--petrol),var(--petrol-d) 60%,var(--ink));
+  display:flex;align-items:center;justify-content:center;
+}
+.card .sq img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;
+  filter:grayscale(1) contrast(1.3) brightness(.6) sepia(.35) hue-rotate(142deg) saturate(2.4);
+  transition:opacity .8s ease,filter .8s ease,transform 1.3s var(--ease);
+}
+.card .sq b{
+  position:relative;z-index:2;
+  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:clamp(1.3rem,3.6vw,2.1rem);
+  color:var(--silver-w);text-align:center;line-height:.98;letter-spacing:-.015em;
+  transition:color .5s ease,transform .8s var(--ease);text-shadow:0 2px 24px rgba(0,0,0,.85);
+}
+.card .sq::after{
+  content:'';position:absolute;inset:0;z-index:3;
+  background:linear-gradient(120deg,transparent 42%,rgba(201,255,46,.18) 50%,transparent 58%);
+  transform:translateX(-110%);transition:transform 1.1s var(--ease);
+}
+.card:hover{border-color:var(--acid);transform:translateY(-4px)}
+.card:hover .sq::after{transform:translateX(110%)}
+.card:hover .sq img{opacity:.85;filter:contrast(1.08) saturate(1.05);transform:scale(1.05)}
+.card:hover .sq b{color:var(--acid);transform:scale(1.03)}
+.card .info{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:1rem}
+.card .info b{font-weight:600;font-size:.9rem;color:var(--silver-l);display:block;letter-spacing:-.01em}
+.card .info em{font-style:normal;font-family:var(--mono);font-size:.54rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--silver-d);display:block;margin-top:.4rem}
+.card .info > span{font-family:var(--mono);font-size:.82rem;color:var(--acid);white-space:nowrap}
+
+/* --------- elenchi ------------------------------------------------------- */
+.list{border-top:1px solid var(--hair)}
+.row{
+  display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
+  padding:clamp(1rem,2.4vh,1.6rem) .2rem;border-bottom:1px solid var(--hair);
+  position:relative;transition:padding-left .5s var(--ease);
+}
+.row::before{
+  content:'';position:absolute;inset:0;background:var(--acid);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);
+}
+.row > *{position:relative;z-index:1}
+.row:hover{padding-left:1.2rem}
+.row:hover::before{transform:scaleY(1)}
+.row .rt{font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:clamp(1.15rem,3.2vw,2rem);color:var(--silver-w);display:block;line-height:.96;
+  letter-spacing:-.015em;transition:color .4s}
+.row .rm{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--silver-d);display:block;margin-top:.5rem;transition:color .4s}
+.row .rg{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--silver-d);white-space:nowrap;transition:color .4s ease,transform .4s ease}
+.row:hover .rt,.row:hover .rm,.row:hover .rg{color:var(--void)}
+.row:hover .rg{transform:translateX(6px)}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.8rem}
+.tile{
+  position:relative;padding:clamp(1.6rem,4vw,2.4rem);border:1px solid var(--hair);
+  background:rgba(11,20,22,.5);overflow:hidden;
+  transition:border-color .5s ease,transform .5s var(--ease);
+}
+.tile::before{
+  content:'';position:absolute;inset:0;background:var(--acid);
+  transform:translateY(101%);transition:transform .5s var(--ease);
+}
+.tile > *{position:relative;z-index:1}
+.tile b{display:block;font-family:var(--disp);font-weight:800;font-stretch:112%;
+  text-transform:uppercase;font-size:clamp(1.4rem,3.4vw,1.9rem);color:var(--silver-w);
+  letter-spacing:-.015em;transition:color .45s}
+.tile span{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.2em;color:var(--silver-d);transition:color .45s}
+.tile em{display:block;margin-top:1.1rem;font-style:normal;font-size:.8rem;color:var(--silver-d);
+  line-height:1.6;transition:color .45s}
+.tile::after{
+  content:'↗';position:absolute;right:1.3rem;top:1.2rem;z-index:2;
+  font-family:var(--mono);font-size:.95rem;color:var(--silver-d);
+  opacity:0;transform:translate(-8px,8px);transition:opacity .45s ease,transform .45s var(--ease),color .45s;
+}
+.tile:hover{border-color:var(--acid);transform:translateY(-4px)}
+.tile:hover::before{transform:translateY(0)}
+.tile:hover b,.tile:hover span,.tile:hover em{color:var(--void)}
+.tile:hover::after{opacity:1;transform:none;color:var(--void)}
+
+/* --------- la barra citata ---------------------------------------------- */
+.bar{padding:clamp(4.5rem,13vh,8rem) var(--pad);border-top:1px solid var(--hair);position:relative;overflow:hidden}
+.bar .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.bar .q{
+  font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(1.7rem,6vw,4.2rem);line-height:.9;letter-spacing:-.025em;
+  color:var(--silver-w);max-width:16ch;
+}
+.bar .q b{color:transparent;-webkit-text-stroke:1.4px var(--acid);font-weight:800}
+
+/* --------- ritratto (chi e') -------------------------------------------- */
+.bio{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.bio p{font-size:1rem;line-height:1.85;color:var(--silver);margin-bottom:1.2rem;max-width:56ch}
+.bio p.big{font-family:var(--serif);font-size:clamp(1.3rem,3.2vw,1.9rem);line-height:1.45;color:var(--silver-w)}
+.bio p b{font-weight:600;color:var(--acid)}
+.portrait{position:relative;border:1px solid var(--hair);overflow:hidden;aspect-ratio:3/4}
+.portrait img{width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.25) brightness(.82) sepia(.32) hue-rotate(142deg) saturate(2.3);
+  transition:transform 1.4s var(--ease),filter .9s ease}
+.portrait:hover img{transform:scale(1.05);filter:none}
+.portrait figcaption{
+  position:absolute;left:.9rem;bottom:.8rem;z-index:2;font-family:var(--mono);font-size:.54rem;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--silver-w);text-shadow:0 1px 10px rgba(0,0,0,.95);
+}
+.creds{margin-top:clamp(2rem,5vh,3rem);border-top:1px solid var(--hair)}
+.cr{display:flex;align-items:baseline;justify-content:space-between;gap:1.4rem;
+  padding:.95rem .2rem;border-bottom:1px solid var(--hair);
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--silver-d)}
+.cr span{color:var(--silver-l);letter-spacing:.02em;text-align:right;font-family:var(--sans);
+  font-size:.84rem;text-transform:none}
+
+/* --------- lista d'attesa + piede --------------------------------------- */
+#lista{
+  position:relative;padding:clamp(5rem,14vh,9rem) var(--pad);
+  border-top:1px solid var(--hair);text-align:center;overflow:hidden;
+}
+#lista h2{font-family:var(--disp);font-weight:800;font-stretch:120%;text-transform:uppercase;
+  font-size:clamp(2.2rem,8vw,5rem);color:var(--silver-w);letter-spacing:-.025em;line-height:.88}
+#lista p.sub{margin-top:1rem;font-family:var(--serif);font-style:italic;color:var(--silver-d);
+  font-size:clamp(.95rem,2.2vw,1.25rem)}
+.form{display:flex;gap:.6rem;justify-content:center;margin-top:2.2rem;flex-wrap:wrap}
+.form input{
+  background:transparent;border:1px solid var(--hair);padding:.95rem 1.2rem;min-width:min(320px,80vw);
+  color:var(--silver-w);font-size:.9rem;letter-spacing:.02em;outline:none;
+  transition:border-color .4s ease;
+}
+.form input::placeholder{color:var(--silver-d)}
+.form input:focus{border-color:var(--acid)}
+.ok{margin-top:1.2rem;min-height:1.2em;font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--acid);opacity:0;transition:opacity .5s ease}
+.ok.on{opacity:1}
+
+footer{padding:clamp(3rem,8vh,5rem) var(--pad) 4rem;text-align:center;border-top:1px solid var(--hair)}
+footer .fnav{display:flex;gap:clamp(.9rem,2.4vw,2rem);justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+footer .fnav a{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--silver-d);transition:color .35s ease}
+footer .fnav a:hover{color:var(--acid)}
+footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line-height:2.2;
+  color:#3c4749;text-transform:uppercase}
+.sig{display:inline-flex;flex-direction:column;gap:.4rem;margin-top:2rem;cursor:pointer}
+.sig b{font-family:var(--mono);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--silver-d);font-weight:400;transition:color .4s ease}
+.sig em{font-style:normal;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;color:#3c4749}
+.sig:hover b{color:var(--acid)}
+
+@media (max-width:860px){
+  .rel{grid-template-columns:1fr}
+  .bio{grid-template-columns:1fr}
+  .portrait{max-width:420px}
+}
+@media (max-width:720px){
+  :root{--stage:290vh}
+  #collo{height:240vh}
+  .shead{align-items:flex-start;flex-direction:column;gap:1rem}
+  .c-tr{display:none}
+  /* su schermo stretto il velo laterale copre tutto: si tiene solo quello verticale */
+  .phead .bg::after{
+    background:linear-gradient(to bottom,rgba(3,4,5,.72),rgba(3,4,5,.34) 45%,var(--void));
   }
-  @media (prefers-reduced-motion:reduce){
-    #word .l i{animation:none;opacity:1}
-    .rv{transition-duration:.01ms}
-    .c-bc i{display:none}
-  }
+  .tick{transform:rotate(-1.4deg) scale(1.09)}
+}
+@media (prefers-reduced-motion:reduce){
+  #word .l i{animation:none;opacity:1}
+  .rv{transition-duration:.01ms}
+  .grain,.tk{animation:none}
+  .c-bc i{display:none}
+}
 </style>
 </head>
 <body>
 
+<!-- filtri: lo scioglimento acido -->
+<svg class="defs" aria-hidden="true">
+  <filter id="mlt" x="-25%" y="-30%" width="150%" height="200%" color-interpolation-filters="sRGB">
+    <feTurbulence id="mltT" type="fractalNoise" baseFrequency="0.004 0.03" numOctaves="2" seed="5" result="t"/>
+    <feDisplacementMap id="mltD" in="SourceGraphic" in2="t" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="mltimg" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+    <feTurbulence id="mliT" type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="2" seed="11" result="t2"/>
+    <feDisplacementMap id="mliD" in="SourceGraphic" in2="t2" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<div class="scan"></div>
+<div class="grain"></div>
+<div id="spot"></div>
+<div id="prog"></div>
+<div class="cur" id="cur"></div>
+<div class="curl" id="curl"></div>
+
 <div id="loader">
-  <div class="mk">SOVRANA</div>
+  <div class="mk">ENNY&nbsp;P</div>
   <div id="bar"><span></span></div>
-  <div class="mono" id="pct">0%</div>
+  <div id="pct">0%</div>
 </div>
 
-<!-- ============ IL PALCO: marchio ritmato, poi divorato ============ -->
-<section id="stage">
-  <div class="pin">
-    <canvas id="seq"></canvas>
-    <div class="vig"></div>
+<div id="curt"><div class="t" id="curtT"></div></div>
 
-    <div id="mark"><div id="word" aria-label="SOVRANA"></div></div>
-    <div id="blade"></div>
+<header id="hdr">
+  <a class="brand" href="#/"><i></i>ENNY P</a>
+  <nav id="menu">
+    <a href="#/musica">Musica</a><a href="#/eventi">Eventi</a><a href="#/merch">Merch</a>
+    <a href="#/social">Social</a><a href="#/chi">Chi è</a><a href="#/contatti">Contatti</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Apri il menu">Menu</button>
+</header>
 
-    <p class="corner c-tl mono">Atto <span class="gold">I</span> — <span id="actName"></span></p>
-    <p class="corner c-tr mono">34 quadri<br>0,84 — 2,16 s</p>
-    <div class="corner c-bc"><span class="mono">Scorri</span><i></i></div>
+<div class="sheet" id="sheet">
+  <button class="burger x" id="sheetX" aria-label="Chiudi il menu">Chiudi</button>
+  <a class="melt" href="#/">Home</a><a class="melt" href="#/musica">Musica</a>
+  <a class="melt" href="#/eventi">Eventi</a><a class="melt" href="#/merch">Merch</a>
+  <a class="melt" href="#/social">Social</a><a class="melt" href="#/chi">Chi è</a>
+  <a class="melt" href="#/contatti">Contatti</a>
+</div>
 
-    <p id="closing">Ogni cosa che tocca diventa sua</p>
-  </div>
-</section>
+<main id="app" tabindex="-1"></main>
 
-<!-- ============ ARCHIVIO ============ -->
-<section class="blk">
-  <div class="inner">
-    <div class="shead rv">
-      <h2>Archivio<br><em>dei quadri</em></h2>
-      <p class="mono">Atto II — l'evidenza</p>
+<div class="tick gh" data-dur="46" data-rev="1">
+  <div class="tk"></div>
+</div>
+
+<section id="lista">
+  <div class="ghost" data-sp=".22">La lista</div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <h2 class="melt">La lista</h2>
+    <p class="sub">Chi entra lo sa prima degli altri.</p>
+    <!-- collegare a Mailchimp / Beehiiv / Klaviyo -->
+    <div class="form">
+      <input id="mail" type="email" placeholder="La tua email" aria-label="La tua email">
+      <button class="btn" id="sub" data-cur="Entra"><span>Iscrivimi</span></button>
     </div>
-    <div class="arch" id="arch"></div>
-  </div>
-</section>
-
-<!-- ============ SIGILLO ============ -->
-<section id="seal">
-  <div class="sealwrap">
-    <svg id="emblem" viewBox="0 0 300 300" aria-hidden="true">
-      <circle data-draw cx="150" cy="150" r="122"/>
-      <circle data-draw class="fine" cx="150" cy="150" r="103"/>
-      <circle data-draw cx="150" cy="150" r="61"/>
-      <rect   data-draw x="92" y="92" width="116" height="116" transform="rotate(45 150 150)"/>
-      <path   data-draw d="M150 28 L150 272"/>
-      <path   data-draw d="M28 150 L272 150"/>
-      <path   data-draw class="fine" d="M64 64 L236 236"/>
-      <path   data-draw class="fine" d="M236 64 L64 236"/>
-      <circle data-draw cx="150" cy="150" r="15"/>
-    </svg>
-    <p class="creed rv">Non chiede il trono.<br><b>Lo chiude in una mano.</b></p>
+    <p class="ok" id="ok"></p>
   </div>
 </section>
 
 <footer>
-  <div class="rule"></div>
-  <p class="mono">Sovrana — sequenza a 25 fps, nessuno zoom aggiunto</p>
+  <nav class="fnav">
+    <a href="#/musica">Musica</a><a href="#/eventi">Eventi</a><a href="#/merch">Merch</a>
+    <a href="#/social">Social</a><a href="#/chi">Chi è</a><a href="#/contatti">Contatti</a>
+  </nav>
+  <div class="rule a" style="max-width:340px;margin:0 auto 2rem"></div>
+  <p class="legal">© 2026 Enny P — Warner Records Italy / Warner Music Italy.<br>
+    Immagini dal video ufficiale «24/7». Date, prezzi e link dello shop sono segnaposto.</p>
+  <div class="sig" id="sigE" role="button" tabindex="0" data-cur="Scrivi">
+    <b>◆ Sito di Enea</b><em>— ne vuoi uno così? scrivimi →</em>
+  </div>
 </footer>
 
+<!-- ====================== HOME ====================== -->
+<template id="p-home">
+  <section id="stage">
+    <div class="pin">
+      <canvas id="seq"></canvas>
+      <div class="vig"></div>
+
+      <div id="mark"><div id="word" aria-label="Enny P"></div></div>
+      <div id="blade"></div>
+
+      <p class="corner c-tl mono a">It's NEP, ho</p>
+      <p class="corner c-tr mono">Warner Records Italy<br><span class="gold">«Mi Piace» fuori ora</span></p>
+      <div class="corner c-bc"><span class="mono">Scorri</span><i></i></div>
+
+      <div id="closing">
+        <p class="ln">Faccio what I want<br><b>24/7</b></p>
+        <div class="rule a"></div>
+        <p class="mono">Enny P — Sito ufficiale</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tick" data-dur="30"><div class="tk"></div></div>
+
+  <section class="sect">
+    <div class="ghost" data-sp=".2">Fuori ora</div>
+    <div class="wrap">
+      <div class="shead rv">
+        <h2 class="h2 melt gx" data-t="Fuori ora">Fuori ora</h2>
+        <a class="btn o" href="#/musica" data-cur="Apri"><span>Tutte le uscite</span></a>
+      </div>
+      <div class="rel rv">
+        <div class="cover mimg">
+          <img src="img/unghie.jpg" alt="Enny P — fermo immagine dal video 24/7" loading="lazy">
+          <div class="lay">
+            <p class="mono a">Singolo · 2026</p>
+            <div class="t">Mi<br>Piace</div>
+            <div class="rule"></div>
+            <p class="mono">Warner Records Italy</p>
+          </div>
+        </div>
+        <div class="relmeta">
+          <p class="mono a" data-scr>Il nuovo singolo</p>
+          <h3 class="melt gx" data-t="Mi Piace">Mi Piace</h3>
+          <p class="lead">Scritto per essere messo a tutto volume, non per piacere a tutti.</p>
+          <div class="plat">
+            <a class="pl" href="https://open.spotify.com/intl-it/artist/6BiW9C6z0jgaJee9d0btwj" target="_blank" rel="noopener" data-cur="Ascolta"><b>Spotify</b><span>→</span></a>
+            <a class="pl" href="https://music.apple.com/it/artist/enny-p/1625487221" target="_blank" rel="noopener" data-cur="Ascolta"><b>Apple Music</b><span>→</span></a>
+            <a class="pl" href="#" data-cur="Guarda"><b>YouTube</b><span>→</span></a>
+            <a class="pl" href="#" data-cur="Ascolta"><b>Amazon Music</b><span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- seconda scena bloccata: il collo -->
+  <section id="collo" data-seq="collo">
+    <div class="pin">
+      <canvas></canvas>
+      <div class="vig"></div>
+      <div class="cl-txt">
+        <p class="big"><span>Oro</span><i>intorno</i><u>al collo</u></p>
+        <p class="sub">tu ridi, io me la godo.</p>
+      </div>
+      <div class="cl-hud">
+        <span class="mono a">24/7 · 01:11</span>
+        <span class="trk"><i></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="ghost r" data-sp=".24">Immagini</div>
+    <div class="wrap">
+      <div class="shead rv">
+        <h2 class="h2 melt gx" data-t="Il video">Il video</h2>
+        <span class="mono" data-scr>24/7 — fermi immagine</span>
+      </div>
+      <div class="gal rv">
+        <figure class="g g-a mimg" data-par=".08"><img src="img/soldi.jpg" alt="Enny P" loading="lazy"><figcaption>Tutti questi cash</figcaption></figure>
+        <figure class="g g-b mimg" data-par=".16"><img src="img/viso.jpg" alt="Enny P" loading="lazy"><figcaption>01:11</figcaption></figure>
+        <figure class="g g-c mimg" data-par=".12"><img src="img/occhiali.jpg" alt="Enny P" loading="lazy"><figcaption>Sono esattamente chi penso di essere</figcaption></figure>
+        <figure class="g g-d mimg" data-par=".2"><img src="img/cavallo.jpg" alt="Enny P" loading="lazy"><figcaption>Cromo</figcaption></figure>
+        <figure class="g g-e mimg" data-par=".06"><img src="img/collana.jpg" alt="Enny P" loading="lazy"><figcaption>Oro intorno al collo</figcaption></figure>
+        <figure class="g g-f mimg" data-par=".18"><img src="img/profilo.jpg" alt="Enny P" loading="lazy"><figcaption>Vado sola</figcaption></figure>
+        <figure class="g g-g mimg" data-par=".1"><img src="img/pelliccia.jpg" alt="Enny P" loading="lazy"><figcaption>Prendo tutto o niente</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="horse rv">
+        <div class="box" data-loop="cavallo">
+          <canvas></canvas>
+          <span class="tag">Loop · 00:53</span>
+        </div>
+        <div>
+          <h3 class="melt">Cromo<br><em>e niente</em><br>compromessi</h3>
+          <p>Quali compromessi? No, non posso scendere. Non ho vie di mezzo.</p>
+          <div style="margin-top:2rem"><a class="btn" href="#/musica" data-cur="Ascolta"><span>Ascolta 24/7</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="ghost r" data-sp=".26">Eventi</div>
+    <div class="wrap">
+      <div class="shead rv">
+        <h2 class="h2 melt gx" data-t="Prossime date">Prossime date</h2>
+        <a class="btn o" href="#/eventi" data-cur="Apri"><span>Tutte le date</span></a>
+      </div>
+      <div class="dates rv" data-dates="3"></div>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="ghost" data-sp=".18">Merch</div>
+    <div class="wrap">
+      <div class="shead rv">
+        <h2 class="h2 melt gx" data-t="Merch">Merch</h2>
+        <a class="btn o" href="#/merch" data-cur="Entra"><span>Entra nello shop</span></a>
+      </div>
+      <div class="grid rv" data-merch="3"></div>
+    </div>
+  </section>
+
+  <section class="bar">
+    <div class="wrap rv">
+      <p class="q melt">Non ho vie di mezzo,<br><b>prendo tutto o niente</b></p>
+      <p class="mono a">24/7</p>
+    </div>
+  </section>
+</template>
+
+<!-- ====================== MUSICA ====================== -->
+<template id="p-musica">
+  <section class="phead">
+    <div class="bg"><img src="img/unghie.jpg" alt="" loading="lazy"></div>
+    <div class="ghost" data-sp=".2">24/7</div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <p class="mono rv" data-scr>Discografia</p>
+      <h1 class="ptitle rv melt gx" data-t="Musica">Musica</h1>
+      <p class="lead rv">Sono esattamente chi penso di essere.</p>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="shead rv"><h2 class="h2 melt">Ascolta</h2><span class="mono" data-scr>Piattaforme</span></div>
+      <div class="plat rv" style="margin-top:0">
+        <a class="pl" href="https://open.spotify.com/intl-it/artist/6BiW9C6z0jgaJee9d0btwj" target="_blank" rel="noopener" data-cur="Ascolta"><b>Spotify</b><span>→</span></a>
+        <a class="pl" href="https://music.apple.com/it/artist/enny-p/1625487221" target="_blank" rel="noopener" data-cur="Ascolta"><b>Apple Music</b><span>→</span></a>
+        <a class="pl" href="#" data-cur="Guarda"><b>YouTube</b><span>→</span></a>
+        <a class="pl" href="#" data-cur="Ascolta"><b>Amazon Music</b><span>→</span></a>
+        <a class="pl" href="#" data-cur="Ascolta"><b>Deezer</b><span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="tick" data-dur="28"><div class="tk"></div></div>
+
+  <section class="sect">
+    <div class="ghost r" data-sp=".24">Uscite</div>
+    <div class="wrap">
+      <div class="shead rv"><h2 class="h2 melt gx" data-t="Uscite">Uscite</h2><span class="mono">2024 — 2026</span></div>
+      <div class="list rv" data-releases></div>
+    </div>
+  </section>
+</template>
+
+<!-- ====================== EVENTI ====================== -->
+<template id="p-eventi">
+  <section class="phead">
+    <div class="bg"><img src="img/stanza.jpg" alt="" loading="lazy"></div>
+    <div class="ghost" data-sp=".2">Tutto o niente</div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <p class="mono rv" data-scr>Calendario 2026</p>
+      <h1 class="ptitle rv melt gx" data-t="Eventi">Eventi</h1>
+      <p class="lead rv">Sono esattamente dove devo essere.</p>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="shead rv"><h2 class="h2 melt">Date</h2><span class="mono">Date di esempio</span></div>
+      <div class="dates rv" data-dates="all"></div>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="ghost r" data-sp=".2">Ingaggi</div>
+    <div class="wrap">
+      <div class="shead rv"><h2 class="h2 melt">Ingaggi</h2><a class="btn" href="#/contatti" data-cur="Scrivi"><span>Booking</span></a></div>
+      <p class="lead rv">Festival, club, private. Si scrive a <span class="acid">booking@ennyp.it</span>.</p>
+    </div>
+  </section>
+</template>
+
+<!-- ====================== MERCH ====================== -->
+<template id="p-merch">
+  <section class="phead">
+    <div class="bg"><img src="img/pelliccia.jpg" alt="" loading="lazy"></div>
+    <div class="ghost" data-sp=".2">Oro al collo</div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <p class="mono rv" data-scr>Store</p>
+      <h1 class="ptitle rv melt gx" data-t="Merch">Merch</h1>
+      <p class="lead rv">Oro intorno al collo, tu ridi, io me la godo.</p>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="shead rv">
+        <h2 class="h2 melt">Disponibile ora</h2>
+        <span class="mono">Italia €6 · gratis sopra €80</span>
+      </div>
+      <div class="grid rv" data-merch="all"></div>
+    </div>
+  </section>
+
+  <div class="tick" data-dur="32"><div class="tk"></div></div>
+</template>
+
+<!-- ====================== SOCIAL ====================== -->
+<template id="p-social">
+  <section class="phead">
+    <div class="bg"><img src="img/occhiali.jpg" alt="" loading="lazy"></div>
+    <div class="ghost" data-sp=".2">Vado sola</div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <p class="mono rv" data-scr>Canali</p>
+      <h1 class="ptitle rv melt gx" data-t="Social">Social</h1>
+      <p class="lead rv">La miseria ama la compagnia, infatti vado sola.</p>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="tiles rv">
+        <a class="tile" href="https://www.instagram.com/iamennyp/" target="_blank" rel="noopener" data-cur="Segui"><b>Instagram</b><span>@iamennyp</span></a>
+        <a class="tile" href="#" data-cur="Segui"><b>TikTok</b><span>@iamennyp</span></a>
+        <a class="tile" href="#" data-cur="Guarda"><b>YouTube</b><span>Enny P</span></a>
+        <a class="tile" href="https://open.spotify.com/intl-it/artist/6BiW9C6z0jgaJee9d0btwj" target="_blank" rel="noopener" data-cur="Ascolta"><b>Spotify</b><span>Artista</span></a>
+        <a class="tile" href="https://music.apple.com/it/artist/enny-p/1625487221" target="_blank" rel="noopener" data-cur="Ascolta"><b>Apple Music</b><span>Artista</span></a>
+        <a class="tile" href="#" data-cur="Entra"><b>Telegram</b><span>Canale</span></a>
+      </div>
+    </div>
+  </section>
+</template>
+
+<!-- ====================== CONTATTI ====================== -->
+<template id="p-contatti">
+  <section class="phead">
+    <div class="bg"><img src="img/profilo.jpg" alt="" loading="lazy"></div>
+    <div class="ghost" data-sp=".2">Le chiavi</div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <p class="mono rv" data-scr>Scrivi</p>
+      <h1 class="ptitle rv melt gx" data-t="Contatti">Contatti</h1>
+      <p class="lead rv">Voglio le chiavi della stanza, non sono qui tanto per.</p>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="tiles rv">
+        <a class="tile" href="mailto:booking@ennyp.it" data-cur="Scrivi"><b>Booking</b><span>booking@ennyp.it</span><em>Date · festival · private</em></a>
+        <a class="tile" href="mailto:press@ennyp.it" data-cur="Scrivi"><b>Stampa</b><span>press@ennyp.it</span><em>Interviste · accrediti</em></a>
+        <a class="tile" href="mailto:management@ennyp.it" data-cur="Scrivi"><b>Management</b><span>management@ennyp.it</span><em>Brand · sync · licenze</em></a>
+      </div>
+      <div class="shead rv" style="margin:clamp(2.6rem,7vh,4rem) 0 0;border:0;padding:0">
+        <h2 class="h2 melt">Press kit</h2><a class="btn" href="#" data-cur="Scarica"><span>Scarica</span></a>
+      </div>
+    </div>
+  </section>
+</template>
+
+<!-- ====================== CHI È ====================== -->
+<template id="p-chi">
+  <section class="phead">
+    <div class="bg"><img src="img/viso.jpg" alt="" loading="lazy"></div>
+    <div class="ghost" data-sp=".2">It’s NEP, ho</div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <p class="mono rv" data-scr>Biografia</p>
+      <h1 class="ptitle rv melt gx" data-t="Chi è">Chi è</h1>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="bio">
+        <div class="rv">
+          <p class="big">Cantante e rapper <b>italo-colombiana</b>, sotto Warner Records Italy.</p>
+          <p>Cresciuta con il cantautorato italiano nelle cuffie. Oggi si muove tra rap e club:
+             l'ultima uscita incrocia la scrittura urban con la tech house.</p>
+          <p>Ha collaborato con <b>Guè</b>, <b>Big Fish</b>, <b>LILCR</b> e <b>Macello</b>.
+             Protagonista della cover story GENb di Billboard Italia.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem">
+            <a class="btn" href="#" data-cur="Scarica"><span>Scarica il press kit</span></a>
+            <a class="btn o" href="#/contatti" data-cur="Scrivi"><span>Contatti</span></a>
+          </div>
+          <div class="creds">
+            <div class="cr">Etichetta <span>Warner Records Italy</span></div>
+            <div class="cr">Cover story <span>GENb · Billboard Italia #16</span></div>
+            <div class="cr">Ultima uscita <span>Pressing — con Big Fish, Macello</span></div>
+            <div class="cr">Ascoltatori mensili <span>≈ 203.000 su Spotify</span></div>
+            <div class="cr">Formazione live <span>Voce + DJ · Voce + band</span></div>
+            <div class="cr">Booking <span>booking@ennyp.it</span></div>
+          </div>
+        </div>
+        <figure class="portrait rv mimg">
+          <img src="img/collo.jpg" alt="Enny P" loading="lazy">
+          <figcaption>Enny P — 24/7</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <div class="gal rv">
+        <figure class="g g-c mimg" data-par=".12"><img src="img/sala.jpg" alt="Enny P" loading="lazy"><figcaption>La stanza</figcaption></figure>
+        <figure class="g g-d mimg" data-par=".2"><img src="img/collana.jpg" alt="Enny P" loading="lazy"><figcaption>Argento</figcaption></figure>
+        <figure class="g g-e mimg" data-par=".07"><img src="img/cavallo.jpg" alt="Enny P" loading="lazy"><figcaption>Cromo</figcaption></figure>
+      </div>
+    </div>
+  </section>
+</template>
+
 <script>
-(() => {
-  const WORD        = 'SOVRANA';
-  const FRAME_COUNT = 34;
+(function(){
+'use strict';
 
-  /* Due assi indipendenti: il verso del gesto e il verso del marchio.
+var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var coarse  = matchMedia('(pointer:coarse)').matches;
+var clamp = function(v,a,b){return v<a?a:v>b?b:v};
 
-     PLAY_REVERSED — il gesto
-       true  : si parte con le dita sulla lente e la mano si ritrae
-       false : si parte lontano e le dita si chiudono sull'obiettivo
+/* ======================================================================
+   DATI — un solo posto da toccare quando arrivano i dati veri
+   ====================================================================== */
+var DATES = [
+  {d:'12.09.2026', city:'Milano',  ven:'Magazzini Generali',   url:'#'},
+  {d:'27.09.2026', city:'Bologna', ven:'Locomotiv Club',       url:null},
+  {d:'11.10.2026', city:'Roma',    ven:'Largo Venue',          url:'#'},
+  {d:'25.10.2026', city:'Torino',  ven:'Hiroshima Mon Amour',  url:'#'},
+  {d:'08.11.2026', city:'Napoli',  ven:'Duel Beat',            url:'#'}
+];
+var MERCH = [
+  {n:'Bomber oversize',  s:'S–XL',         p:'€120', k:'Bomber',   i:'img/pelliccia.jpg'},
+  {n:'Occhiali shield',  s:'Taglia unica', p:'€90',  k:'Occhiali', i:'img/occhiali.jpg'},
+  {n:'Orecchini hoops',  s:'Taglia unica', p:'€40',  k:'Hoops',    i:'img/collana.jpg'},
+  {n:'Hoodie oversize',  s:'S–XL',         p:'€65',  k:'Hoodie',   i:'img/profilo.jpg'},
+  {n:'T-shirt boxy',     s:'S–XL',         p:'€35',  k:'Tee',      i:'img/viso.jpg'},
+  {n:'Vinile numerato',  s:'250 copie',    p:'€28',  k:'Vinile 7"',i:'img/cavallo.jpg'}
+];
+var RELEASES = [
+  {t:'Mi Piace',       m:'Singolo · 2026 · Warner Records Italy'},
+  {t:'24/7',           m:'Singolo · Warner Records Italy'},
+  {t:'Pressing',       m:'Big Fish feat. Macello, Enny P · 2026'},
+  {t:'Money Maker',    m:'Singolo · prod. NKO · 2026'},
+  {t:'Skincare',       m:'SadTurs & KIID feat. Enny P, Lito'},
+  {t:'Baby Do It',     m:'Feat. · Singolo'},
+  {t:'Motorola',       m:'Feat. · Singolo'},
+  {t:'All U Can Eat',  m:'Feat. · Singolo'},
+  {t:'Si sono Enny P', m:'Singolo · 2024'}
+];
+/* le sue parole: corrono nei nastri */
+var TICKER = [
+  'Faccio what I want 24/7','Prendo tutto o niente','Sono esattamente dove devo essere',
+  'Oro intorno al collo','Quali compromessi?','It’s NEP, ho','Vado sola'
+];
 
-     MARK_VANISHES — il marchio
-       true  : la scritta c'e' dall'inizio e si dissolve scrollando
-       false : la scritta non c'e' e si ricompone scrollando
+/* ======================================================================
+   SEQUENZE — la mano (palco), il collo (seconda scena), il cavallo (loop)
+   ====================================================================== */
+var HERO = {dir:'frames/', pre:'f_', n:34, rev:true};
+var SEQS = {
+  collo:   {dir:'scene-collo/',   pre:'c_', n:35},
+  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24}
+};
+var frames = new Array(HERO.n);
+var framesReady = false;
+var srcOf = function(i){return HERO.dir + HERO.pre + String(i).padStart(4,'0') + '.jpg'};
+var fileOf = function(n){return HERO.rev ? (HERO.n - n + 1) : n};
 
-     Combinazione attuale: la mano si ritrae mentre il nome si dissolve e
-     lascia il posto alla figura.                                          */
-  const PLAY_REVERSED = true;
-  const MARK_VANISHES = true;
+/* Il gesto: mani aperte sull'obiettivo, la presa si chiude ritraendosi.
+   Il marchio c'e' dall'inizio e la stretta se lo porta via. */
+var MARK_VANISHES = true;
 
-  document.getElementById('actName').textContent =
-    MARK_VANISHES ? (PLAY_REVERSED ? 'il congedo' : 'la stretta')
-                  : 'la rivelazione';
+/* ======================================================================
+   Registro degli agganci allo scroll: azzerato a ogni cambio pagina
+   ====================================================================== */
+var onScroll = [], cleanups = [], obs = [];
 
-  const src  = i => 'frames/f_' + String(i).padStart(4, '0') + '.jpg';
-  // posizione di riproduzione (1..34) -> file su disco
-  const file = n => PLAY_REVERSED ? (FRAME_COUNT - n + 1) : n;
+function clearPage(){
+  onScroll.length = 0;
+  cleanups.forEach(function(f){ f(); });
+  cleanups.length = 0;
+  obs.forEach(function(o){ o.disconnect(); });
+  obs.length = 0;
+}
+function pump(){
+  for (var i=0;i<onScroll.length;i++) onScroll[i]();
+}
+addEventListener('scroll', pump, {passive:true});
+addEventListener('resize', function(){ pump(); }, {passive:true});
 
-  const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* disegna un'immagine "cover" dentro un canvas gia' dimensionato */
+function cover(ctx, img, w, h){
+  var s = Math.max(w/img.naturalWidth, h/img.naturalHeight);
+  var iw = img.naturalWidth*s, ih = img.naturalHeight*s;
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0,0,w,h);
+  ctx.drawImage(img, (w-iw)/2, (h-ih)/2, iw, ih);
+}
 
-  const canvas  = document.getElementById('seq');
-  const ctx     = canvas.getContext('2d', { alpha: false });
-  const stage   = document.getElementById('stage');
-  const wordEl  = document.getElementById('word');
-  const blade   = document.getElementById('blade');
-  const closing = document.getElementById('closing');
-  const corners = [...document.querySelectorAll('.corner')];
-  const loader  = document.getElementById('loader');
-  const barFill = document.querySelector('#bar span');
-  const pct     = document.getElementById('pct');
+/* ======================================================================
+   Rivelazioni allo scroll
+   ====================================================================== */
+function initReveal(root){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.14, rootMargin:'0px 0px -6% 0px'});
+  root.querySelectorAll('.rv').forEach(function(el,i){
+    el.style.transitionDelay = ((i%6)*0.06).toFixed(2)+'s';
+    io.observe(el);
+  });
+  obs.push(io);
+}
 
-  /* ---------- il marchio, lettera per lettera ----------
-     .l  -> trasformato da JS (la divorazione)
-     i   -> animato dal CSS (la battuta)  ... due livelli, cosi' le due
-            animazioni non si sovrascrivono la transform a vicenda.        */
-  const letters = [...WORD].map((ch, i) => {
-    const span = document.createElement('span');
+/* ======================================================================
+   Testo che si ricompone: le lettere passano dal rumore alla parola
+   ====================================================================== */
+var GLYPH = '▚▞█▓▒░/\\|<>+=*#§$%&@';
+function scramble(el){
+  var txt = el.getAttribute('data-full') || el.textContent;
+  el.setAttribute('data-full', txt);
+  var n = txt.length, step = 0, total = n + 14, raf;
+  function tick(){
+    var out = '', done = Math.floor((step - 12) );
+    for (var i=0;i<n;i++){
+      var ch = txt[i];
+      if (ch === ' '){ out += ' '; continue; }
+      if (i < done) out += ch;
+      else out += GLYPH[(Math.random()*GLYPH.length)|0];
+    }
+    el.textContent = out;
+    step++;
+    if (step <= total) raf = requestAnimationFrame(tick);
+    else el.textContent = txt;
+  }
+  raf = requestAnimationFrame(tick);
+  cleanups.push(function(){ cancelAnimationFrame(raf); el.textContent = txt; });
+}
+function initScramble(root){
+  if (reduced) return;
+  var els = [].slice.call(root.querySelectorAll('[data-scr]'));
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting){ scramble(e.target); io.unobserve(e.target); }
+    });
+  }, {threshold:.6});
+  els.forEach(function(el){ io.observe(el); });
+  obs.push(io);
+}
+
+/* ======================================================================
+   Lo scioglimento: un solo filtro, pilotato dal passaggio del puntatore
+   ====================================================================== */
+var Melt = (function(){
+  var D = document.getElementById('mltD'), T = document.getElementById('mltT');
+  var Di = document.getElementById('mliD');
+  var cur = 0, tgt = 0, curI = 0, tgtI = 0, raf = null;
+  function loop(){
+    cur += (tgt - cur)*0.16;
+    curI += (tgtI - curI)*0.16;
+    D.setAttribute('scale', cur.toFixed(2));
+    T.setAttribute('baseFrequency', (0.004 + cur*0.0009).toFixed(5) + ' ' + (0.03 + cur*0.0016).toFixed(5));
+    Di.setAttribute('scale', curI.toFixed(2));
+    if (Math.abs(tgt-cur) < 0.05 && Math.abs(tgtI-curI) < 0.05){
+      cur = tgt; curI = tgtI;
+      D.setAttribute('scale', cur); Di.setAttribute('scale', curI);
+      raf = null; return;
+    }
+    raf = requestAnimationFrame(loop);
+  }
+  function kick(){ if (raf === null) raf = requestAnimationFrame(loop); }
+  return {
+    text:function(v){ tgt = v; kick(); },
+    img:function(v){ tgtI = v; kick(); }
+  };
+})();
+
+function initMelt(root){
+  if (reduced || coarse) return;
+  root.querySelectorAll('.melt').forEach(function(el){
+    el.addEventListener('pointerenter', function(){ el.classList.add('melting'); Melt.text(26); });
+    el.addEventListener('pointerleave', function(){
+      Melt.text(0);
+      setTimeout(function(){ el.classList.remove('melting'); }, 520);
+    });
+  });
+  root.querySelectorAll('.mimg').forEach(function(el){
+    el.addEventListener('pointerenter', function(){ el.classList.add('melting'); Melt.img(14); });
+    el.addEventListener('pointerleave', function(){
+      Melt.img(0);
+      setTimeout(function(){ el.classList.remove('melting'); }, 620);
+    });
+  });
+}
+
+/* ======================================================================
+   Nastri: le sue parole a tutta larghezza
+   ====================================================================== */
+function fillTickers(root){
+  root.querySelectorAll('.tick').forEach(function(t){
+    var tk = t.querySelector('.tk');
+    if (tk.childElementCount) return;
+    var half = TICKER.map(function(s,i){
+      var mark = (i%2) ? '✳' : '◆';
+      return '<b>' + (t.classList.contains('gh') && i%3===0 ? '<em>'+s+'</em>' : s) + '</b><s>'+mark+'</s>';
+    }).join('');
+    tk.innerHTML = half + half;
+    tk.style.animationDuration = (t.getAttribute('data-dur') || 34) + 's';
+    if (t.getAttribute('data-rev')) tk.style.animationDirection = 'reverse';
+  });
+}
+
+/* ======================================================================
+   Parole fantasma + galleria in parallasse
+   ====================================================================== */
+function initParallax(root){
+  if (reduced) return;
+  var ghosts = [].slice.call(root.querySelectorAll('.ghost'))
+    .concat([].slice.call(document.querySelectorAll('#lista .ghost')));
+  var pars = [].slice.call(root.querySelectorAll('[data-par]'));
+  if (!ghosts.length && !pars.length) return;
+  onScroll.push(function(){
+    var vh = innerHeight;
+    ghosts.forEach(function(g){
+      var r = g.parentNode.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var p = (vh - r.top) / (vh + r.height);
+      var sp = parseFloat(g.getAttribute('data-sp') || '.2');
+      var dir = g.classList.contains('r') ? -1 : 1;
+      g.style.transform = 'translate3d(' + (dir * (p - .5) * 380 * sp).toFixed(1) + 'px,0,0)';
+    });
+    pars.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var p = (vh - r.top) / (vh + r.height) - .5;
+      var sp = parseFloat(el.getAttribute('data-par') || '.1');
+      el.style.transform = 'translate3d(0,' + (-p * 220 * sp).toFixed(1) + 'px,0)';
+    });
+  });
+}
+
+/* ======================================================================
+   Bottoni magnetici
+   ====================================================================== */
+function initMagnetic(root){
+  if (reduced || coarse) return;
+  root.querySelectorAll('.btn').forEach(function(el){
+    el.addEventListener('pointermove', function(e){
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width/2)/r.width;
+      var y = (e.clientY - r.top - r.height/2)/r.height;
+      el.style.transform = 'translate3d(' + (x*14).toFixed(1) + 'px,' + (y*9).toFixed(1) + 'px,0)';
+    });
+    el.addEventListener('pointerleave', function(){ el.style.transform = ''; });
+  });
+}
+
+/* ======================================================================
+   Inclinazione magnetica delle schede
+   ====================================================================== */
+function initTilt(root){
+  if (reduced || coarse) return;
+  root.querySelectorAll('.card,.tile,.pl').forEach(function(el){
+    el.addEventListener('pointermove', function(e){
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5;
+      el.style.transform = 'perspective(900px) rotateX(' + (-y*4).toFixed(2) + 'deg) rotateY(' +
+        (x*5).toFixed(2) + 'deg) translateY(-4px)';
+    });
+    el.addEventListener('pointerleave', function(){ el.style.transform = ''; });
+  });
+}
+
+/* ======================================================================
+   Il palco: la mano (scrub sui frame) + il marchio divorato
+   ====================================================================== */
+function initStage(root){
+  var stage = root.querySelector('#stage');
+  if (!stage) return;
+
+  var canvas  = root.querySelector('#seq');
+  var ctx     = canvas.getContext('2d', {alpha:false});
+  var wordEl  = root.querySelector('#word');
+  var blade   = root.querySelector('#blade');
+  var closing = root.querySelector('#closing');
+  var corners = [].slice.call(root.querySelectorAll('#stage .corner'));
+
+  var WORD = 'ENNY P';
+  var letters = [].map.call(WORD, function(ch,i){
+    var span = document.createElement('span');
     span.className = 'l';
-    const inner = document.createElement('i');
-    inner.textContent = ch;
-    inner.style.animationDelay = (i * 0.075).toFixed(3) + 's, ' + (i * -0.9).toFixed(2) + 's';
+    var inner = document.createElement('i');
+    inner.textContent = ch === ' ' ? ' ' : ch;
+    inner.style.animationDelay = (i*0.075).toFixed(3)+'s, ' + (i*-0.9).toFixed(2)+'s';
     span.appendChild(inner);
     wordEl.appendChild(span);
     return span;
   });
 
-  /* Finestre in spazio di CONSUMO (c): la lettera e' piena a c<=start,
-     sparita a c>=end. In entrambi i modi le esterne stanno agli estremi della
-     scala e la centrale al fondo, cosi' il marchio si chiude in un punto --
-     dissolvendosi, proprio dove resta in piedi la figura.                   */
-  const mid = (letters.length - 1) / 2;
-  const win = letters.map((_, i) => {
-    const d = mid ? Math.abs(i - mid) / mid : 0;   // 1 = piu' esterna
-    const start = MARK_VANISHES ? 0.20 + (1 - d) * 0.40   // esterne per prime
-                                : 0.15 + (1 - d) * 0.45;  // centrali per prime
-    return { start, end: start + (MARK_VANISHES ? 0.22 : 0.25) };
+  /* finestre di consumo: le esterne cedono per prime, il nome si chiude
+     in un punto — esattamente dove la mano stringe. */
+  var mid = (letters.length - 1)/2;
+  var win = letters.map(function(_,i){
+    var d = mid ? Math.abs(i-mid)/mid : 0;
+    var start = 0.20 + (1-d)*0.40;
+    return {start:start, end:start + 0.22};
   });
 
-  /* ---------- canvas ---------- */
-  let cssW = 0, cssH = 0, lastIndex = -1;
+  var cssW=0, cssH=0, lastIndex=-1, targetP=0, currentP=0, sraf=null;
+  var frameAt = function(p){ return Math.pow(clamp(p,0,1), 0.85) };
 
-  function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    cssW = canvas.clientWidth;
-    cssH = canvas.clientHeight;
-    canvas.width  = Math.round(cssW * dpr);
-    canvas.height = Math.round(cssH * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  function resize(){
+    var dpr = Math.min(window.devicePixelRatio||1, 2);
+    cssW = canvas.clientWidth; cssH = canvas.clientHeight;
+    canvas.width  = Math.round(cssW*dpr);
+    canvas.height = Math.round(cssH*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
     lastIndex = -1;
     drawFrame(frameAt(currentP));
   }
-
-  const frames = new Array(FRAME_COUNT);
-
-  // mano che si ritrae: si scosta subito e poi la scena si distende.
-  // mano che si chiude: avanza piano e poi corre verso la lente.
-  const frameAt = p => Math.pow(clamp(p, 0, 1), PLAY_REVERSED ? 0.85 : 1.35);
-
-  function drawFrame(fp) {
-    const index = clamp(Math.round(fp * (FRAME_COUNT - 1)), 0, FRAME_COUNT - 1);
-    const img = frames[index];
-    if (!img || !img.complete || index === lastIndex) return;
+  function drawFrame(fp){
+    var index = clamp(Math.round(fp*(HERO.n-1)), 0, HERO.n-1);
+    var img = frames[index];
+    if (!img || !img.complete || !img.naturalWidth || index === lastIndex) return;
     lastIndex = index;
-    const scale = Math.max(cssW / img.naturalWidth, cssH / img.naturalHeight);
-    const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
-    ctx.fillStyle = '#040507';
-    ctx.fillRect(0, 0, cssW, cssH);
-    ctx.drawImage(img, (cssW - w) / 2, (cssH - h) / 2, w, h);
+    cover(ctx, img, cssW, cssH);
   }
 
-  /* ---------- la divorazione ---------- */
-  function paintMark(p) {
-    // c = consumo. 0 = marchio pieno, 1 = sparito.
-    // Se il marchio si ricompone, il suo tempo scorre a rovescio rispetto
-    // allo scroll e le lettere ripercorrono la dissolvenza all'indietro.
-    const c = MARK_VANISHES ? p : 1 - p;
+  function paintMark(p){
+    var c = MARK_VANISHES ? p : 1-p;
+    var spread = MARK_VANISHES ? clamp(p/0.3,0,1) : clamp((p-0.5)/0.42,0,1);
+    wordEl.style.letterSpacing = (-0.02 + spread*0.07).toFixed(4)+'em';
 
-    // l'interlettera si apre nel tratto in cui il marchio e' in scena
-    const spread = MARK_VANISHES ? clamp(p / 0.3, 0, 1)
-                                 : clamp((p - 0.5) / 0.42, 0, 1);
-    wordEl.style.letterSpacing = (0.02 + spread * 0.06).toFixed(4) + 'em';
-
-    letters.forEach((el, i) => {
-      const { start, end } = win[i];
-      const t = clamp((c - start) / (end - start), 0, 1);
-      const e = t * t;                       // la stretta accelera
-      const dir = i < mid ? 1 : (i > mid ? -1 : 0);   // tirate verso il centro
-      el.style.transform =
-        'translate3d(' + (dir * e * 46).toFixed(1) + 'px,' + (e * 10).toFixed(1) + 'px,0)' +
-        ' scale(' + (1 - e * 0.58).toFixed(3) + ')';
-      el.style.opacity = (1 - t).toFixed(3);
-      el.style.filter  = t > 0.02 ? 'blur(' + (e * 7).toFixed(2) + 'px)' : 'none';
-      // la battuta si spegne quando la lettera comincia a cedere
+    letters.forEach(function(el,i){
+      var w = win[i];
+      var t = clamp((c - w.start)/(w.end - w.start), 0, 1);
+      var e = t*t;
+      var dir = i < mid ? 1 : (i > mid ? -1 : 0);
+      el.style.transform = 'translate3d(' + (dir*e*46).toFixed(1) + 'px,' +
+        (e*10).toFixed(1) + 'px,0) scale(' + (1 - e*0.58).toFixed(3) + ')';
+      el.style.opacity = (1-t).toFixed(3);
+      el.style.filter = t > 0.02 ? 'blur(' + (e*7).toFixed(2) + 'px)' : 'none';
       el.firstChild.style.animationPlayState = t > 0.02 ? 'paused' : 'running';
     });
 
-    // la lama d'oro accompagna il marchio: spazza in pieno passaggio
-    const bl = clamp((p - 0.18) / 0.42, 0, 1);
-    blade.style.width   = (bl * 100).toFixed(1) + '%';
-    blade.style.opacity = (Math.sin(bl * Math.PI) * 0.9).toFixed(3);
+    var bl = clamp((p-0.18)/0.42, 0, 1);
+    blade.style.width = (bl*100).toFixed(1)+'%';
+    blade.style.opacity = (Math.sin(bl*Math.PI)*0.95).toFixed(3);
 
-    const fade = clamp(1 - p / 0.3, 0, 1);
-    corners.forEach(el => { el.style.opacity = fade.toFixed(3); });
+    var fade = clamp(1 - p/0.3, 0, 1);
+    corners.forEach(function(el){ el.style.opacity = fade.toFixed(3); });
 
-    closing.style.opacity = clamp((p - 0.86) / 0.12, 0, 1).toFixed(3);
+    closing.style.opacity = clamp((p-0.84)/0.13, 0, 1).toFixed(3);
   }
 
-  /* ---------- scroll ---------- */
-  let targetP = 0, currentP = 0, raf = null;
-
-  function measure() {
-    const travel = stage.offsetHeight - window.innerHeight;
-    targetP = travel > 0
-      ? clamp(-stage.getBoundingClientRect().top / travel, 0, 1)
-      : 0;
+  function measure(){
+    var travel = stage.offsetHeight - innerHeight;
+    targetP = travel > 0 ? clamp(-stage.getBoundingClientRect().top/travel, 0, 1) : 0;
   }
-
-  function loop() {
+  function loop(){
     currentP += (targetP - currentP) * (reduced ? 1 : 0.18);
     if (Math.abs(targetP - currentP) < 0.0003) currentP = targetP;
     drawFrame(frameAt(currentP));
     paintMark(currentP);
-    raf = currentP === targetP ? null : requestAnimationFrame(loop);
+    sraf = currentP === targetP ? null : requestAnimationFrame(loop);
   }
-
-  function settle() {
+  function settle(){
+    measure(); currentP = targetP;
+    drawFrame(frameAt(currentP)); paintMark(currentP);
+  }
+  onScroll.push(function(){
     measure();
-    currentP = targetP;
-    drawFrame(frameAt(currentP));
-    paintMark(currentP);
-  }
-
-  /* ---------- archivio ---------- */
-  const PICKS = [1, 8, 15, 21, 27, 34];
-  const arch = document.getElementById('arch');
-  PICKS.forEach((n, k) => {
-    const fig = document.createElement('figure');
-    fig.className = 'cell rv';
-    fig.style.transitionDelay = (k * 0.09).toFixed(2) + 's';
-    const img = document.createElement('img');
-    img.loading = 'lazy';
-    img.src = src(file(n));            // segue il verso di riproduzione
-    img.alt = 'Quadro ' + n;
-    const cap = document.createElement('figcaption');
-    cap.textContent = String(n).padStart(2, '0') + ' / 34';
-    fig.append(img, cap);
-    arch.appendChild(fig);
+    if (sraf === null) sraf = requestAnimationFrame(loop);
   });
 
-  /* ---------- rivelazioni ---------- */
-  const io = new IntersectionObserver(es => {
-    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.18 });
-  document.querySelectorAll('.rv').forEach(el => io.observe(el));
-
-  /* ---------- il sigillo si disegna ---------- */
-  const sealSec = document.getElementById('seal');
-  const strokes = [...document.querySelectorAll('#emblem [data-draw]')].map(el => {
-    const len = el.getTotalLength ? el.getTotalLength() : 0;
-    el.style.strokeDasharray  = len;
-    el.style.strokeDashoffset = len;
-    return { el, len };
+  function realign(){
+    if (canvas.clientWidth !== cssW || canvas.clientHeight !== cssH) resize();
+    settle();
+  }
+  addEventListener('resize', realign);
+  addEventListener('orientationchange', realign);
+  document.addEventListener('visibilitychange', realign);
+  cleanups.push(function(){
+    removeEventListener('resize', realign);
+    removeEventListener('orientationchange', realign);
+    document.removeEventListener('visibilitychange', realign);
+    if (sraf) cancelAnimationFrame(sraf);
   });
 
-  function paintSeal() {
-    const r = sealSec.getBoundingClientRect();
-    const span = r.height + window.innerHeight;
-    const p = clamp((window.innerHeight - r.top) / span, 0, 1);
-    const q = clamp((p - 0.1) / 0.55, 0, 1);            // disegna nella salita
-    strokes.forEach((s, i) => {
-      const d = i / strokes.length * 0.45;
-      const t = clamp((q - d) / (1 - d), 0, 1);
-      s.el.style.strokeDashoffset = (s.len * (1 - t)).toFixed(1);
-    });
-  }
+  resize(); settle();
+  if (!framesReady) whenFramesReady.push(function(){ resize(); settle(); });
+}
 
-  /* ---------- preload ---------- */
-  let loaded = 0;
-  function bump() {
-    loaded++;
-    const v = Math.round(loaded / FRAME_COUNT * 100);
-    barFill.style.width = v + '%';
-    pct.textContent = v + '%';
-    if (loaded === FRAME_COUNT) {
-      resize();
-      settle();
-      paintSeal();
-      loader.classList.add('done');
-      setTimeout(() => loader.remove(), 1100);
+/* ======================================================================
+   Seconda scena bloccata: si carica solo quando sta per servire
+   ====================================================================== */
+function initSeqScene(root){
+  var sec = root.querySelector('[data-seq]');
+  if (!sec) return;
+  var cfg = SEQS[sec.getAttribute('data-seq')];
+  var canvas = sec.querySelector('canvas');
+  var ctx = canvas.getContext('2d', {alpha:false});
+  var trk = sec.querySelector('.trk i');
+  var txt = sec.querySelector('.cl-txt');
+  var lines = [].slice.call(sec.querySelectorAll('.cl-txt .big > *'));
+  var imgs = new Array(cfg.n), loaded = 0, asked = false;
+  var cssW=0, cssH=0, last=-1, tP=0, cP=0, raf=null;
+
+  function askFrames(){
+    if (asked) return; asked = true;
+    for (var i=0;i<cfg.n;i++){
+      var im = new Image();
+      im.onload = function(){ loaded++; last = -1; draw(cP); };
+      im.onerror = function(){ loaded++; };
+      im.src = cfg.dir + cfg.pre + String(i+1).padStart(4,'0') + '.jpg';
+      imgs[i] = im;
     }
   }
-  for (let i = 0; i < FRAME_COUNT; i++) {
-    const img = new Image();
-    img.onload = img.onerror = bump;
-    img.src = src(file(i + 1));
-    frames[i] = img;
-  }
+  var io = new IntersectionObserver(function(es){
+    if (es[0].isIntersecting){ askFrames(); io.disconnect(); }
+  }, {rootMargin:'150% 0px'});
+  io.observe(sec);
+  obs.push(io);
 
-  addEventListener('scroll', () => {
+  function resize(){
+    var dpr = Math.min(window.devicePixelRatio||1, 2);
+    cssW = canvas.clientWidth; cssH = canvas.clientHeight;
+    canvas.width = Math.round(cssW*dpr); canvas.height = Math.round(cssH*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    last = -1; draw(cP);
+  }
+  function draw(p){
+    var i = clamp(Math.round(p*(cfg.n-1)), 0, cfg.n-1);
+    var im = imgs[i];
+    if (!im || !im.complete || !im.naturalWidth || i === last) return;
+    last = i;
+    cover(ctx, im, cssW, cssH);
+  }
+  function paint(p){
+    if (trk) trk.style.width = (p*100).toFixed(1)+'%';
+    /* le tre righe entrano una dopo l'altra e poi si ritirano */
+    lines.forEach(function(el,i){
+      var s = 0.10 + i*0.13;
+      var t = clamp((p - s)/0.20, 0, 1);
+      var out = clamp((p - 0.78)/0.2, 0, 1);
+      el.style.opacity = (t * (1-out)).toFixed(3);
+      el.style.transform = 'translate3d(' + ((1-t)*(i%2?60:-60)).toFixed(1) + 'px,0,0)';
+      el.style.letterSpacing = (-0.03 + (1-t)*0.08).toFixed(4) + 'em';
+    });
+    if (txt){
+      var sub = txt.querySelector('.sub');
+      if (sub){
+        var st = clamp((p-0.52)/0.16,0,1) * (1 - clamp((p-0.82)/0.16,0,1));
+        sub.style.opacity = st.toFixed(3);
+        sub.style.transform = 'translate3d(0,' + ((1-st)*18).toFixed(1) + 'px,0)';
+      }
+    }
+  }
+  function measure(){
+    var travel = sec.offsetHeight - innerHeight;
+    tP = travel > 0 ? clamp(-sec.getBoundingClientRect().top/travel, 0, 1) : 0;
+  }
+  function loop(){
+    cP += (tP - cP) * (reduced ? 1 : 0.18);
+    if (Math.abs(tP - cP) < 0.0004) cP = tP;
+    draw(cP); paint(cP);
+    raf = cP === tP ? null : requestAnimationFrame(loop);
+  }
+  onScroll.push(function(){
     measure();
     if (raf === null) raf = requestAnimationFrame(loop);
-    paintSeal();
-  }, { passive: true });
-  addEventListener('resize', () => { resize(); settle(); paintSeal(); });
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) settle(); });
+  });
+  function realign(){
+    if (canvas.clientWidth !== cssW || canvas.clientHeight !== cssH) resize();
+    measure(); cP = tP; draw(cP); paint(cP);
+  }
+  addEventListener('resize', realign);
+  cleanups.push(function(){
+    removeEventListener('resize', realign);
+    if (raf) cancelAnimationFrame(raf);
+  });
+  resize(); measure(); cP = tP; paint(cP);
+}
+
+/* ======================================================================
+   Il cavallo cromato: anello che va e torna, solo quando lo si guarda
+   ====================================================================== */
+function initLoop(root){
+  root.querySelectorAll('[data-loop]').forEach(function(box){
+    var cfg = SEQS[box.getAttribute('data-loop')];
+    var canvas = box.querySelector('canvas');
+    var ctx = canvas.getContext('2d', {alpha:false});
+    var imgs = new Array(cfg.n), asked = false, live = false;
+    var cssW=0, cssH=0, i=0, dir=1, raf=null, t0=0;
+
+    function ask(){
+      if (asked) return; asked = true;
+      for (var k=0;k<cfg.n;k++){
+        var im = new Image();
+        im.src = cfg.dir + cfg.pre + String(k+1).padStart(4,'0') + '.jpg';
+        imgs[k] = im;
+      }
+    }
+    function resize(){
+      var dpr = Math.min(window.devicePixelRatio||1, 2);
+      cssW = canvas.clientWidth; cssH = canvas.clientHeight;
+      canvas.width = Math.round(cssW*dpr); canvas.height = Math.round(cssH*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function tick(ts){
+      if (!live){ raf = null; return; }
+      if (ts - t0 > 80){                       /* ~12,5 fotogrammi al secondo */
+        t0 = ts;
+        i += dir;
+        if (i >= cfg.n-1){ i = cfg.n-1; dir = -1; }
+        if (i <= 0){ i = 0; dir = 1; }
+        var im = imgs[i];
+        if (im && im.complete && im.naturalWidth) cover(ctx, im, cssW, cssH);
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    var io = new IntersectionObserver(function(es){
+      live = es[0].isIntersecting;
+      if (live){ ask(); if (raf === null) raf = requestAnimationFrame(tick); }
+    }, {rootMargin:'50% 0px'});
+    io.observe(box);
+    obs.push(io);
+
+    addEventListener('resize', resize);
+    cleanups.push(function(){
+      removeEventListener('resize', resize);
+      live = false;
+      if (raf) cancelAnimationFrame(raf);
+    });
+    resize();
+  });
+}
+
+/* ======================================================================
+   Costruttori di liste
+   ====================================================================== */
+function buildDates(root){
+  root.querySelectorAll('[data-dates]').forEach(function(box){
+    var n = box.getAttribute('data-dates');
+    var list = n === 'all' ? DATES : DATES.slice(0, parseInt(n,10));
+    box.innerHTML = list.map(function(x){
+      var act = x.url
+        ? '<a class="btn o act" href="'+x.url+'" data-cur="Biglietti"><span>Biglietti</span></a>'
+        : '<span class="so act">Sold out</span>';
+      return '<div class="date"><span class="d">'+x.d+'</span>'+
+             '<span class="city">'+x.city+'</span>'+
+             '<span class="ven">'+x.ven+'</span>'+act+'</div>';
+    }).join('');
+  });
+}
+function buildMerch(root){
+  root.querySelectorAll('[data-merch]').forEach(function(box){
+    var n = box.getAttribute('data-merch');
+    var list = n === 'all' ? MERCH : MERCH.slice(0, parseInt(n,10));
+    box.innerHTML = list.map(function(x){
+      return '<a class="card" href="'+(n==='all'?'#':'#/merch')+'" data-cur="Vedi">'+
+             '<div class="sq"><img src="'+x.i+'" alt="" loading="lazy"><b>'+x.k+'</b></div>'+
+             '<div class="info"><div><b>'+x.n+'</b><em>'+x.s+'</em></div><span>'+x.p+'</span></div></a>';
+    }).join('');
+  });
+}
+function buildReleases(root){
+  var box = root.querySelector('[data-releases]');
+  if (!box) return;
+  box.innerHTML = RELEASES.map(function(x){
+    return '<a class="row" href="#" data-cur="Ascolta"><span><span class="rt">'+x.t+'</span>'+
+           '<span class="rm">'+x.m+'</span></span><span class="rg">Ascolta →</span></a>';
+  }).join('');
+}
+
+/* ======================================================================
+   Router
+   ====================================================================== */
+var PAGES = {
+  '':         {t:'p-home',     T:'Enny P — Sito ufficiale', c:'Enny P'},
+  'musica':   {t:'p-musica',   T:'Musica — Enny P',   c:'Musica'},
+  'eventi':   {t:'p-eventi',   T:'Eventi — Enny P',   c:'Eventi'},
+  'merch':    {t:'p-merch',    T:'Merch — Enny P',    c:'Merch'},
+  'social':   {t:'p-social',   T:'Social — Enny P',   c:'Social'},
+  'contatti': {t:'p-contatti', T:'Contatti — Enny P', c:'Contatti'},
+  'chi':      {t:'p-chi',      T:'Chi è — Enny P',    c:'Chi è'}
+};
+
+var app   = document.getElementById('app');
+var curt  = document.getElementById('curt');
+var curtT = document.getElementById('curtT');
+var hdr   = document.getElementById('hdr');
+var menu  = document.getElementById('menu');
+var sheet = document.getElementById('sheet');
+var prog  = document.getElementById('prog');
+var route = null;
+
+function keyOf(){
+  var h = location.hash.replace(/^#\/?/,'').split('?')[0].replace(/\/$/,'');
+  return PAGES[h] ? h : '';
+}
+
+function render(k, instant){
+  var p = PAGES[k];
+  clearPage();
+  app.innerHTML = '';
+  app.appendChild(document.getElementById(p.t).content.cloneNode(true));
+  document.title = p.T;
+
+  buildDates(app); buildMerch(app); buildReleases(app);
+  fillTickers(document);
+  initStage(app);
+  initSeqScene(app);
+  initLoop(app);
+  initReveal(app);
+  initScramble(app);
+  initParallax(app);
+  initTilt(app);
+  initMagnetic(app);
+  initMelt(app);
+
+  [].forEach.call(menu.children, function(a){
+    var t = a.getAttribute('href').replace('#/','');
+    if (t === k && k !== '') a.setAttribute('aria-current','page');
+    else a.removeAttribute('aria-current');
+  });
+
+  scrollTo(0,0);
+  pump();
+  onHdr();
+  if (!instant) app.focus({preventScroll:true});
+}
+
+function go(instant){
+  var k = keyOf();
+  if (k === route) return;
+  var first = route === null;
+  route = k;
+  if (first || reduced || instant){ render(k, true); return; }
+
+  curtT.textContent = PAGES[k].c;
+  curt.classList.add('on');
+  setTimeout(function(){
+    render(k);
+    setTimeout(function(){ curt.classList.remove('on'); }, 120);
+  }, 420);
+}
+
+addEventListener('hashchange', function(){ sheet.classList.remove('on'); go(); });
+
+/* ======================================================================
+   Testata, menu, cursore, avanzamento, lista
+   ====================================================================== */
+function onHdr(){
+  if (scrollY > 40) hdr.classList.add('solid'); else hdr.classList.remove('solid');
+  var h = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (h > 0 ? clamp(scrollY/h,0,1)*100 : 0).toFixed(2) + '%';
+}
+addEventListener('scroll', onHdr, {passive:true});
+addEventListener('resize', onHdr, {passive:true});
+
+document.getElementById('burger').addEventListener('click', function(){ sheet.classList.add('on'); });
+document.getElementById('sheetX').addEventListener('click', function(){ sheet.classList.remove('on'); });
+sheet.addEventListener('click', function(e){ if (e.target.tagName === 'A') sheet.classList.remove('on'); });
+addEventListener('keydown', function(e){ if (e.key === 'Escape') sheet.classList.remove('on'); });
+initMelt(sheet);
+
+/* cursore + alone */
+(function(){
+  var cur = document.getElementById('cur');
+  var lab = document.getElementById('curl');
+  var spot = document.getElementById('spot');
+  if (coarse) return;
+  var x=0,y=0,tx=0,ty=0,sx=0,sy=0,on=false;
+  addEventListener('pointermove', function(e){
+    tx = e.clientX; ty = e.clientY;
+    if (!on){ on = true; x = tx; y = ty; sx = tx; sy = ty; cur.classList.add('on'); spot.classList.add('on'); }
+    var t = e.target;
+    var hot = t.closest && t.closest('a,button,input,.card,.tile,.date,.row,.g,.cover,.pl');
+    cur.classList.toggle('hot', !!hot);
+    var text = hot && hot.getAttribute ? (hot.getAttribute('data-cur') || '') : '';
+    lab.textContent = text;
+    lab.classList.toggle('on', !!text);
+  }, {passive:true});
+  (function tick(){
+    x += (tx-x)*0.24; y += (ty-y)*0.24;
+    sx += (tx-sx)*0.06; sy += (ty-sy)*0.06;
+    cur.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+    lab.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) translate(-50%,-50%)';
+    spot.style.transform = 'translate3d(' + sx.toFixed(1) + 'px,' + sy.toFixed(1) + 'px,0)';
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* lista d'attesa — segnaposto, da collegare al provider */
+(function(){
+  var mail = document.getElementById('mail'), ok = document.getElementById('ok');
+  function submit(){
+    var v = (mail.value||'').trim();
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    ok.textContent = valid ? 'Sei dentro. Ti scriviamo noi.' : 'Serve un indirizzo valido.';
+    ok.style.color = valid ? 'var(--acid)' : 'var(--silver-d)';
+    ok.classList.add('on');
+    if (valid) mail.value = '';
+  }
+  document.getElementById('sub').addEventListener('click', submit);
+  mail.addEventListener('keydown', function(e){ if (e.key === 'Enter') submit(); });
+})();
+
+document.getElementById('sigE').addEventListener('click', function(){
+  location.href = 'mailto:management@ennyp.it?subject=Un%20sito%20come%20questo';
+});
+
+/* ======================================================================
+   Precarico dei frame + avvio
+   ====================================================================== */
+var whenFramesReady = [];
+(function preload(){
+  var loader  = document.getElementById('loader');
+  var barFill = document.querySelector('#bar span');
+  var pct     = document.getElementById('pct');
+  var loaded  = 0, started = false;
+
+  function start(){
+    if (started) return;
+    started = true;
+    go(true);
+    loader.classList.add('done');
+    setTimeout(function(){ loader.remove(); }, 1000);
+  }
+  function bump(){
+    loaded++;
+    var v = Math.round(loaded/HERO.n*100);
+    barFill.style.width = v + '%';
+    pct.textContent = (v<10?'0':'') + v + '%';
+    if (loaded === HERO.n){
+      framesReady = true;
+      start();
+      whenFramesReady.forEach(function(f){ f(); });
+      whenFramesReady.length = 0;
+      pump();
+    }
+  }
+  for (var i=0;i<HERO.n;i++){
+    var img = new Image();
+    img.onload = img.onerror = bump;
+    img.src = srcOf(fileOf(i+1));
+    frames[i] = img;
+  }
+  setTimeout(start, 6000);   /* rete lenta: dopo 6s si entra comunque */
+})();
+
 })();
 </script>
 </body>
