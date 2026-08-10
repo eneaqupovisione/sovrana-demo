@@ -92,6 +92,25 @@ del palco in cui si può cliccare, e resta in campo per l'ultimo quarto della
 scena — `pointer-events` si accende solo quando è abbastanza visibile da
 essere colpito apposta.
 
+## Telefono
+
+Non e' il sito rimpicciolito, e' un secondo montaggio:
+
+- **l'inquadratura si calcola.** Ogni sequenza dichiara dov'e' il soggetto nel
+  girato (`fx`, `fy`) e dove lo si vuole nel riquadro (`px`). Su schermo largo
+  c'e' margine per stringere e spostare, perche' il testo sta di lato; su
+  schermo stretto il ritaglio mangia gia' i fianchi, quindi il soggetto torna
+  al centro e lo zoom sparisce. Nessun valore scritto due volte.
+- **il cavallo di «Limited»** su schermo stretto passa a `contain` e scende in
+  fondo, intero. Si puo' fare perche' il nero fuori dall'immagine, dopo
+  `invert`, diventa bianco e il `multiply` lo restituisce acido: invisibile.
+  Il testo sale in alto e il velo si apre verso il basso.
+- **quello che su desktop fa il passaggio del puntatore, sul telefono lo fa lo
+  scorrimento**: di ogni gruppo si accende un elemento solo, quello piu' vicino
+  al centro dello schermo. Le stesse regole CSS, con `.hot` accanto a `:hover`.
+  Vale anche per le lastre a raggi X, che si aprono da sole.
+- **il merch** passa a due colonne: un oggetto per riga erano dieci schermate.
+
 ## Una regola sul testo
 
 Il sito non si riempie di citazioni. Le uniche frasi che compaiono sono le

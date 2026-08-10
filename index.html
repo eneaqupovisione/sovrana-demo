@@ -43,7 +43,7 @@
   --sans:'Archivo','Helvetica Neue',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --mono:'Space Mono','SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 
-  --stage:340vh;
+  --stage:285vh;
   --hair:rgba(167,178,176,.16);
   --pad:clamp(1.4rem,6vw,5rem);
   --ease:cubic-bezier(.16,.84,.28,1);
@@ -432,10 +432,10 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   content:'';position:absolute;inset:0;background:var(--acid);
   transform:translateY(101%);transition:transform .5s var(--ease);
 }
-.pl:hover{border-color:var(--acid)}
-.pl:hover::before{transform:translateY(0)}
-.pl:hover b{color:var(--void)}
-.pl:hover span{color:var(--void);transform:translateX(6px)}
+.pl:hover,.pl.hot{border-color:var(--acid)}
+.pl:hover::before,.pl.hot::before{transform:translateY(0)}
+.pl:hover b,.pl.hot b{color:var(--void)}
+.pl:hover span,.pl.hot span{color:var(--void);transform:translateX(6px)}
 
 /* --------- canzone: i tasti fermi, il gesto che gira dietro ------------- */
 .song{
@@ -491,12 +491,12 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 }
 .xr::before{top:0;left:0;border-right:0;border-bottom:0}
 .xr::after{bottom:0;right:0;border-left:0;border-top:0}
-.xr:hover{color:var(--silver-w);background:rgba(201,255,46,.09)}
-.xr:hover::before{top:-4px;left:-4px;width:14px;height:14px;opacity:1}
-.xr:hover::after{bottom:-4px;right:-4px;width:14px;height:14px;opacity:1}
+.xr:hover,.xr.hot{color:var(--silver-w);background:rgba(201,255,46,.09)}
+.xr:hover::before,.xr.hot::before{top:-4px;left:-4px;width:14px;height:14px;opacity:1}
+.xr:hover::after,.xr.hot::after{bottom:-4px;right:-4px;width:14px;height:14px;opacity:1}
 .retro .xr{color:rgba(3,4,5,.75)}
 .retro .xr::before,.retro .xr::after{border-color:var(--void)}
-.retro .xr:hover{color:var(--void);background:rgba(3,4,5,.1)}
+.retro .xr:hover,.retro .xr.hot{color:var(--void);background:rgba(3,4,5,.1)}
 
 #xrp{
   position:fixed;top:0;left:0;z-index:126;width:min(360px,86vw);pointer-events:none;
@@ -529,7 +529,6 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 @keyframes xscan{
   0%{top:-2px;opacity:0}8%{opacity:.65}88%{opacity:.5}100%{top:100%;opacity:0}
 }
-@media (hover:none),(pointer:coarse){#xrp{display:none}}
 
 /* --------- limited: nero che diventa acido ----------------------------- */
 /* Il pannello e' fisso, non appiccicato: cosi' copre lo schermo nell'istante
@@ -626,7 +625,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   color:rgba(3,4,5,.55)}
 @media (max-width:900px){
   .retro .col{max-width:none}
-  #flip canvas{opacity:.3}
+  #flip canvas{opacity:.95}
   .rtag{display:none}
 }
 
@@ -673,19 +672,20 @@ body.flip .scan{opacity:.1}
   transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);z-index:0;
 }
 .date > *{position:relative;z-index:1}
-.date:hover{padding-left:1.2rem}
-.date:hover::before{transform:scaleY(1)}
+.date:hover,.date.hot{padding-left:1.2rem}
+.date:hover::before,.date.hot::before{transform:scaleY(1)}
 .date .d{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--acid);transition:color .4s}
 .date .city{font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
   font-size:clamp(1.2rem,3.4vw,2.2rem);color:var(--silver-w);line-height:.94;letter-spacing:-.015em;
   transition:color .4s}
 .date .ven{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--silver-d);transition:color .4s}
-.date:hover .d,.date:hover .city,.date:hover .ven{color:var(--void)}
-.date:hover .btn{border-color:var(--void);color:var(--void)}
-.date:hover .btn::before{background:var(--void)}
+.date:hover .d,.date:hover .city,.date:hover .ven,
+.date.hot .d,.date.hot .city,.date.hot .ven{color:var(--void)}
+.date:hover .btn,.date.hot .btn{border-color:var(--void);color:var(--void)}
+.date:hover .btn::before,.date.hot .btn::before{background:var(--void)}
 .date:hover .btn:hover{color:var(--acid)}
-.date:hover .so{border-color:rgba(3,4,5,.4);color:rgba(3,4,5,.65)}
+.date:hover .so,.date.hot .so{border-color:rgba(3,4,5,.4);color:rgba(3,4,5,.65)}
 .date .act{justify-self:end}
 .date .btn{padding:.8rem 1.05rem}
 .so{
@@ -725,10 +725,10 @@ body.flip .scan{opacity:.1}
   background:linear-gradient(120deg,transparent 42%,rgba(201,255,46,.18) 50%,transparent 58%);
   transform:translateX(-110%);transition:transform 1.1s var(--ease);
 }
-.card:hover{border-color:var(--acid);transform:translateY(-4px)}
-.card:hover .sq::after{transform:translateX(110%)}
-.card:hover .sq img{opacity:.85;filter:contrast(1.08) saturate(1.05);transform:scale(1.05)}
-.card:hover .sq b{color:var(--acid);transform:scale(1.03)}
+.card:hover,.card.hot{border-color:var(--acid);transform:translateY(-4px)}
+.card:hover .sq::after,.card.hot .sq::after{transform:translateX(110%)}
+.card:hover .sq img,.card.hot .sq img{opacity:.85;filter:contrast(1.08) saturate(1.05);transform:scale(1.05)}
+.card:hover .sq b,.card.hot .sq b{color:var(--acid);transform:scale(1.03)}
 .card .info{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:1rem}
 .card .info b{font-weight:600;font-size:.9rem;color:var(--silver-l);display:block;letter-spacing:-.01em}
 .card .info em{font-style:normal;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;
@@ -747,8 +747,8 @@ body.flip .scan{opacity:.1}
   transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);
 }
 .row > *{position:relative;z-index:1}
-.row:hover{padding-left:1.2rem}
-.row:hover::before{transform:scaleY(1)}
+.row:hover,.row.hot{padding-left:1.2rem}
+.row:hover::before,.row.hot::before{transform:scaleY(1)}
 .row .rt{font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
   font-size:clamp(1.15rem,3.2vw,2rem);color:var(--silver-w);display:block;line-height:.96;
   letter-spacing:-.015em;transition:color .4s}
@@ -756,8 +756,9 @@ body.flip .scan{opacity:.1}
   color:var(--silver-d);display:block;margin-top:.5rem;transition:color .4s}
 .row .rg{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--silver-d);white-space:nowrap;transition:color .4s ease,transform .4s ease}
-.row:hover .rt,.row:hover .rm,.row:hover .rg{color:var(--void)}
-.row:hover .rg{transform:translateX(6px)}
+.row:hover .rt,.row:hover .rm,.row:hover .rg,
+.row.hot .rt,.row.hot .rm,.row.hot .rg{color:var(--void)}
+.row:hover .rg,.row.hot .rg{transform:translateX(6px)}
 
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.8rem}
 .tile{
@@ -788,10 +789,11 @@ body.flip .scan{opacity:.1}
   font-family:var(--mono);font-size:.95rem;color:var(--silver-d);
   opacity:0;transform:translate(-8px,8px);transition:opacity .45s ease,transform .45s var(--ease),color .45s;
 }
-.tile:hover{border-color:var(--acid);transform:translateY(-4px)}
-.tile:hover::before{transform:translateY(0)}
-.tile:hover b,.tile:hover span,.tile:hover em{color:var(--void)}
-.tile:hover::after{opacity:1;transform:none;color:var(--void)}
+.tile:hover,.tile.hot{border-color:var(--acid);transform:translateY(-4px)}
+.tile:hover::before,.tile.hot::before{transform:translateY(0)}
+.tile:hover b,.tile:hover span,.tile:hover em,
+.tile.hot b,.tile.hot span,.tile.hot em{color:var(--void)}
+.tile:hover::after,.tile.hot::after{opacity:1;transform:none;color:var(--void)}
 
 /* --------- ritratto (chi e') -------------------------------------------- */
 .bio{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
@@ -802,7 +804,7 @@ body.flip .scan{opacity:.1}
 .portrait img{width:100%;height:100%;object-fit:cover;
   filter:grayscale(1) contrast(1.25) brightness(.82) sepia(.32) hue-rotate(142deg) saturate(2.3);
   transition:transform 1.4s var(--ease),filter .9s ease}
-.portrait:hover img{transform:scale(1.05);filter:none}
+.portrait:hover img,.portrait.hot img{transform:scale(1.05);filter:none}
 .portrait figcaption{
   position:absolute;left:.9rem;bottom:.8rem;z-index:2;font-family:var(--mono);font-size:.6rem;
   letter-spacing:.2em;text-transform:uppercase;color:var(--silver-w);text-shadow:0 1px 10px rgba(0,0,0,.95);
@@ -852,8 +854,40 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
   .bio{grid-template-columns:1fr}
   .portrait{max-width:420px}
 }
+/* --------- telefono ------------------------------------------------------ */
+@media (max-width:640px){
+  /* il velo di lato non serve piu': su schermo stretto il testo sta comunque a
+     sinistra, quindi si scurisce quel lato per entrambe le canzoni */
+  .song .vig,.song.r .vig{
+    background:
+      linear-gradient(to right,rgba(3,4,5,.93) 10%,rgba(3,4,5,.62) 52%,rgba(3,4,5,.34)),
+      linear-gradient(to bottom,rgba(3,4,5,.9),rgba(3,4,5,.2) 26%,rgba(3,4,5,.3) 62%,var(--void));
+  }
+  /* su schermo stretto il testo sale in alto e il cavallo si prende il fondo,
+     intero invece che tagliato */
+  .retro{align-items:flex-start}
+  .retro::before{
+    background:linear-gradient(to bottom,var(--acid) 0%,rgba(201,255,46,.97) 46%,
+      rgba(201,255,46,.6) 62%,rgba(201,255,46,0) 82%);
+  }
+  /* un oggetto per riga diventavano dieci schermate: due colonne, riga piu' bassa */
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}
+  .card .sq{aspect-ratio:3/4}
+  .card .sq b{font-size:1.15rem}
+  .card .info{padding:.7rem .75rem;gap:.45rem;align-items:flex-start}
+  .card .info > div{min-width:0}
+  .card .info b{font-size:.76rem;line-height:1.2}
+  .card .info em{font-size:.54rem;letter-spacing:.14em;margin-top:.3rem}
+  .card .info > span{font-size:.78rem;flex:0 0 auto}
+  /* la lastra non deve coprire tutto lo schermo mentre scorre */
+  #xrp{width:min(320px,90vw);padding:.9rem 1rem 1rem}
+  #xrp .h{font-size:1.25rem}
+  #xrp dd{font-size:.78rem}
+  .tiles{gap:.55rem}
+  .tile{padding:1.2rem 1.1rem}
+}
 @media (max-width:720px){
-  :root{--stage:290vh}
+  :root{--stage:235vh}
   .shead{align-items:flex-start;flex-direction:column;gap:1rem}
   .c-tr{display:none}
   /* su schermo stretto il velo laterale copre tutto: si tiene solo quello verticale */
@@ -1351,11 +1385,11 @@ var HERO = {dir:'frames/', pre:'f_', n:34, rev:true};
 /* Il piano sequenza del collo sono due gesti diversi, con uno stacco netto
    fra loro: tenerli insieme era un errore. Ora sono due anelli separati. */
 var SEQS = {
-  collo:   {dir:'scene-collo/',   pre:'c_', n:20, ms:50},   /* la mano risale il collo */
-  /* il viso sta a destra nel girato e i tasti gli finivano addosso:
-     si stringe un poco e lo si sposta verso sinistra */
-  viso:    {dir:'scene-viso/',    pre:'v_', n:36, ms:50, zoom:1.28, shift:.13},
-  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24, ms:80, zoom:1.34, shift:-.15}
+  /* fx,fy = dov'e' il soggetto nel girato · px = dove lo vogliamo nel riquadro */
+  collo:   {dir:'scene-collo/',   pre:'c_', n:20, ms:50, fx:.60, fy:.46, px:.68, zoom:1.06},
+  viso:    {dir:'scene-viso/',    pre:'v_', n:36, ms:50, fx:.54, fy:.44, px:.34, zoom:1.24},
+  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24, ms:80, fx:.52, fy:.52, px:.66, zoom:1.30,
+              fit:'contain', fitZoom:1.06, py:.83}   /* su schermo stretto: intero, in basso */
 };
 var frames = new Array(HERO.n);
 var framesReady = false;
@@ -1385,17 +1419,36 @@ addEventListener('scroll', pump, {passive:true});
 addEventListener('resize', function(){ pump(); }, {passive:true});
 
 /* disegna un'immagine "cover" dentro un canvas gia' dimensionato */
-/* zoom stringe l'inquadratura, shift la sposta di lato (positivo = verso
-   sinistra). Servono insieme: senza un po' di zoom non c'e' margine da cui
-   attingere e lo spostamento scoprirebbe il nero. */
-function cover(ctx, img, w, h, zoom, shift){
-  var s = Math.max(w/img.naturalWidth, h/img.naturalHeight) * (zoom || 1);
+/* L'inquadratura non si scrive a mano per ogni schermo: ogni sequenza dice
+   dov'e' il soggetto nel girato (fx, fy) e dove lo si vuole nel riquadro (px).
+   Su schermo largo c'e' margine per stringere e spostare — il testo sta di
+   lato; su schermo stretto il ritaglio mangia gia' i fianchi, quindi il
+   soggetto torna al centro e lo zoom sparisce. */
+function cover(ctx, img, w, h, cfg){
+  cfg = cfg || {};
+  var largo = (w/h) >= 1.25;
+  var base = Math.max(w/img.naturalWidth, h/img.naturalHeight);
+  var s = base * (largo ? (cfg.zoom || 1) : 1);
   var iw = img.naturalWidth*s, ih = img.naturalHeight*s;
-  var x = (w-iw)/2 - (shift || 0)*w;
-  x = clamp(x, w-iw, 0);
+  var fx = cfg.fx == null ? 0.5 : cfg.fx;
+  var fy = cfg.fy == null ? 0.5 : cfg.fy;
+  var px = (largo && cfg.px != null) ? cfg.px : 0.5;
+  var x, y;
+  if (!largo && cfg.fit === 'contain'){
+    /* il cavallo sta sotto l'inchiostro: fuori dall'immagine il nero, dopo
+       l'inversione, diventa bianco e il multiply lo restituisce acido — cioe'
+       invisibile. Quindi qui si puo' contenere invece che riempire. */
+    s = Math.min(w/img.naturalWidth, h/img.naturalHeight) * (cfg.fitZoom || 1);
+    iw = img.naturalWidth*s; ih = img.naturalHeight*s;
+    x = (w-iw)/2;
+    y = (cfg.py == null ? 0.5 : cfg.py)*h - ih/2;
+  } else {
+    x = clamp(px*w - fx*iw, w-iw, 0);
+    y = clamp(0.5*h - fy*ih, h-ih, 0);
+  }
   ctx.fillStyle = '#000';
   ctx.fillRect(0,0,w,h);
-  ctx.drawImage(img, x, (h-ih)/2, iw, ih);
+  ctx.drawImage(img, x, y, iw, ih);
 }
 
 /* ======================================================================
@@ -1631,7 +1684,7 @@ function initStage(root){
     var img = frames[index];
     if (!img || !img.complete || !img.naturalWidth || index === lastIndex) return;
     lastIndex = index;
-    cover(ctx, img, cssW, cssH);
+    cover(ctx, img, cssW, cssH, {fy:.5});
   }
 
   function paintMark(p){
@@ -1733,7 +1786,7 @@ function initLoop(root){
     }
     function paint(){
       var im = imgs[i];
-      if (im && im.complete && im.naturalWidth && cssW) cover(ctx, im, cssW, cssH, cfg.zoom, cfg.shift);
+      if (im && im.complete && im.naturalWidth && cssW) cover(ctx, im, cssW, cssH, cfg);
     }
     /* avanti fino in fondo, poi indietro: il gesto non ha uno stacco */
     function tick(ts){
@@ -1831,10 +1884,43 @@ function initFlip(root){
 }
 
 /* ======================================================================
+   Sul telefono non c'e' il puntatore: accende lo scorrimento. Di ogni
+   gruppo si illumina un elemento solo, quello piu' vicino al centro dello
+   schermo — e' la cosa che si sta guardando.
+   ====================================================================== */
+function initTouch(root){
+  if (!coarse) return;
+  var gruppi = [];
+  ['.plat','.dates','.list','.grid','.tiles'].forEach(function(sel){
+    root.querySelectorAll(sel).forEach(function(box){
+      var figli = [].filter.call(box.children, function(c){ return c.nodeType === 1; });
+      if (figli.length) gruppi.push(figli);
+    });
+  });
+  var ritratti = [].slice.call(root.querySelectorAll('.portrait'));
+  if (ritratti.length) gruppi.push(ritratti);
+  if (!gruppi.length) return;
+
+  onScroll.push(function(){
+    var mezzo = innerHeight*0.5, soglia = innerHeight*0.38;
+    gruppi.forEach(function(items){
+      var scelto = null, dist = 1e9;
+      items.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        var d = Math.abs(r.top + r.height/2 - mezzo);
+        if (d < dist){ dist = d; scelto = el; }
+      });
+      items.forEach(function(el){
+        el.classList.toggle('hot', el === scelto && dist < soglia);
+      });
+    });
+  });
+}
+
+/* ======================================================================
    Raggi X: la lastra segue l'innesco e si apre dall'alto
    ====================================================================== */
 function initXray(root){
-  if (coarse) return;                     /* al tocco resta solo il link */
   var panel = document.getElementById('xrp');
   var box = panel.querySelector('.c');
   var open = null;
@@ -1860,7 +1946,30 @@ function initXray(root){
   }
   function hide(){ open = null; panel.classList.remove('on'); }
 
-  root.querySelectorAll('[data-xray]').forEach(function(el){
+  var inneschi = [].slice.call(root.querySelectorAll('[data-xray]'));
+  cleanups.push(hide);
+
+  if (coarse){
+    /* al tocco la lastra si apre da sola quando l'innesco passa per il centro */
+    if (!inneschi.length) return;
+    onScroll.push(function(){
+      var mezzo = innerHeight*0.5, scelto = null, dist = 1e9;
+      inneschi.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        var d = Math.abs(r.top + r.height/2 - mezzo);
+        if (d < dist){ dist = d; scelto = el; }
+      });
+      var vivo = !!scelto && dist < innerHeight*0.26;
+      inneschi.forEach(function(el){ el.classList.toggle('hot', el === scelto && vivo); });
+      if (vivo){
+        if (open !== scelto){ open = scelto; build(XRAY[scelto.getAttribute('data-xray')]); }
+        place(scelto); panel.classList.add('on');
+      } else if (open) hide();
+    });
+    return;
+  }
+
+  inneschi.forEach(function(el){
     el.addEventListener('pointerenter', show);
     el.addEventListener('pointerleave', hide);
     el.addEventListener('focus', show);
@@ -1868,7 +1977,6 @@ function initXray(root){
   });
   /* la lastra resta incollata al suo innesco mentre la pagina scorre */
   onScroll.push(function(){ if (open) place(open); });
-  cleanups.push(hide);
 }
 
 /* ======================================================================
@@ -1948,6 +2056,7 @@ function render(k, instant){
   initLoop(app);
   initFlip(app);
   initXray(app);
+  initTouch(app);
   initReveal(app);
   initScramble(app);
   initParallax(app);
