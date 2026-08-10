@@ -26,7 +26,7 @@ Tutto estratto dal video ufficiale «24/7».
 | `frames/` | 34 quadri, 00:00.8 → 00:02.2, 2560 px | il palco: la mano che stringe e si porta via il marchio |
 | `scene-collo/` | 20 quadri, 01:10 → 01:11, 1600 px | anello dietro i tasti di «Mi Piace» |
 | `scene-viso/` | 36 quadri, 01:11 → 01:12.9, 1600 px | anello dietro i tasti di «24/7» |
-| `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | anello dentro «Il retro», in `screen` sull'acido |
+| `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | il cavallo di «Sottobanco»: invertito e in `multiply`, diventa inchiostro sull'acido |
 | `img/` | 9 fermi immagine, 1500 px | testate di pagina, schede merch, tasti dei social |
 
 `frames/` si carica sul loader ed è l'unica pilotata dallo scroll. Le altre tre
@@ -48,11 +48,14 @@ anelli separati dietro due canzoni diverse.
   stanno in `SAY` e ogni nastro sceglie il gruppo con `data-say`; senza
   attributo prende `Enny P` / `Faccio what I want 24/7`
 - **cromo liquido** sul marchio, gradiente animato ritagliato sul testo
-- **il ribaltone** (`#flip`, prima della lista): per un tratto di scroll il
-  sito cambia pelle — fondo acido, testo nero, testata invertita. Due lampi a
-  tutto schermo coprono lo scambio in entrata e in uscita; senza, si vedrebbe
-  solo un salto di colore. Le bande dello strappo stanno sotto i 3 Hz e con
-  `prefers-reduced-motion` il lampo non parte affatto
+- **Sottobanco** (`#flip`, prima della lista): per circa un viewport di scroll
+  il sito cambia pelle — fondo acido, testo nero, testata invertita. Il
+  pannello è `fixed`, non `sticky`: una sticky entra dal basso e si porta
+  dietro un viewport di vuoto prima di scattare. La sezione `#flip` è solo un
+  distanziatore di 50vh che misura quanto dura il ribaltone. Due lampi a tutto
+  schermo coprono lo scambio; senza, si vedrebbe solo un salto di colore. Le
+  bande dello strappo stanno sotto i 3 Hz e con `prefers-reduced-motion` il
+  lampo non parte affatto
 - cursore acido in `difference`, bottoni magnetici, parallasse, grana e righe
 
 Tutto si disattiva con `prefers-reduced-motion`.
@@ -62,6 +65,18 @@ Tutto si disattiva con `prefers-reduced-motion`.
 In cima allo `<script>`: `DATES`, `MERCH`, `RELEASES`, `TICKER`. Sono gli unici
 punti da toccare quando arrivano i dati veri. Date, prezzi e link dello shop
 sono segnaposto.
+
+## Sottobanco
+
+Ci arriva solo chi ha continuato a scorrere oltre il merch. Dentro c'è quello
+che non sta nel menu, in quest'ordine:
+
+1. **un pezzo che sembra trovato** — la stampa numerata del cavallo, 30 copie;
+   l'animazione accanto *è* la stampa
+2. **una cosa da fare subito** — la lista dei drop, campo e bottone lì, senza
+   rimandare a un'altra pagina
+3. **materiale grezzo e contatti** — sfondi, testo, press kit, booking: il fan
+   e chi lavora nel settore trovano entrambi qualcosa
 
 ## Una regola sul testo
 

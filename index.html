@@ -475,45 +475,104 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   .song.r .col{text-align:left}
 }
 
-/* --------- il ribaltone: nero che diventa acido ------------------------- */
-#flip{position:relative;height:250vh}
+/* --------- sottobanco: nero che diventa acido -------------------------- */
+/* Il pannello e' fisso, non appiccicato: cosi' copre lo schermo nell'istante
+   in cui scatta, senza il vuoto di un viewport che una sticky si porta
+   dietro entrando dal basso. La sezione qui sotto e' solo la misura di
+   quanto scroll dura il ribaltone. */
+#flip{position:relative;height:50vh}
 #flip .pin{
-  position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
-  background:var(--acid);opacity:0;
+  position:fixed;inset:0;z-index:100;overflow:hidden;
+  background:var(--acid);opacity:0;pointer-events:none;
 }
+#flip .pin.on{opacity:1;pointer-events:auto}
 #flip canvas{
   position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;
-  mix-blend-mode:screen;   /* il nero del girato sparisce nell'acido, resta il cromo */
+  /* invertito e moltiplicato: il nero del girato diventa acido e sparisce,
+     il cromo diventa inchiostro. Una serigrafia, non un fantasma. */
+  filter:invert(1) contrast(1.25);
+  mix-blend-mode:multiply;opacity:.92;
 }
 .retro{
   position:relative;z-index:2;height:100%;display:flex;align-items:center;
-  padding:clamp(5rem,13vh,8rem) var(--pad) clamp(4rem,10vh,6rem);
+  padding:clamp(4.5rem,11vh,7rem) var(--pad) clamp(3.5rem,8vh,5rem);
 }
+/* velo acido sotto la colonna: il cavallo resta intero ma non mangia il testo */
+.retro::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(100deg,var(--acid) 26%,rgba(201,255,46,.88) 46%,rgba(201,255,46,0) 74%);
+}
+.retro > .wrap{width:100%;position:relative;z-index:1}
+.retro .col{max-width:min(600px,54%)}
 .retro .lab{color:rgba(3,4,5,.62)}
 .rt{
   font-family:var(--disp);font-weight:800;font-stretch:122%;text-transform:uppercase;
-  font-size:clamp(3rem,12vw,8.5rem);line-height:.82;letter-spacing:-.035em;
-  color:var(--void);margin:.3rem 0 clamp(1.6rem,5vh,2.8rem);
+  font-size:clamp(2.6rem,8.5vw,6.4rem);line-height:.82;letter-spacing:-.035em;
+  color:var(--void);margin:.3rem 0 clamp(1.2rem,3.5vh,2rem);
 }
-.klks{display:flex;flex-direction:column;gap:.55rem;max-width:560px}
-.klk{
-  display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
-  padding:1.05rem 1.25rem;border:1px solid rgba(3,4,5,.4);color:var(--void);
-  position:relative;overflow:hidden;
+
+/* il pezzo: quello che si porta via chi e' arrivato fin qui */
+.pezzo{
+  border:1px solid rgba(3,4,5,.4);padding:clamp(1.1rem,3vw,1.5rem);
+  display:flex;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;
+  background:rgba(201,255,46,.5);
 }
-.klk b{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;position:relative;z-index:1;transition:color .4s ease}
-.klk span{font-family:var(--mono);font-size:.85rem;position:relative;z-index:1;
-  transition:color .4s ease,transform .4s ease}
-.klk::before{
-  content:'';position:absolute;inset:0;background:var(--void);
-  transform:translateY(101%);transition:transform .45s var(--ease);
+.pezzo .n{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(3,4,5,.65)}
+.pezzo .t{
+  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:clamp(1.3rem,3.2vw,2rem);line-height:.95;letter-spacing:-.02em;color:var(--void);
+  margin-top:.3rem;
 }
-.klk:hover::before{transform:translateY(0)}
-.klk:hover b{color:var(--acid)}
-.klk:hover span{color:var(--acid);transform:translateX(6px)}
-.rtag{position:absolute;right:var(--pad);bottom:clamp(1.4rem,4vh,2.6rem);z-index:3;
-  color:rgba(3,4,5,.6)}
+.pezzo .p{font-family:var(--mono);font-size:1rem;color:var(--void);margin-top:.5rem}
+.btnk{
+  display:inline-flex;align-items:center;gap:.7rem;white-space:nowrap;
+  padding:.9rem 1.5rem;border:1px solid var(--void);background:var(--void);color:var(--acid);
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
+  cursor:pointer;position:relative;overflow:hidden;transition:color .4s ease;
+}
+.btnk::before{content:'';position:absolute;inset:0;background:var(--acid);
+  transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.btnk span{position:relative;z-index:1}
+.btnk:hover{color:var(--void)}
+.btnk:hover::before{transform:scaleX(1)}
+
+/* l'impulso: si entra adesso, non dopo */
+.drop{margin-top:clamp(.9rem,2.5vh,1.4rem)}
+.drop .dl{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(3,4,5,.7);margin-bottom:.6rem;display:block}
+.drop .f{display:flex;gap:.5rem;flex-wrap:wrap}
+.drop input{
+  flex:1 1 240px;min-width:0;background:transparent;border:1px solid rgba(3,4,5,.4);
+  padding:.9rem 1.1rem;color:var(--void);font-size:.9rem;outline:none;
+  transition:border-color .35s ease;
+}
+.drop input::placeholder{color:rgba(3,4,5,.45)}
+.drop input:focus{border-color:var(--void)}
+.drop .ko{margin-top:.7rem;min-height:1em;font-family:var(--mono);font-size:.56rem;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--void);opacity:0;transition:opacity .4s ease}
+.drop .ko.on{opacity:1}
+
+/* la roba grezza, in fondo, per chi la cerca */
+.grezzo{
+  margin-top:clamp(1.2rem,3.5vh,2rem);display:flex;gap:.4rem 1.6rem;flex-wrap:wrap;
+  border-top:1px solid rgba(3,4,5,.3);padding-top:1rem;
+}
+.grezzo a{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(3,4,5,.72);position:relative;padding-bottom:2px;transition:color .35s ease;
+}
+.grezzo a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--void);transition:right .4s var(--ease)}
+.grezzo a:hover{color:var(--void)}
+.grezzo a:hover::after{right:0}
+.rtag{position:absolute;right:var(--pad);bottom:clamp(1.2rem,3.5vh,2.2rem);z-index:3;
+  color:rgba(3,4,5,.55)}
+@media (max-width:900px){
+  .retro .col{max-width:none}
+  #flip canvas{opacity:.3}
+  .rtag{display:none}
+}
 
 /* mentre siamo dentro, anche l'interfaccia fissa cambia pelle */
 body.flip #hdr.solid{
@@ -746,8 +805,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     background:linear-gradient(to bottom,rgba(3,4,5,.72),rgba(3,4,5,.34) 45%,var(--void));
   }
   .tick{transform:rotate(-1.4deg) scale(1.09)}
-  #flip{height:220vh}
-  .klks{max-width:none}
+  #flip{height:60vh}
 }
 @media (prefers-reduced-motion:reduce){
   #word .l i{animation:none;opacity:1}
@@ -930,18 +988,40 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     </div>
   </section>
 
-  <!-- il ribaltone: il sito cambia pelle e mostra quello che tiene dietro -->
-  <section id="flip">
-    <div class="pin" data-loop="cavallo">
+  <!-- sottobanco: ci arriva solo chi ha continuato a scorrere -->
+  <section id="flip" data-loop="cavallo">
+    <div class="pin">
       <canvas></canvas>
       <div class="retro">
         <div class="wrap">
-          <p class="mono lab" data-st>Sezione nascosta</p>
-          <h2 class="rt melt gx" data-t="Il retro" data-st>Il retro</h2>
-          <div class="klks">
-            <a class="klk" href="#" data-st data-cur="Guarda"><b>Guarda il video 24/7</b><span>→</span></a>
-            <a class="klk" href="#" data-st data-cur="Scarica"><b>Scarica il press kit</b><span>→</span></a>
-            <a class="klk" href="mailto:booking@ennyp.it" data-st data-cur="Scrivi"><b>Booking · booking@ennyp.it</b><span>→</span></a>
+          <div class="col">
+            <p class="mono lab" data-st>L'hai trovato</p>
+            <h2 class="rt melt gx" data-t="Sottobanco" data-st>Sottobanco</h2>
+
+            <div class="pezzo" data-st>
+              <div>
+                <p class="n">Stampa numerata · 30 copie</p>
+                <p class="t">Cavallo cromato</p>
+                <p class="p">€60</p>
+              </div>
+              <button class="btnk" data-cur="Prendila"><span>Prendila</span></button>
+            </div>
+
+            <div class="drop" data-st>
+              <span class="dl">I drop, prima di tutti gli altri</span>
+              <div class="f">
+                <input id="drop" type="email" placeholder="La tua email" aria-label="La tua email">
+                <button class="btnk" id="dropgo" data-cur="Entra"><span>Entra</span></button>
+              </div>
+              <p class="ko" id="dropok"></p>
+            </div>
+
+            <nav class="grezzo" data-st>
+              <a href="#" data-cur="Scarica">Sfondi per il telefono</a>
+              <a href="#" data-cur="Apri">Il testo di 24/7</a>
+              <a href="#" data-cur="Scarica">Press kit</a>
+              <a href="mailto:booking@ennyp.it" data-cur="Scrivi">booking@ennyp.it</a>
+            </nav>
           </div>
         </div>
       </div>
@@ -1186,7 +1266,7 @@ var SEQS = {
   /* il viso sta a destra nel girato e i tasti gli finivano addosso:
      si stringe un poco e lo si sposta verso sinistra */
   viso:    {dir:'scene-viso/',    pre:'v_', n:36, ms:50, zoom:1.28, shift:.13},
-  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24, ms:80}
+  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24, ms:80, zoom:1.34, shift:-.15}
 };
 var frames = new Array(HERO.n);
 var framesReady = false;
@@ -1613,33 +1693,49 @@ function initFlip(root){
   /* 0 ai bordi, 1 al centro: la forma di un lampo */
   function bump(t){ return (t <= 0 || t >= 1) ? 0 : Math.sin(t*Math.PI); }
 
+  /* p corre da quando la sezione tocca il fondo dello schermo a quando ne
+     e' uscita dalla cima. Il pannello e' fisso, quindi puo' scattare mentre
+     sopra c'e' ancora il merch: nessun tratto vuoto da attraversare. */
   function frame(){
-    var travel = sec.offsetHeight - innerHeight;
-    var p = travel > 0 ? clamp(-sec.getBoundingClientRect().top/travel, 0, 1) : 0;
+    var span = innerHeight + sec.offsetHeight;
+    var p = clamp((innerHeight - sec.getBoundingClientRect().top)/span, 0, 1);
 
-    var open = p > 0.06 && p < 0.94;
+    var open = p > 0.13 && p < 0.87;
     if (open !== on){
       on = open;
       document.body.classList.toggle('flip', on);
-      pin.style.opacity = on ? '1' : '0';
+      pin.classList.toggle('on', on);
     }
 
-    var g = reduced ? 0 : Math.max(bump(p/0.10), bump((p-0.90)/0.10));
+    var g = reduced ? 0 : Math.max(bump((p-0.03)/0.20), bump((p-0.77)/0.20));
     gl.style.display = g > 0.02 ? 'block' : 'none';
     gl.style.opacity = (g*0.85).toFixed(3);
 
-    /* le voci entrano una dopo l'altra e si ritirano prima del secondo lampo */
     items.forEach(function(el,i){
-      var t = clamp((p - (0.10 + i*0.045))/0.10, 0, 1) * (1 - clamp((p-0.78)/0.09, 0, 1));
+      var t = clamp((p - (0.16 + i*0.028))/0.07, 0, 1) * (1 - clamp((p-0.79)/0.06, 0, 1));
       el.style.opacity = t.toFixed(3);
-      el.style.transform = 'translate3d(0,' + ((1-t)*26).toFixed(1) + 'px,0)';
+      el.style.transform = 'translate3d(0,' + ((1-t)*24).toFixed(1) + 'px,0)';
     });
   }
   onScroll.push(frame);
   cleanups.push(function(){
     document.body.classList.remove('flip');
+    pin.classList.remove('on');
     gl.style.display = 'none'; gl.style.opacity = '0';
   });
+
+  /* la lista dei drop: stesso meccanismo della lista in fondo, altra promessa */
+  var mail = sec.querySelector('#drop'), ok = sec.querySelector('#dropok');
+  function submit(){
+    var v = (mail.value||'').trim();
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    ok.textContent = valid ? 'Sei dentro. I drop ti arrivano prima.' : 'Serve un indirizzo valido.';
+    ok.classList.add('on');
+    if (valid) mail.value = '';
+  }
+  sec.querySelector('#dropgo').addEventListener('click', submit);
+  mail.addEventListener('keydown', function(e){ if (e.key === 'Enter') submit(); });
+
   frame();
 }
 
