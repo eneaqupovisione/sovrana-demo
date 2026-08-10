@@ -24,12 +24,19 @@ Tutto estratto dal video ufficiale «24/7».
 | cartella | contenuto | uso |
 |---|---|---|
 | `frames/` | 34 quadri, 00:00.8 → 00:02.2, 2560 px | il palco: la mano che stringe e si porta via il marchio |
-| `scene-collo/` | 35 quadri, 01:10 → 01:12.8, 1920 px | sfondo in movimento dietro i tasti d'ascolto |
+| `scene-collo/` | 20 quadri, 01:10 → 01:11, 1600 px | anello dietro i tasti di «Mi Piace» |
+| `scene-viso/` | 36 quadri, 01:11 → 01:12.9, 1600 px | anello dietro i tasti di «24/7» |
 | `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | anello in loop: il cavallo cromato |
 | `img/` | 9 fermi immagine, 1500 px | testate di pagina, schede merch, tasti dei social |
 
-`frames/` si carica sul loader; le altre due sequenze solo quando la sezione
-sta per entrare in campo. Il loop del cavallo gira solo mentre è visibile.
+`frames/` si carica sul loader ed è l'unica pilotata dallo scroll. Le altre tre
+sono anelli: si scaricano e partono da sole quando la sezione entra in campo,
+vanno avanti e tornano indietro (così il gesto non ha stacchi) e si fermano
+appena escono. Con `prefers-reduced-motion` restano su un fermo immagine.
+
+Il piano sequenza del collo sono **due gesti diversi** con uno stacco netto al
+frame 20 del sorgente: tenerli in un'unica sequenza era un errore, ora sono due
+anelli separati dietro due canzoni diverse.
 
 ## Effetti
 
@@ -37,8 +44,9 @@ sta per entrare in campo. Il loop del cavallo gira solo mentre è visibile.
   `feDisplacementMap`, un solo filtro pilotato dal puntatore)
 - **scarto RGB** sui titoli (`.gx`, ciano + magenta in `screen`)
 - **testo che si ricompone** dal rumore quando entra in campo (`data-scr`)
-- **nastri** inclinati a tutta larghezza: separano le sezioni e portano
-  sempre le stesse due insegne — `Enny P` e `Faccio what I want 24/7`
+- **nastri** inclinati a tutta larghezza: separano le sezioni. Le insegne
+  stanno in `SAY` e ogni nastro sceglie il gruppo con `data-say`; senza
+  attributo prende `Enny P` / `Faccio what I want 24/7`
 - **cromo liquido** sul marchio, gradiente animato ritagliato sul testo
 - cursore acido in `difference`, bottoni magnetici, parallasse, grana e righe
 
@@ -52,7 +60,7 @@ sono segnaposto.
 
 ## Una regola sul testo
 
-Il sito non si riempie di citazioni. Le uniche due frasi che compaiono sono le
-insegne dei nastri, e sono sempre quelle. Tutto il resto è etichetta di
+Il sito non si riempie di citazioni. Le uniche frasi che compaiono sono le
+insegne dei nastri, sono quattro in tutto e si ripetono. Tutto il resto è etichetta di
 servizio: «Fuori ora», «Date», «Biglietti», «Booking». Ogni immagine deve avere
 un compito — testata, scheda prodotto, tasto — nessuna sta lì per riempire.

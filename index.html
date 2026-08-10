@@ -436,39 +436,44 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 .pl:hover b{color:var(--void)}
 .pl:hover span{color:var(--void);transform:translateX(6px)}
 
-/* --------- ascolto: i tasti fermi, il girato che scorre dietro ---------- */
-#ascolta{position:relative;height:280vh}
-#ascolta .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-#ascolta canvas{display:block;width:100%;height:100%}
-#ascolta .vig{
+/* --------- canzone: i tasti fermi, il gesto che gira dietro ------------- */
+.song{
+  position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
+  padding:clamp(6rem,15vh,9rem) var(--pad) clamp(4.5rem,11vh,7rem);
+}
+.song canvas{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%}
+.song .vig{
+  z-index:1;
   background:
-    linear-gradient(100deg,rgba(3,4,5,.94) 8%,rgba(3,4,5,.74) 44%,rgba(3,4,5,.28) 78%),
-    linear-gradient(to bottom,rgba(3,4,5,.82),transparent 26%,transparent 58%,var(--void));
+    linear-gradient(100deg,rgba(3,4,5,.95) 6%,rgba(3,4,5,.76) 42%,rgba(3,4,5,.26) 78%),
+    linear-gradient(to bottom,rgba(3,4,5,.86),transparent 24%,transparent 56%,var(--void));
 }
-.asc{
-  position:absolute;inset:0;z-index:5;
-  display:flex;align-items:center;padding:clamp(4.5rem,12vh,7rem) var(--pad) clamp(4rem,9vh,6rem);
+.song.r .vig{
+  background:
+    linear-gradient(260deg,rgba(3,4,5,.95) 6%,rgba(3,4,5,.76) 42%,rgba(3,4,5,.26) 78%),
+    linear-gradient(to bottom,rgba(3,4,5,.86),transparent 24%,transparent 56%,var(--void));
 }
-.asc > .wrap{width:100%}
+.song .asc{position:relative;z-index:2;width:100%}
+.song .col{max-width:660px}
+.song.r .col{margin-left:auto;text-align:right}
 .asc-t{
   font-family:var(--disp);font-weight:800;font-stretch:122%;text-transform:uppercase;
-  font-size:clamp(2.6rem,10vw,7rem);line-height:.84;letter-spacing:-.03em;
+  font-size:clamp(2.6rem,9vw,6.4rem);line-height:.84;letter-spacing:-.03em;
   color:var(--silver-w);margin:.35rem 0 clamp(1.4rem,4vh,2.4rem);
 }
-.asc .plat{grid-template-columns:repeat(2,minmax(0,1fr));max-width:660px;margin-top:0}
-.asc .pl{background:rgba(3,4,5,.68);border-color:rgba(242,247,241,.24)}
+.asc .plat{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}
+.asc .pl{background:rgba(3,4,5,.7);border-color:rgba(242,247,241,.24)}
 .asc .pl b{color:var(--silver-w)}
 .asc-all{margin-top:1.4rem}
+.song .tag{
+  position:absolute;left:var(--pad);bottom:clamp(1.4rem,4vh,2.6rem);z-index:3;
+}
+.song.r .tag{left:auto;right:var(--pad)}
 @media (max-width:640px){
   .asc .plat{grid-template-columns:1fr;gap:.5rem}
   .asc .pl{padding:.85rem 1rem}
+  .song.r .col{text-align:left}
 }
-.cl-hud{
-  position:absolute;left:var(--pad);bottom:clamp(1.4rem,4vh,2.6rem);z-index:6;
-  display:flex;gap:1.4rem;align-items:center;
-}
-.cl-hud .trk{width:min(220px,30vw);height:1px;background:#1b2426;position:relative;overflow:hidden}
-.cl-hud .trk i{position:absolute;inset:0 auto 0 0;width:0;background:var(--acid)}
 
 /* --------- cavallo cromato: anello in loop ------------------------------ */
 .horse{
@@ -692,7 +697,6 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
 }
 @media (max-width:720px){
   :root{--stage:290vh}
-  #ascolta{height:260vh}
   .shead{align-items:flex-start;flex-direction:column;gap:1rem}
   .c-tr{display:none}
   /* su schermo stretto il velo laterale copre tutto: si tiene solo quello verticale */
@@ -705,6 +709,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
   #word .l i{animation:none;opacity:1}
   .rv{transition-duration:.01ms}
   .grain,.tk{animation:none}
+  .song{min-height:auto}
   .c-bc i{display:none}
 }
 </style>
@@ -809,15 +814,27 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     </div>
   </section>
 
-  <div class="tick" data-dur="30"><div class="tk"></div></div>
+  <div class="tick" data-say="nep" data-dur="26"><div class="tk"></div></div>
 
-  <!-- ascolto: i tasti stanno fermi, dietro scorre il girato -->
-  <section id="ascolta" data-seq="collo">
-    <div class="pin">
-      <canvas></canvas>
-      <div class="vig"></div>
-      <div class="asc">
-        <div class="wrap">
+  <section class="sect">
+    <div class="ghost r" data-sp=".26">Eventi</div>
+    <div class="wrap">
+      <div class="shead rv">
+        <h2 class="h2 melt gx" data-t="Prossime date">Prossime date</h2>
+        <a class="btn o" href="#/eventi" data-cur="Apri"><span>Tutte le date</span></a>
+      </div>
+      <div class="dates rv" data-dates="3"></div>
+    </div>
+  </section>
+
+  <div class="tick gh" data-say="dove" data-dur="46" data-rev="1"><div class="tk"></div></div>
+
+  <section class="song" data-loop="collo">
+    <canvas></canvas>
+    <div class="vig"></div>
+    <div class="asc">
+      <div class="wrap">
+        <div class="col">
           <p class="mono a">Fuori ora — singolo 2026</p>
           <h2 class="asc-t melt gx" data-t="Mi Piace">Mi Piace</h2>
           <div class="plat">
@@ -829,24 +846,29 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
           <a class="btn o asc-all" href="#/musica" data-cur="Apri"><span>Tutte le uscite</span></a>
         </div>
       </div>
-      <div class="cl-hud">
-        <span class="mono a">Warner Records Italy</span>
-        <span class="trk"><i></i></span>
-      </div>
     </div>
+    <p class="mono tag">Warner Records Italy</p>
   </section>
 
-  <div class="tick gh" data-dur="42" data-rev="1"><div class="tk"></div></div>
-
-  <section class="sect">
-    <div class="ghost r" data-sp=".26">Eventi</div>
-    <div class="wrap">
-      <div class="shead rv">
-        <h2 class="h2 melt gx" data-t="Prossime date">Prossime date</h2>
-        <a class="btn o" href="#/eventi" data-cur="Apri"><span>Tutte le date</span></a>
+  <section class="song r" data-loop="viso">
+    <canvas></canvas>
+    <div class="vig"></div>
+    <div class="asc">
+      <div class="wrap">
+        <div class="col">
+          <p class="mono a">Il singolo — 2026</p>
+          <h2 class="asc-t melt gx" data-t="24/7">24/7</h2>
+          <div class="plat">
+            <a class="pl" href="https://open.spotify.com/intl-it/artist/6BiW9C6z0jgaJee9d0btwj" target="_blank" rel="noopener" data-cur="Ascolta"><b>Spotify</b><span>→</span></a>
+            <a class="pl" href="https://music.apple.com/it/artist/enny-p/1625487221" target="_blank" rel="noopener" data-cur="Ascolta"><b>Apple Music</b><span>→</span></a>
+            <a class="pl" href="#" data-cur="Guarda"><b>YouTube</b><span>→</span></a>
+            <a class="pl" href="#" data-cur="Ascolta"><b>Amazon Music</b><span>→</span></a>
+          </div>
+          <a class="btn o asc-all" href="#/musica" data-cur="Apri"><span>Tutte le uscite</span></a>
+        </div>
       </div>
-      <div class="dates rv" data-dates="3"></div>
     </div>
+    <p class="mono tag">24/7 · 01:11</p>
   </section>
 
   <div class="tick" data-dur="30"><div class="tk"></div></div>
@@ -1098,17 +1120,25 @@ var RELEASES = [
   {t:'All U Can Eat',  m:'Feat. · Singolo'},
   {t:'Si sono Enny P', m:'Singolo · 2024'}
 ];
-/* due sole insegne, sempre le stesse: il nome e la riga che lo spiega.
-   Si ripetono in ogni nastro — e' quello che le rende un marchio. */
-var TICKER = ['Enny P','Faccio what I want 24/7'];
+/* Insegne dei nastri. Poche e sempre le stesse: e' quello che le rende un
+   marchio invece che un collage. Ogni nastro sceglie il suo gruppo con
+   data-say; senza attributo prende il predefinito. */
+var SAY = {
+  def:  ['Enny P','Faccio what I want 24/7'],
+  nep:  ['It’s Enny P hoe!'],
+  dove: ['Sono esattamente dove devo essere']
+};
 
 /* ======================================================================
    SEQUENZE — la mano (palco), il collo (seconda scena), il cavallo (loop)
    ====================================================================== */
 var HERO = {dir:'frames/', pre:'f_', n:34, rev:true};
+/* Il piano sequenza del collo sono due gesti diversi, con uno stacco netto
+   fra loro: tenerli insieme era un errore. Ora sono due anelli separati. */
 var SEQS = {
-  collo:   {dir:'scene-collo/',   pre:'c_', n:35},
-  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24}
+  collo:   {dir:'scene-collo/',   pre:'c_', n:20, ms:50},   /* la mano risale il collo */
+  viso:    {dir:'scene-viso/',    pre:'v_', n:36, ms:50},   /* le mani incorniciano il viso */
+  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24, ms:80}
 };
 var frames = new Array(HERO.n);
 var framesReady = false;
@@ -1251,14 +1281,15 @@ function fillTickers(root){
   root.querySelectorAll('.tick').forEach(function(t){
     var tk = t.querySelector('.tk');
     if (tk.childElementCount) return;
-    /* le due insegne si alternano finche' la meta' del nastro copre lo
-       schermo abbondantemente: solo cosi' il ritorno a -50% non si vede. */
-    var pair = TICKER.map(function(s,i){
-      var mark = i ? '✳' : '◆';
+    var say = SAY[t.getAttribute('data-say') || 'def'] || SAY.def;
+    /* le insegne si ripetono finche' la meta' del nastro copre lo schermo
+       abbondantemente: solo cosi' il ritorno a -50% non si vede. */
+    var pair = say.map(function(s,i){
+      var mark = i%2 ? '✳' : '◆';
       return '<b>' + (t.classList.contains('gh') && i===0 ? '<em>'+s+'</em>' : s) + '</b><s>'+mark+'</s>';
     }).join('');
     var half = '';
-    for (var k=0;k<4;k++) half += pair;
+    for (var k=0;k<6;k++) half += pair;
     tk.innerHTML = half + half;
     tk.style.animationDuration = (t.getAttribute('data-dur') || 34) + 's';
     if (t.getAttribute('data-rev')) tk.style.animationDirection = 'reverse';
@@ -1447,79 +1478,8 @@ function initStage(root){
 }
 
 /* ======================================================================
-   Seconda scena bloccata: si carica solo quando sta per servire
-   ====================================================================== */
-function initSeqScene(root){
-  var sec = root.querySelector('[data-seq]');
-  if (!sec) return;
-  var cfg = SEQS[sec.getAttribute('data-seq')];
-  var canvas = sec.querySelector('canvas');
-  var ctx = canvas.getContext('2d', {alpha:false});
-  var trk = sec.querySelector('.trk i');
-  var imgs = new Array(cfg.n), loaded = 0, asked = false;
-  var cssW=0, cssH=0, last=-1, tP=0, cP=0, raf=null;
-
-  function askFrames(){
-    if (asked) return; asked = true;
-    for (var i=0;i<cfg.n;i++){
-      var im = new Image();
-      im.onload = function(){ loaded++; last = -1; draw(cP); };
-      im.onerror = function(){ loaded++; };
-      im.src = cfg.dir + cfg.pre + String(i+1).padStart(4,'0') + '.jpg';
-      imgs[i] = im;
-    }
-  }
-  var io = new IntersectionObserver(function(es){
-    if (es[0].isIntersecting){ askFrames(); io.disconnect(); }
-  }, {rootMargin:'150% 0px'});
-  io.observe(sec);
-  obs.push(io);
-
-  function resize(){
-    var dpr = Math.min(window.devicePixelRatio||1, 2);
-    cssW = canvas.clientWidth; cssH = canvas.clientHeight;
-    canvas.width = Math.round(cssW*dpr); canvas.height = Math.round(cssH*dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    last = -1; draw(cP);
-  }
-  function draw(p){
-    var i = clamp(Math.round(p*(cfg.n-1)), 0, cfg.n-1);
-    var im = imgs[i];
-    if (!im || !im.complete || !im.naturalWidth || i === last) return;
-    last = i;
-    cover(ctx, im, cssW, cssH);
-  }
-  function paint(p){
-    if (trk) trk.style.width = (p*100).toFixed(1)+'%';
-  }
-  function measure(){
-    var travel = sec.offsetHeight - innerHeight;
-    tP = travel > 0 ? clamp(-sec.getBoundingClientRect().top/travel, 0, 1) : 0;
-  }
-  function loop(){
-    cP += (tP - cP) * (reduced ? 1 : 0.18);
-    if (Math.abs(tP - cP) < 0.0004) cP = tP;
-    draw(cP); paint(cP);
-    raf = cP === tP ? null : requestAnimationFrame(loop);
-  }
-  onScroll.push(function(){
-    measure();
-    if (raf === null) raf = requestAnimationFrame(loop);
-  });
-  function realign(){
-    if (canvas.clientWidth !== cssW || canvas.clientHeight !== cssH) resize();
-    measure(); cP = tP; draw(cP); paint(cP);
-  }
-  addEventListener('resize', realign);
-  cleanups.push(function(){
-    removeEventListener('resize', realign);
-    if (raf) cancelAnimationFrame(raf);
-  });
-  resize(); measure(); cP = tP; paint(cP);
-}
-
-/* ======================================================================
-   Il cavallo cromato: anello che va e torna, solo quando lo si guarda
+   Anelli: un gesto che va e torna. Partono da soli quando entrano in campo
+   e si fermano appena escono — nessuno scroll li pilota.
    ====================================================================== */
 function initLoop(root){
   root.querySelectorAll('[data-loop]').forEach(function(box){
@@ -1528,11 +1488,13 @@ function initLoop(root){
     var ctx = canvas.getContext('2d', {alpha:false});
     var imgs = new Array(cfg.n), asked = false, live = false;
     var cssW=0, cssH=0, i=0, dir=1, raf=null, t0=0;
+    var step = cfg.ms || 80;
 
     function ask(){
       if (asked) return; asked = true;
       for (var k=0;k<cfg.n;k++){
         var im = new Image();
+        im.onload = paint;          /* il primo quadro compare senza aspettare l'anello */
         im.src = cfg.dir + cfg.pre + String(k+1).padStart(4,'0') + '.jpg';
         imgs[k] = im;
       }
@@ -1540,27 +1502,38 @@ function initLoop(root){
     function resize(){
       var dpr = Math.min(window.devicePixelRatio||1, 2);
       cssW = canvas.clientWidth; cssH = canvas.clientHeight;
+      if (!cssW || !cssH) return;
       canvas.width = Math.round(cssW*dpr); canvas.height = Math.round(cssH*dpr);
       ctx.setTransform(dpr,0,0,dpr,0,0);
+      paint();
     }
+    function paint(){
+      var im = imgs[i];
+      if (im && im.complete && im.naturalWidth && cssW) cover(ctx, im, cssW, cssH);
+    }
+    /* avanti fino in fondo, poi indietro: il gesto non ha uno stacco */
     function tick(ts){
-      if (!live){ raf = null; return; }
-      if (ts - t0 > 80){                       /* ~12,5 fotogrammi al secondo */
+      if (!live || reduced){ raf = null; return; }
+      if (ts - t0 >= step){
         t0 = ts;
         i += dir;
         if (i >= cfg.n-1){ i = cfg.n-1; dir = -1; }
-        if (i <= 0){ i = 0; dir = 1; }
-        var im = imgs[i];
-        if (im && im.complete && im.naturalWidth) cover(ctx, im, cssW, cssH);
+        else if (i <= 0){ i = 0; dir = 1; }
+        paint();
       }
       raf = requestAnimationFrame(tick);
     }
-    var io = new IntersectionObserver(function(es){
-      live = es[0].isIntersecting;
-      if (live){ ask(); if (raf === null) raf = requestAnimationFrame(tick); }
-    }, {rootMargin:'50% 0px'});
-    io.observe(box);
-    obs.push(io);
+    /* chi comanda e' lo stesso registro dello scroll che muove tutto il resto:
+       un osservatore separato qui si perdeva il primo ingresso in campo. */
+    function check(){
+      var r = box.getBoundingClientRect();
+      live = r.bottom > -innerHeight*0.6 && r.top < innerHeight*1.6;
+      if (live){
+        ask();
+        if (raf === null && !reduced) raf = requestAnimationFrame(tick);
+      }
+    }
+    onScroll.push(check);
 
     addEventListener('resize', resize);
     cleanups.push(function(){
@@ -1568,7 +1541,7 @@ function initLoop(root){
       live = false;
       if (raf) cancelAnimationFrame(raf);
     });
-    resize();
+    resize(); check();
   });
 }
 
@@ -1646,7 +1619,6 @@ function render(k, instant){
   buildDates(app); buildMerch(app); buildReleases(app);
   fillTickers(document);
   initStage(app);
-  initSeqScene(app);
   initLoop(app);
   initReveal(app);
   initScramble(app);
