@@ -302,16 +302,17 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
   display:flex;flex-direction:column;align-items:center;gap:.7rem;
 }
 .c-bc i{display:block;width:1px;height:36px;background:linear-gradient(var(--acid),transparent)}
+/* dove il nome sparisce compare quello che c'e' da fare */
 #closing{
-  position:absolute;left:0;right:0;bottom:24vh;z-index:7;
-  text-align:center;opacity:0;pointer-events:none;
+  position:absolute;left:0;right:0;bottom:18vh;z-index:7;
+  text-align:center;opacity:0;pointer-events:none;padding:0 var(--pad);
 }
 #closing .ln{
-  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
-  font-size:clamp(1.3rem,5vw,3rem);color:var(--silver-w);line-height:1.02;letter-spacing:-.01em;
+  font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(2.2rem,8vw,5.4rem);line-height:.92;letter-spacing:-.025em;
+  color:var(--silver-w);margin-top:.4rem;text-shadow:0 2px 40px rgba(3,4,5,.9);
 }
-#closing .ln b{color:var(--acid);font-weight:800}
-#closing .rule{max-width:200px;margin:1.4rem auto 1rem}
+.cact{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:clamp(1.4rem,4vh,2.2rem)}
 
 /* --------- nastro scorrevole (la voce, a tutta larghezza) ---------------- */
 .tick{
@@ -907,13 +908,16 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
       <div id="mark"><div id="word" aria-label="Enny P"></div></div>
       <div id="blade"></div>
 
-      <p class="corner c-tr mono">Warner Records Italy<br><span class="gold">«Mi Piace» fuori ora</span></p>
+      <p class="corner c-tr mono">Warner Records Italy</p>
       <div class="corner c-bc"><span class="mono">Scorri</span><i></i></div>
 
       <div id="closing">
-        <p class="ln">Faccio what I want<br><b>24/7</b></p>
-        <div class="rule a"></div>
-        <p class="mono">Enny P — Sito ufficiale</p>
+        <p class="mono a">Il nuovo singolo</p>
+        <p class="ln">Mi Piace</p>
+        <div class="cact">
+          <a class="btn" href="https://open.spotify.com/intl-it/artist/6BiW9C6z0jgaJee9d0btwj" target="_blank" rel="noopener" data-cur="Ascolta"><span>Ascolta ora</span></a>
+          <a class="btn o" href="#/musica" data-cur="Apri"><span>Tutte le piattaforme</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -1569,7 +1573,9 @@ function initStage(root){
     var fade = clamp(1 - p/0.3, 0, 1);
     corners.forEach(function(el){ el.style.opacity = fade.toFixed(3); });
 
-    closing.style.opacity = clamp((p-0.84)/0.13, 0, 1).toFixed(3);
+    var cv = clamp((p-0.74)/0.14, 0, 1);
+    closing.style.opacity = cv.toFixed(3);
+    closing.style.pointerEvents = cv > 0.6 ? 'auto' : 'none';
   }
 
   function measure(){

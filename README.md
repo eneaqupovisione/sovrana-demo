@@ -78,6 +78,15 @@ che non sta nel menu, in quest'ordine:
 3. **materiale grezzo e contatti** — sfondi, testo, press kit, booking: il fan
    e chi lavora nel settore trovano entrambi qualcosa
 
+## Il finale del palco
+
+Quando la stretta si porta via il nome, al suo posto non compare una frase:
+compare l'uscita. Occhiello, titolo del singolo, «Ascolta ora» verso la
+piattaforma e «Tutte le piattaforme» verso la pagina Musica. È l'unico punto
+del palco in cui si può cliccare, e resta in campo per l'ultimo quarto della
+scena — `pointer-events` si accende solo quando è abbastanza visibile da
+essere colpito apposta.
+
 ## Una regola sul testo
 
 Il sito non si riempie di citazioni. Le uniche frasi che compaiono sono le
