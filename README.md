@@ -28,6 +28,14 @@ Tutto estratto dal video ufficiale «24/7».
 | `scene-occhi/` | 15 quadri, 00:33 → 00:33.7, 1600 px | anello dietro i tasti di «24/7» |
 | `scene-soldi/` | 24 quadri, 01:35.9 → 01:37.1, 1600 px | anello dietro i tasti di «Money Maker» |
 | `scene-addio/` | 15 quadri, 02:13.4 → 02:14.1, 1600 px | il bacio: l'ultima cosa che si vede, dietro la lista |
+| `sc-musica/` | 00:09.4 → 00:10.6 | testata Musica: denti e lingua, la faccia della voce |
+| `sc-eventi/` | 00:57.7 → 00:58.9 | testata Eventi: artigli sul viso, guarda in camera |
+| `sc-merch/` | 00:38.5 → 00:39.5 | testata Merch: labbra e artigli d'argento, roba che si indossa |
+| `sc-social/` | 01:27.0 → 01:27.9 | testata Social: occhiali e mosso, la faccia moltiplicata |
+| `sc-contatti/` | 01:57.0 → 01:58.2 | testata Contatti: primo piano verso l'obiettivo |
+| `sc-chi/` | 01:00.8 → 01:01.7 | testata Chi è: lei sul cavallo cromato |
+| `sc-ritratto/` | 02:31.4 → 02:32.3 | il ritratto in Chi è: figura intera |
+| `sc-menu/` | 00:03.2 → 00:04.4 | dietro il menu a tutto schermo |
 | `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | il cavallo di «Limited» (lei sopra, 00:51.7 → 00:52.9): invertito e in `multiply`, diventa inchiostro sull'acido |
 | `img/` | 9 fermi immagine, 1500 px | testate di pagina, schede merch, tasti dei social |
 
@@ -117,6 +125,17 @@ Non e' il sito rimpicciolito, e' un secondo montaggio:
 - **i tasti d'ascolto** si stringono a 70% (max 300 px): a tutta larghezza
   coprivano l'inquadratura
 - **il merch** passa a due colonne: un oggetto per riga erano dieci schermate.
+
+## Le testate
+
+Le sei pagine interne avevano una foto ferma dietro il titolo. Ora hanno un
+anello, con lo stesso trattamento duotone di prima. La scelta segue il formato:
+la testata è una fascia bassa e larga, quindi ci vanno i **primi piani** — un
+campo lungo lì dentro viene tagliato alla vita. I campi lunghi stanno invece
+nei riquadri alti: il ritratto di «Chi è» e il menu a tutto schermo.
+
+Il menu è `position:fixed` a tutto schermo: senza `data-loop-when="on"` il suo
+anello girerebbe anche da chiuso.
 
 ## Una regola sul testo
 

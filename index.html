@@ -244,6 +244,14 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
   opacity:0;pointer-events:none;transition:opacity .45s ease;
 }
 .sheet.on{opacity:1;pointer-events:auto}
+.sheet canvas{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%}
+.sheet .mvelo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 78% at 50% 50%,rgba(3,4,5,.22),rgba(3,4,5,.78) 72%,var(--void)),
+    linear-gradient(to bottom,var(--void),rgba(3,4,5,.3) 26%,rgba(3,4,5,.36) 72%,var(--void));
+}
+.sheet a,.sheet .x{position:relative;z-index:2}
 .sheet a{
   font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
   font-size:clamp(1.9rem,9vw,3.4rem);color:var(--silver-l);line-height:1;padding:.12em 0;
@@ -399,10 +407,9 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 .phead .bg{
   position:absolute;inset:0;z-index:0;overflow:hidden;
 }
-.phead .bg img{
-  width:100%;height:100%;object-fit:cover;opacity:.72;
+.phead .bg canvas{
+  display:block;width:100%;height:100%;opacity:.72;
   filter:grayscale(1) contrast(1.35) brightness(.9) sepia(.4) hue-rotate(142deg) saturate(2.6);
-  transform:scale(1.06);
 }
 .phead .bg::after{
   content:'';position:absolute;inset:0;
@@ -816,10 +823,10 @@ body.flip .scan{opacity:.1}
 .bio p.big{font-family:var(--serif);font-size:clamp(1.3rem,3.2vw,1.9rem);line-height:1.45;color:var(--silver-w)}
 .bio p b{font-weight:600;color:var(--acid)}
 .portrait{position:relative;border:1px solid var(--hair);overflow:hidden;aspect-ratio:3/4}
-.portrait img{width:100%;height:100%;object-fit:cover;
+.portrait canvas{display:block;width:100%;height:100%;
   filter:grayscale(1) contrast(1.25) brightness(.82) sepia(.32) hue-rotate(142deg) saturate(2.3);
   transition:transform 1.4s var(--ease),filter .9s ease}
-.portrait:hover img,.portrait.hot img{transform:scale(1.05);filter:none}
+.portrait:hover canvas,.portrait.hot canvas{transform:scale(1.05);filter:none}
 .portrait figcaption{
   position:absolute;left:.9rem;bottom:.8rem;z-index:2;font-family:var(--mono);font-size:.6rem;
   letter-spacing:.2em;text-transform:uppercase;color:var(--silver-w);text-shadow:0 1px 10px rgba(0,0,0,.95);
@@ -979,7 +986,9 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
   <button class="burger" id="burger" aria-label="Apri il menu">Menu</button>
 </header>
 
-<div class="sheet" id="sheet">
+<div class="sheet" id="sheet" data-loop="menu" data-loop-when="on">
+  <canvas></canvas>
+  <div class="mvelo"></div>
   <button class="burger x" id="sheetX" aria-label="Chiudi il menu">Chiudi</button>
   <a class="melt" href="#/">Home</a><a class="melt" href="#/musica">Musica</a>
   <a class="melt" href="#/eventi">Eventi</a><a class="melt" href="#/merch">Merch</a>
@@ -1181,7 +1190,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
 <!-- ====================== MUSICA ====================== -->
 <template id="p-musica">
   <section class="phead">
-    <div class="bg"><img src="img/unghie.jpg" alt="" loading="lazy"></div>
+    <div class="bg" data-loop="t_musica"><canvas></canvas></div>
     <div class="ghost" data-sp=".2">Musica</div>
     <div class="wrap" style="position:relative;z-index:1">
       <p class="mono rv" data-scr>Discografia</p>
@@ -1216,7 +1225,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
 <!-- ====================== EVENTI ====================== -->
 <template id="p-eventi">
   <section class="phead">
-    <div class="bg"><img src="img/soldi.jpg" alt="" loading="lazy"></div>
+    <div class="bg" data-loop="t_eventi"><canvas></canvas></div>
     <div class="ghost" data-sp=".2">Eventi</div>
     <div class="wrap" style="position:relative;z-index:1">
       <p class="mono rv" data-scr>Calendario 2026</p>
@@ -1243,7 +1252,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
 <!-- ====================== MERCH ====================== -->
 <template id="p-merch">
   <section class="phead">
-    <div class="bg"><img src="img/pelliccia.jpg" alt="" loading="lazy"></div>
+    <div class="bg" data-loop="t_merch"><canvas></canvas></div>
     <div class="ghost" data-sp=".2">Merch</div>
     <div class="wrap" style="position:relative;z-index:1">
       <p class="mono rv" data-scr>Store</p>
@@ -1267,7 +1276,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
 <!-- ====================== SOCIAL ====================== -->
 <template id="p-social">
   <section class="phead">
-    <div class="bg"><img src="img/occhiali.jpg" alt="" loading="lazy"></div>
+    <div class="bg" data-loop="t_social"><canvas></canvas></div>
     <div class="ghost" data-sp=".2">Social</div>
     <div class="wrap" style="position:relative;z-index:1">
       <p class="mono rv" data-scr>Canali</p>
@@ -1292,7 +1301,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
 <!-- ====================== CONTATTI ====================== -->
 <template id="p-contatti">
   <section class="phead">
-    <div class="bg"><img src="img/profilo.jpg" alt="" loading="lazy"></div>
+    <div class="bg" data-loop="t_contatti"><canvas></canvas></div>
     <div class="ghost" data-sp=".2">Contatti</div>
     <div class="wrap" style="position:relative;z-index:1">
       <p class="mono rv" data-scr>Scrivi</p>
@@ -1317,7 +1326,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
 <!-- ====================== CHI È ====================== -->
 <template id="p-chi">
   <section class="phead">
-    <div class="bg"><img src="img/viso.jpg" alt="" loading="lazy"></div>
+    <div class="bg" data-loop="t_chi"><canvas></canvas></div>
     <div class="ghost" data-sp=".2">Chi è</div>
     <div class="wrap" style="position:relative;z-index:1">
       <p class="mono rv" data-scr>Biografia</p>
@@ -1347,8 +1356,8 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
             <div class="cr">Booking <span>booking@ennyp.it</span></div>
           </div>
         </div>
-        <figure class="portrait rv mimg">
-          <img src="img/collo.jpg" alt="Enny P" loading="lazy">
+        <figure class="portrait rv" data-loop="ritratto">
+          <canvas></canvas>
           <figcaption>Enny P — 24/7</figcaption>
         </figure>
       </div>
@@ -1454,7 +1463,19 @@ var SEQS = {
      niente: il ritaglio a schermo largo coincide con l'inquadratura */
   cavallo: {dir:'scene-cavallo/', pre:'h_', n:25, ms:70, fx:.42, fy:.46, px:.30, zoom:1.35,
               fit:'contain', fitZoom:1.04, py:.83},  /* su schermo stretto: intero, in basso */
-  addio:   {dir:'scene-addio/',   pre:'a_', n:15, ms:60, fx:.42, fy:.46}
+  addio:   {dir:'scene-addio/',   pre:'a_', n:15, ms:60, fx:.42, fy:.46},
+
+  /* le testate delle pagine: fascia bassa e larga, quindi ravvicinate.
+     Il testo sta a sinistra, il soggetto va a destra. */
+  t_musica:   {dir:'sc-musica/',   pre:'x_', n:19, ms:62, fx:.50, fy:.46, px:.70, zoom:1.10},
+  t_eventi:   {dir:'sc-eventi/',   pre:'x_', n:20, ms:62, fx:.44, fy:.46, px:.70, zoom:1.15},
+  t_merch:    {dir:'sc-merch/',    pre:'x_', n:16, ms:62, fx:.46, fy:.50, px:.70, zoom:1.15},
+  t_social:   {dir:'sc-social/',   pre:'x_', n:14, ms:62, fx:.46, fy:.44, px:.70, zoom:1.12},
+  t_contatti: {dir:'sc-contatti/', pre:'x_', n:20, ms:62, fx:.48, fy:.46, px:.70, zoom:1.10},
+  t_chi:      {dir:'sc-chi/',      pre:'x_', n:16, ms:62, fx:.46, fy:.50, px:.68, zoom:1.05},
+  /* riquadri alti: qui ci sta la figura intera */
+  ritratto:   {dir:'sc-ritratto/', pre:'x_', n:15, ms:66, fx:.50, fy:.50},
+  menu:       {dir:'sc-menu/',     pre:'x_', n:19, ms:66, fx:.50, fy:.50}
 };
 var frames = new Array(HERO.n);
 var framesReady = false;
@@ -1867,9 +1888,11 @@ function initLoop(root){
     }
     /* chi comanda e' lo stesso registro dello scroll che muove tutto il resto:
        un osservatore separato qui si perdeva il primo ingresso in campo. */
+    var soloSe = box.getAttribute('data-loop-when');
     function check(){
       var r = box.getBoundingClientRect();
-      live = r.bottom > -innerHeight*0.6 && r.top < innerHeight*1.6;
+      live = (!soloSe || box.classList.contains(soloSe)) &&
+             r.bottom > -innerHeight*0.6 && r.top < innerHeight*1.6;
       if (live){
         ask();
         if (raf === null && !reduced) raf = requestAnimationFrame(tick);
@@ -2181,7 +2204,7 @@ function onHdr(){
 addEventListener('scroll', onHdr, {passive:true});
 addEventListener('resize', onHdr, {passive:true});
 
-document.getElementById('burger').addEventListener('click', function(){ sheet.classList.add('on'); });
+document.getElementById('burger').addEventListener('click', function(){ sheet.classList.add('on'); pump(); });
 document.getElementById('sheetX').addEventListener('click', function(){ sheet.classList.remove('on'); });
 sheet.addEventListener('click', function(e){ if (e.target.tagName === 'A') sheet.classList.remove('on'); });
 addEventListener('keydown', function(e){ if (e.key === 'Escape') sheet.classList.remove('on'); });
