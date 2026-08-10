@@ -43,7 +43,7 @@
   --sans:'Archivo','Helvetica Neue',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --mono:'Space Mono','SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 
-  --stage:285vh;
+  --stage:230vh;
   --hair:rgba(167,178,176,.16);
   --pad:clamp(1.4rem,6vw,5rem);
   --ease:cubic-bezier(.16,.84,.28,1);
@@ -283,7 +283,7 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 #word .l i{
   display:block;font-style:normal;
   font-family:var(--disp);font-weight:800;font-stretch:122%;
-  font-size:clamp(2.9rem,15vw,11rem);line-height:1;letter-spacing:-.02em;
+  font-size:clamp(1.45rem,7.4vw,5.6rem);line-height:1;letter-spacing:-.02em;
   background:linear-gradient(100deg,
     #4a565a 0%,#e9f2ec 15%,#8d9a9c 28%,#ffffff 42%,
     #7f8d90 57%,#e4ecdf 71%,#556366 87%,#9aa7a6 100%);
@@ -435,8 +435,10 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 .btn.g:hover{color:var(--void);border-color:var(--gold)}
 
 /* testata di pagina interna */
+/* la fascia e' alta: piu' e' bassa, piu' il ritaglio verticale stringe
+   l'immagine e la fa sembrare zoomata */
 .phead{
-  position:relative;padding:clamp(9rem,22vh,14rem) var(--pad) clamp(2rem,6vh,4rem);
+  position:relative;padding:clamp(10rem,26vh,17rem) var(--pad) clamp(3rem,9vh,6rem);
   overflow:hidden;border-bottom:1px solid var(--hair);
 }
 .phead .bg{
@@ -965,7 +967,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
   .tile{padding:1.2rem 1.1rem}
 }
 @media (max-width:720px){
-  :root{--stage:235vh}
+  :root{--stage:195vh}
   .shead{align-items:flex-start;flex-direction:column;gap:1rem}
   .c-tr{display:none}
   /* su schermo stretto il velo laterale copre tutto: si tiene solo quello verticale */
@@ -1077,7 +1079,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
       <canvas id="seq"></canvas>
       <div class="vig"></div>
 
-      <div id="mark"><div id="word" aria-label="Enny P"></div></div>
+      <div id="mark"><div id="word" aria-label="It’s Enny P"></div></div>
       <div id="blade"></div>
 
       <p class="corner c-tr mono">Warner Records Italy</p>
@@ -1511,10 +1513,11 @@ var SEQS = {
      Il testo sta a sinistra, il soggetto va a destra. */
   t_musica:   {dir:'sc-musica/',   pre:'x_', n:19, ms:62, fx:.50, fy:.46, px:.70, zoom:1.10},
   t_eventi:   {dir:'sc-eventi/',   pre:'x_', n:20, ms:62, fx:.44, fy:.46, px:.70, zoom:1.15},
-  t_merch:    {dir:'sc-merch/',    pre:'x_', n:14, ms:55, fx:.55, fy:.38, px:.70, zoom:1.10},
+  t_merch:    {dir:'sc-merch/',    pre:'x_', n:14, ms:55, fx:.55, fy:.40, px:.86, zoom:1.30},
   t_social:   {dir:'sc-social/',   pre:'x_', n:14, ms:62, fx:.46, fy:.44, px:.70, zoom:1.12},
   /* campo lungo dentro una fascia bassa: si stringe sul busto o non si legge */
-  t_contatti: {dir:'sc-contatti/', pre:'x_', n:21, ms:62, fx:.46, fy:.33, px:.68, zoom:1.50},
+  /* lo zoom corre lungo l'anello: si parte larghi e ci si stringe sul viso */
+  t_contatti: {dir:'sc-contatti/', pre:'x_', n:21, ms:70, fx:.46, fy:[.52,.30], px:[.5,.72], zoom:[1.02,2.15]},
   t_chi:      {dir:'sc-chi/',      pre:'x_', n:16, ms:62, fx:.46, fy:.50, px:.68, zoom:1.05},
   /* riquadri alti: qui ci sta la figura intera */
   ritratto:   {dir:'sc-ritratto/', pre:'x_', n:15, ms:66, fx:.50, fy:.50},
@@ -1553,15 +1556,25 @@ addEventListener('resize', function(){ pump(); }, {passive:true});
    Su schermo largo c'e' margine per stringere e spostare — il testo sta di
    lato; su schermo stretto il ritaglio mangia gia' i fianchi, quindi il
    soggetto torna al centro e lo zoom sparisce. */
-function cover(ctx, img, w, h, cfg){
-  cfg = cfg || {};
+/* un valore puo' essere un numero fisso oppure [da, a]: in quel caso lo si
+   percorre lungo l'anello, e l'andata e ritorno lo fa entrare e uscire. */
+function val(v, t){
+  if (v == null) return null;
+  if (typeof v === 'number') return v;
+  var e = t*t*(3-2*t);                       /* parte piano, arriva piano */
+  return v[0] + (v[1]-v[0])*e;
+}
+function cover(ctx, img, w, h, cfg, t){
+  cfg = cfg || {}; t = t || 0;
   var largo = (w/h) >= 1.25;
   var base = Math.max(w/img.naturalWidth, h/img.naturalHeight);
-  var s = base * (largo ? (cfg.zoom || 1) : 1);
+  var zoom = val(cfg.zoom, t); if (zoom == null) zoom = 1;
+  var s = base * (largo ? zoom : 1);
   var iw = img.naturalWidth*s, ih = img.naturalHeight*s;
-  var fx = cfg.fx == null ? 0.5 : cfg.fx;
-  var fy = cfg.fy == null ? 0.5 : cfg.fy;
-  var px = (largo && cfg.px != null) ? cfg.px : 0.5;
+  var fx = val(cfg.fx, t); if (fx == null) fx = 0.5;
+  var fy = val(cfg.fy, t); if (fy == null) fy = 0.5;
+  var pxv = val(cfg.px, t);
+  var px = (largo && pxv != null) ? pxv : 0.5;
   var x, y;
   if (cfg.fit === 'contain' && (cfg.sempre || !largo)){
     /* il cavallo sta sotto l'inchiostro: fuori dall'immagine il nero, dopo
@@ -1776,7 +1789,7 @@ function initStage(root){
   var hoe     = root.querySelector('#hoe');
   var corners = [].slice.call(root.querySelectorAll('#stage .corner'));
 
-  var WORD = 'ENNY P';
+  var WORD = 'IT’S ENNY P';
   var letters = [].map.call(WORD, function(ch,i){
     var span = document.createElement('span');
     span.className = 'l';
@@ -1856,7 +1869,7 @@ function initStage(root){
     targetP = travel > 0 ? clamp(-stage.getBoundingClientRect().top/travel, 0, 1) : 0;
   }
   function loop(){
-    currentP += (targetP - currentP) * (reduced ? 1 : 0.18);
+    currentP += (targetP - currentP) * (reduced ? 1 : 0.24);
     if (Math.abs(targetP - currentP) < 0.0003) currentP = targetP;
     drawFrame(frameAt(currentP));
     paintMark(currentP);
@@ -1921,7 +1934,8 @@ function initLoop(root){
     }
     function paint(){
       var im = imgs[i];
-      if (im && im.complete && im.naturalWidth && cssW) cover(ctx, im, cssW, cssH, cfg);
+      if (im && im.complete && im.naturalWidth && cssW)
+        cover(ctx, im, cssW, cssH, cfg, cfg.n > 1 ? i/(cfg.n-1) : 0);
     }
     /* avanti fino in fondo, poi indietro: il gesto non ha uno stacco */
     function tick(ts){

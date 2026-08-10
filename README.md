@@ -39,6 +39,11 @@ Tutto estratto dal video ufficiale «24/7».
 | `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | il cavallo di «Limited» (lei sopra, 00:51.7 → 00:52.9): invertito e in `multiply`, diventa inchiostro sull'acido |
 | `img/` | 9 fermi immagine, 1500 px | testate di pagina, schede merch, tasti dei social |
 
+Un valore di inquadratura (`zoom`, `fx`, `fy`, `px`) può essere un numero
+fisso oppure `[da, a]`: in quel caso lo si percorre lungo l'anello, e
+l'andata e ritorno lo fa entrare e uscire. La testata di Contatti lo usa per
+partire larga e stringersi sul viso.
+
 `frames/` si carica sul loader ed è l'unica pilotata dallo scroll. Le altre tre
 sono anelli: si scaricano e partono da sole quando la sezione entra in campo,
 vanno avanti e tornano indietro (così il gesto non ha stacchi) e si fermano
@@ -139,8 +144,9 @@ anello girerebbe anche da chiuso.
 
 ## Il palco, in ordine
 
-Lo scroll del palco fa tre cose in fila, e non se ne sovrappongono mai due:
-la stretta si mangia il nome (fino a `p 0.60`), la voce risponde
+Il marchio dice già **«It's Enny P»**: la stretta se lo mangia e la voce
+completa la frase. Lo scroll fa tre cose in fila, e non se ne sovrappongono
+mai due: la stretta si mangia il nome (fino a `p 0.60`), la voce risponde
 **«It's Enny P hoe!»** in acido con le due copie sfalsate che glitchano
 (`0.56 → 0.80`), poi compare l'uscita — il singolo e il tasto per ascoltarlo
 (`0.80 →`). Le copie stanno al 72% di opacità: devono restare frange, non
