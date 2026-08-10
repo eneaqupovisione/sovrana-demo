@@ -541,6 +541,12 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   background:var(--acid);opacity:0;pointer-events:none;
 }
 #flip .pin.on{opacity:1;pointer-events:auto}
+/* prima di sparire, la scena si toglie l'inchiostro: niente velo, niente
+   oggetti, il girato com'e'. Lo scambio e' a scatti, guidato dallo scroll. */
+#flip .pin.vero{background:var(--void)}
+#flip .pin.vero canvas{filter:none;mix-blend-mode:normal;opacity:1}
+#flip .pin.vero .retro{opacity:0;pointer-events:none}
+#flip .pin.vero .rtag{opacity:0}
 #flip canvas{
   position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;
   /* invertito e moltiplicato: il nero del girato diventa acido e sparisce,
@@ -552,13 +558,17 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   position:relative;z-index:2;height:100%;display:flex;align-items:center;
   padding:clamp(4.5rem,11vh,7rem) var(--pad) clamp(3.5rem,8vh,5rem);
 }
-/* velo acido sotto la colonna: il cavallo resta intero ma non mangia il testo */
+/* velo acido sotto la colonna: gli oggetti stanno a destra, sul cavallo;
+   lei resta scoperta a sinistra */
 .retro::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:linear-gradient(100deg,var(--acid) 26%,rgba(201,255,46,.88) 46%,rgba(201,255,46,0) 74%);
+  background:linear-gradient(260deg,var(--acid) 26%,rgba(201,255,46,.88) 46%,rgba(201,255,46,0) 74%);
 }
 .retro > .wrap{width:100%;position:relative;z-index:1}
-.retro .col{max-width:min(600px,54%)}
+.retro .col{max-width:min(600px,54%);margin-left:auto;text-align:right}
+.retro .klks,.retro .drop .f,.retro .grezzo{justify-content:flex-end}
+.pezzo{flex-direction:row-reverse}
+.pezzo > div{text-align:right}
 .retro .lab{color:rgba(3,4,5,.62)}
 .rt{
   font-family:var(--disp);font-weight:800;font-stretch:122%;text-transform:uppercase;
@@ -621,7 +631,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   background:var(--void);transition:right .4s var(--ease)}
 .grezzo a:hover{color:var(--void)}
 .grezzo a:hover::after{right:0}
-.rtag{position:absolute;right:calc(var(--pad) - .85em);bottom:clamp(1rem,3vh,1.9rem);z-index:3;
+.rtag{position:absolute;left:calc(var(--pad) - .85em);bottom:clamp(1rem,3vh,1.9rem);z-index:3;
   color:rgba(3,4,5,.55)}
 @media (max-width:900px){
   .retro .col{max-width:none}
@@ -829,16 +839,18 @@ body.flip .scan{opacity:.1}
 #lista .velo{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(120% 82% at 50% 62%,transparent 8%,rgba(3,4,5,.72) 62%,rgba(3,4,5,.94) 100%),
-    linear-gradient(to bottom,var(--void),rgba(3,4,5,.35) 26%,rgba(3,4,5,.5) 70%,var(--void));
+    radial-gradient(125% 95% at 50% 52%,transparent 26%,rgba(3,4,5,.5) 66%,rgba(3,4,5,.9) 100%),
+    linear-gradient(to bottom,var(--void),rgba(3,4,5,.1) 20%,rgba(3,4,5,.22) 72%,var(--void));
 }
 #lista h2{font-family:var(--disp);font-weight:800;font-stretch:120%;text-transform:uppercase;
-  font-size:clamp(2.2rem,8vw,5rem);color:var(--silver-w);letter-spacing:-.025em;line-height:.88}
-#lista p.sub{margin-top:1rem;font-family:var(--serif);font-style:italic;color:var(--silver-d);
-  font-size:clamp(.95rem,2.2vw,1.25rem)}
+  font-size:clamp(2.2rem,8vw,5rem);color:var(--silver-w);letter-spacing:-.025em;line-height:.88;
+  text-shadow:0 2px 44px rgba(3,4,5,.95)}
+#lista p.sub{margin-top:1rem;font-family:var(--serif);font-style:italic;color:var(--silver);
+  font-size:clamp(.95rem,2.2vw,1.25rem);text-shadow:0 1px 26px rgba(3,4,5,.98)}
 .form{display:flex;gap:.6rem;justify-content:center;margin-top:2.2rem;flex-wrap:wrap}
 .form input{
-  background:transparent;border:1px solid var(--hair);padding:.95rem 1.2rem;min-width:min(320px,80vw);
+  background:rgba(3,4,5,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  border:1px solid var(--hair);padding:.95rem 1.2rem;min-width:min(320px,80vw);
   color:var(--silver-w);font-size:.9rem;letter-spacing:.02em;outline:none;
   transition:border-color .4s ease;
 }
@@ -877,6 +889,10 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
   /* su schermo stretto il testo sale in alto e il cavallo si prende il fondo,
      intero invece che tagliato */
   .retro{align-items:flex-start}
+  .retro .col{margin-left:0;text-align:left}
+  .retro .drop .f,.retro .grezzo{justify-content:flex-start}
+  .pezzo{flex-direction:row}
+  .pezzo > div{text-align:left}
   .retro::before{
     background:linear-gradient(to bottom,var(--acid) 0%,rgba(201,255,46,.97) 46%,
       rgba(201,255,46,.6) 62%,rgba(201,255,46,0) 82%);
@@ -1428,11 +1444,11 @@ var SEQS = {
   collo:   {dir:'scene-collo/',   pre:'c_', n:20, ms:50, fx:.60, fy:.46, px:.68, zoom:1.06},
   occhi:   {dir:'scene-occhi/',   pre:'o_', n:15, ms:55, fx:.50, fy:.42, px:.34, zoom:1.10},
   denti:   {dir:'scene-denti/',   pre:'d_', n:25, ms:55, fx:.50, fy:.50, px:.66, zoom:1.08},
-  cavallo: {dir:'scene-cavallo/', pre:'h_', n:25, ms:70, fx:.46, fy:.50, px:.60, zoom:1.0,
+  /* senza un po' di zoom non c'e' margine da cui attingere e px non sposta
+     niente: il ritaglio a schermo largo coincide con l'inquadratura */
+  cavallo: {dir:'scene-cavallo/', pre:'h_', n:25, ms:70, fx:.42, fy:.46, px:.30, zoom:1.35,
               fit:'contain', fitZoom:1.04, py:.83},  /* su schermo stretto: intero, in basso */
-  /* qui lei e' piccola dentro la stanza: la si tiene intera, sempre. Il nero
-     attorno cade sul nero del sito e non si vede. */
-  addio:   {dir:'scene-addio/',   pre:'a_', n:19, ms:70, fit:'contain', sempre:true, py:.5}
+  addio:   {dir:'scene-addio/',   pre:'a_', n:15, ms:60, fx:.42, fy:.46}
 };
 var frames = new Array(HERO.n);
 var framesReady = false;
@@ -1875,7 +1891,7 @@ function initFlip(root){
   var pin = sec.querySelector('.pin');
   var gl  = document.getElementById('gl');
   var items = [].slice.call(sec.querySelectorAll('[data-st]'));
-  var on = false;
+  var on = false, eraVero = false;
 
   /* 0 ai bordi, 1 al centro: la forma di un lampo */
   function bump(t){ return (t <= 0 || t >= 1) ? 0 : Math.sin(t*Math.PI); }
@@ -1887,19 +1903,30 @@ function initFlip(root){
     var span = innerHeight + sec.offsetHeight;
     var p = clamp((innerHeight - sec.getBoundingClientRect().top)/span, 0, 1);
 
-    var open = p > 0.13 && p < 0.87;
-    if (open !== on){
-      on = open;
-      document.body.classList.toggle('flip', on);
-      pin.classList.toggle('on', on);
+    var open = p > 0.13 && p < 0.90;
+
+    /* la coda: gli oggetti se ne sono andati e la scena si mostra per quella
+       che e'. Cinque scatti guidati dallo scroll — chi si ferma, si ferma su
+       un'immagine, non su un lampeggio. L'ultimo scatto e' il girato vero. */
+    var vero = false;
+    if (open && p > 0.64){
+      if (reduced) vero = p > 0.70;
+      else { var k = Math.floor((p-0.64)/0.052); vero = (k === 1 || k >= 3); }
     }
 
-    var g = reduced ? 0 : Math.max(bump((p-0.03)/0.20), bump((p-0.77)/0.20));
+    if (open !== on || vero !== eraVero){
+      on = open; eraVero = vero;
+      pin.classList.toggle('on', on);
+      pin.classList.toggle('vero', on && vero);
+      document.body.classList.toggle('flip', on && !vero);
+    }
+
+    var g = reduced ? 0 : Math.max(bump((p-0.03)/0.20), bump((p-0.80)/0.20));
     gl.style.display = g > 0.02 ? 'block' : 'none';
     gl.style.opacity = (g*0.85).toFixed(3);
 
     items.forEach(function(el,i){
-      var t = clamp((p - (0.16 + i*0.028))/0.07, 0, 1) * (1 - clamp((p-0.79)/0.06, 0, 1));
+      var t = clamp((p - (0.16 + i*0.028))/0.07, 0, 1) * (1 - clamp((p-0.57)/0.06, 0, 1));
       el.style.opacity = t.toFixed(3);
       el.style.transform = 'translate3d(0,' + ((1-t)*24).toFixed(1) + 'px,0)';
     });
@@ -1907,7 +1934,7 @@ function initFlip(root){
   onScroll.push(frame);
   cleanups.push(function(){
     document.body.classList.remove('flip');
-    pin.classList.remove('on');
+    pin.classList.remove('on'); pin.classList.remove('vero');
     gl.style.display = 'none'; gl.style.opacity = '0';
   });
 

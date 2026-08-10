@@ -27,7 +27,7 @@ Tutto estratto dal video ufficiale «24/7».
 | `scene-collo/` | 20 quadri, 01:10 → 01:11, 1600 px | anello dietro i tasti di «Mi Piace» |
 | `scene-occhi/` | 15 quadri, 00:33 → 00:33.7, 1600 px | anello dietro i tasti di «24/7» |
 | `scene-denti/` | 25 quadri, 00:09.4 → 00:10.6, 1600 px | anello dietro i tasti di «Money Maker» |
-| `scene-addio/` | 19 quadri, 02:31.4 → 02:32.4, 1600 px | l'ultima cosa che si vede, dietro la lista |
+| `scene-addio/` | 15 quadri, 02:13.4 → 02:14.1, 1600 px | il bacio: l'ultima cosa che si vede, dietro la lista |
 | `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | il cavallo di «Limited» (lei sopra, 00:51.7 → 00:52.9): invertito e in `multiply`, diventa inchiostro sull'acido |
 | `img/` | 9 fermi immagine, 1500 px | testate di pagina, schede merch, tasti dei social |
 
