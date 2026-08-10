@@ -27,7 +27,7 @@
   --petrol:#16262b;
   --petrol-l:#26393f;
   --teal-lit:#8FBFC4;
-  --silver-d:#67757a;
+  --silver-d:#7b878a;
   --silver:#a7b2b0;
   --silver-l:#cbd5cf;
   --silver-w:#f2f7f1;
@@ -65,7 +65,7 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 
 /* --------- micro-tipografia: l'HUD della macchina ------------------------ */
 .mono{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;
   text-transform:uppercase;color:var(--silver-d);
 }
 .mono.a{color:var(--acid)}
@@ -161,7 +161,7 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 .cur.hot{width:64px;height:64px;margin:-32px 0 0 -32px}
 .curl{
   position:fixed;top:0;left:0;z-index:161;pointer-events:none;
-  font-family:var(--mono);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--void);opacity:0;transform:translate(-50%,-50%);transition:opacity .25s ease;
   white-space:nowrap;
 }
@@ -181,7 +181,7 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 }
 #bar{width:min(260px,52vw);height:2px;background:#12191b;overflow:hidden}
 #bar span{display:block;height:100%;width:0;background:var(--acid);transition:width .2s linear}
-#pct{font-family:var(--mono);font-size:.62rem;letter-spacing:.3em;color:var(--acid)}
+#pct{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;color:var(--acid)}
 
 /* --------- sipario fra le pagine ---------------------------------------- */
 #curt{
@@ -221,7 +221,7 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
 #hdr nav{display:flex;gap:clamp(1rem,2.4vw,2.1rem);align-items:center}
 #hdr nav a{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--silver-d);transition:color .35s ease;position:relative;padding-bottom:4px;
 }
 #hdr nav a::after{
@@ -233,7 +233,7 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 #hdr nav a:hover::after,#hdr nav a[aria-current]::after{right:0}
 .burger{
   display:none;background:none;border:1px solid var(--hair);padding:.5rem .8rem;
-  font-family:var(--mono);font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--silver);cursor:pointer;transition:border-color .4s ease,color .4s ease,background .4s ease;
 }
 .burger:hover{border-color:var(--acid);color:var(--void);background:var(--acid)}
@@ -373,7 +373,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 .btn{
   display:inline-flex;align-items:center;gap:.7rem;
   padding:.9rem 1.6rem;border:1px solid var(--acid);
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--acid);background:transparent;cursor:pointer;position:relative;overflow:hidden;
   transition:color .45s ease,border-color .45s ease;will-change:transform;
 }
@@ -424,7 +424,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   transition:border-color .5s ease,background .5s ease,transform .5s var(--ease);
   position:relative;overflow:hidden;
 }
-.pl b{font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.16em;
+.pl b{font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--silver-l);position:relative;z-index:1}
 .pl span{font-family:var(--mono);font-size:.8rem;color:var(--silver-d);position:relative;z-index:1;
   transition:transform .5s ease,color .5s ease}
@@ -476,6 +476,57 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   .song.r .col{text-align:left}
 }
 
+/* --------- raggi X: la scheda che si apre senza cambiare pagina --------- */
+.xr{
+  display:inline-flex;align-items:center;gap:.6em;position:relative;
+  color:var(--silver);padding-bottom:.25em;transition:color .3s ease;
+}
+.xr::before{content:'⌖';color:var(--acid);font-size:1.1em;line-height:1}
+.xr::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:1px;opacity:.45;
+  background:repeating-linear-gradient(90deg,var(--acid) 0 3px,transparent 3px 6px);
+  transition:opacity .3s ease;
+}
+.xr:hover{color:var(--silver-w)}
+.xr:hover::after{opacity:1}
+.retro .xr{color:rgba(3,4,5,.72)}
+.retro .xr::before{color:var(--void)}
+.retro .xr::after{background:repeating-linear-gradient(90deg,var(--void) 0 3px,transparent 3px 6px)}
+.retro .xr:hover{color:var(--void)}
+
+#xrp{
+  position:fixed;top:0;left:0;z-index:126;width:min(360px,86vw);pointer-events:none;
+  border:1px solid var(--acid);background:rgba(3,4,5,.96);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  padding:1.1rem 1.2rem 1.2rem;opacity:0;clip-path:inset(0 0 100% 0);overflow:hidden;
+  box-shadow:0 24px 70px rgba(0,0,0,.7);
+  transition:opacity .2s ease,clip-path .32s var(--ease);
+}
+#xrp.on{opacity:1;clip-path:inset(0 0 0 0)}
+#xrp .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--acid)}
+#xrp .h{
+  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
+  font-size:1.5rem;line-height:.96;color:var(--silver-w);letter-spacing:-.02em;margin:.45rem 0 .9rem;
+}
+#xrp dl{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.2rem;
+  border-top:1px solid var(--hair);padding-top:.85rem;margin:0}
+#xrp dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--silver-d)}
+#xrp dd{font-size:.84rem;color:var(--silver-l);text-align:right;margin:0;line-height:1.35}
+#xrp .go{display:block;margin-top:1rem;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--acid)}
+/* la riga che scandisce: e' quello che lo fa sembrare una lastra */
+#xrp i{
+  position:absolute;left:0;right:0;height:2px;background:var(--acid);opacity:0;
+  box-shadow:0 0 20px rgba(201,255,46,.75);
+}
+#xrp.on i{animation:xscan 1.9s linear infinite}
+@keyframes xscan{
+  0%{top:-2px;opacity:0}8%{opacity:.65}88%{opacity:.5}100%{top:100%;opacity:0}
+}
+@media (hover:none),(pointer:coarse){#xrp{display:none}}
+
 /* --------- limited: nero che diventa acido ----------------------------- */
 /* Il pannello e' fisso, non appiccicato: cosi' copre lo schermo nell'istante
    in cui scatta, senza il vuoto di un viewport che una sticky si porta
@@ -518,7 +569,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   display:flex;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;
   background:rgba(201,255,46,.5);
 }
-.pezzo .n{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;
+.pezzo .n{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;
   text-transform:uppercase;color:rgba(3,4,5,.65)}
 .pezzo .t{
   font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
@@ -529,7 +580,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 .btnk{
   display:inline-flex;align-items:center;gap:.7rem;white-space:nowrap;
   padding:.9rem 1.5rem;border:1px solid var(--void);background:var(--void);color:var(--acid);
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
   cursor:pointer;position:relative;overflow:hidden;transition:color .4s ease;
 }
 .btnk::before{content:'';position:absolute;inset:0;background:var(--acid);
@@ -540,7 +591,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 
 /* l'impulso: si entra adesso, non dopo */
 .drop{margin-top:clamp(.9rem,2.5vh,1.4rem)}
-.drop .dl{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;
+.drop .dl{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;
   text-transform:uppercase;color:rgba(3,4,5,.7);margin-bottom:.6rem;display:block}
 .drop .f{display:flex;gap:.5rem;flex-wrap:wrap}
 .drop input{
@@ -550,8 +601,8 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 }
 .drop input::placeholder{color:rgba(3,4,5,.45)}
 .drop input:focus{border-color:var(--void)}
-.drop .ko{margin-top:.7rem;min-height:1em;font-family:var(--mono);font-size:.56rem;
-  letter-spacing:.26em;text-transform:uppercase;color:var(--void);opacity:0;transition:opacity .4s ease}
+.drop .ko{margin-top:.7rem;min-height:1em;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--void);opacity:0;transition:opacity .4s ease}
 .drop .ko.on{opacity:1}
 
 /* la roba grezza, in fondo, per chi la cerca */
@@ -560,7 +611,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   border-top:1px solid rgba(3,4,5,.3);padding-top:1rem;
 }
 .grezzo a{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
   color:rgba(3,4,5,.72);position:relative;padding-bottom:2px;transition:color .35s ease;
 }
 .grezzo a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:1px;
@@ -620,11 +671,11 @@ body.flip .scan{opacity:.1}
 .date > *{position:relative;z-index:1}
 .date:hover{padding-left:1.2rem}
 .date:hover::before{transform:scaleY(1)}
-.date .d{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;color:var(--acid);transition:color .4s}
+.date .d{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--acid);transition:color .4s}
 .date .city{font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
   font-size:clamp(1.2rem,3.4vw,2.2rem);color:var(--silver-w);line-height:.94;letter-spacing:-.015em;
   transition:color .4s}
-.date .ven{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+.date .ven{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--silver-d);transition:color .4s}
 .date:hover .d,.date:hover .city,.date:hover .ven{color:var(--void)}
 .date:hover .btn{border-color:var(--void);color:var(--void)}
@@ -635,7 +686,7 @@ body.flip .scan{opacity:.1}
 .date .btn{padding:.8rem 1.05rem}
 .so{
   display:inline-block;
-  font-family:var(--mono);font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--silver-d);border:1px solid var(--hair);padding:.8rem 1.05rem;white-space:nowrap;
   transition:color .4s,border-color .4s;
 }
@@ -676,9 +727,9 @@ body.flip .scan{opacity:.1}
 .card:hover .sq b{color:var(--acid);transform:scale(1.03)}
 .card .info{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:1rem}
 .card .info b{font-weight:600;font-size:.9rem;color:var(--silver-l);display:block;letter-spacing:-.01em}
-.card .info em{font-style:normal;font-family:var(--mono);font-size:.54rem;letter-spacing:.22em;
+.card .info em{font-style:normal;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;
   text-transform:uppercase;color:var(--silver-d);display:block;margin-top:.4rem}
-.card .info > span{font-family:var(--mono);font-size:.82rem;color:var(--acid);white-space:nowrap}
+.card .info > span{font-family:var(--mono);font-size:.9rem;color:var(--acid);white-space:nowrap}
 
 /* --------- elenchi ------------------------------------------------------- */
 .list{border-top:1px solid var(--hair)}
@@ -697,9 +748,9 @@ body.flip .scan{opacity:.1}
 .row .rt{font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
   font-size:clamp(1.15rem,3.2vw,2rem);color:var(--silver-w);display:block;line-height:.96;
   letter-spacing:-.015em;transition:color .4s}
-.row .rm{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;
+.row .rm{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--silver-d);display:block;margin-top:.5rem;transition:color .4s}
-.row .rg{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+.row .rg{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--silver-d);white-space:nowrap;transition:color .4s ease,transform .4s ease}
 .row:hover .rt,.row:hover .rm,.row:hover .rg{color:var(--void)}
 .row:hover .rg{transform:translateX(6px)}
@@ -724,9 +775,9 @@ body.flip .scan{opacity:.1}
 .tile b{display:block;font-family:var(--disp);font-weight:800;font-stretch:112%;
   text-transform:uppercase;font-size:clamp(1.4rem,3.4vw,1.9rem);color:var(--silver-w);
   letter-spacing:-.015em;transition:color .45s}
-.tile span{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.6rem;
-  letter-spacing:.2em;color:var(--silver-d);transition:color .45s}
-.tile em{display:block;margin-top:1.1rem;font-style:normal;font-size:.8rem;color:var(--silver-d);
+.tile span{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.16em;color:var(--silver-d);transition:color .45s}
+.tile em{display:block;margin-top:1.1rem;font-style:normal;font-size:.86rem;color:var(--silver-d);
   line-height:1.6;transition:color .45s}
 .tile::after{
   content:'↗';position:absolute;right:1.3rem;top:1.2rem;z-index:2;
@@ -749,15 +800,15 @@ body.flip .scan{opacity:.1}
   transition:transform 1.4s var(--ease),filter .9s ease}
 .portrait:hover img{transform:scale(1.05);filter:none}
 .portrait figcaption{
-  position:absolute;left:.9rem;bottom:.8rem;z-index:2;font-family:var(--mono);font-size:.54rem;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--silver-w);text-shadow:0 1px 10px rgba(0,0,0,.95);
+  position:absolute;left:.9rem;bottom:.8rem;z-index:2;font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--silver-w);text-shadow:0 1px 10px rgba(0,0,0,.95);
 }
 .creds{margin-top:clamp(2rem,5vh,3rem);border-top:1px solid var(--hair)}
 .cr{display:flex;align-items:baseline;justify-content:space-between;gap:1.4rem;
   padding:.95rem .2rem;border-bottom:1px solid var(--hair);
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--silver-d)}
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver-d)}
 .cr span{color:var(--silver-l);letter-spacing:.02em;text-align:right;font-family:var(--sans);
-  font-size:.84rem;text-transform:none}
+  font-size:.92rem;text-transform:none}
 
 /* --------- lista d'attesa + piede --------------------------------------- */
 #lista{
@@ -776,21 +827,21 @@ body.flip .scan{opacity:.1}
 }
 .form input::placeholder{color:var(--silver-d)}
 .form input:focus{border-color:var(--acid)}
-.ok{margin-top:1.2rem;min-height:1.2em;font-family:var(--mono);font-size:.6rem;
-  letter-spacing:.26em;text-transform:uppercase;color:var(--acid);opacity:0;transition:opacity .5s ease}
+.ok{margin-top:1.2rem;min-height:1.2em;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--acid);opacity:0;transition:opacity .5s ease}
 .ok.on{opacity:1}
 
 footer{padding:clamp(3rem,8vh,5rem) var(--pad) 4rem;text-align:center;border-top:1px solid var(--hair)}
 footer .fnav{display:flex;gap:clamp(.9rem,2.4vw,2rem);justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
-footer .fnav a{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
+footer .fnav a{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--silver-d);transition:color .35s ease}
 footer .fnav a:hover{color:var(--acid)}
-footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line-height:2.2;
+footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line-height:2.2;
   color:#3c4749;text-transform:uppercase}
 .sig{display:inline-flex;flex-direction:column;gap:.4rem;margin-top:2rem;cursor:pointer}
-.sig b{font-family:var(--mono);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
+.sig b{font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--silver-d);font-weight:400;transition:color .4s ease}
-.sig em{font-style:normal;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;color:#3c4749}
+.sig em{font-style:normal;font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;color:#3c4749}
 .sig:hover b{color:var(--acid)}
 
 @media (max-width:860px){
@@ -811,7 +862,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
 @media (prefers-reduced-motion:reduce){
   #word .l i{animation:none;opacity:1}
   .rv{transition-duration:.01ms}
-  .grain,.tk,#gl i{animation:none}
+  .grain,.tk,#gl i,#xrp.on i{animation:none}
   .song{min-height:auto}
   #gl{display:none !important}
   .c-bc i{display:none}
@@ -837,6 +888,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
 <div id="spot"></div>
 <div id="prog"></div>
 <div id="gl"><i></i><i></i><i></i><i></i></div>
+<div id="xrp" aria-hidden="true"><i></i><div class="c"></div></div>
 <div class="cur" id="cur"></div>
 <div class="curl" id="curl"></div>
 
@@ -955,7 +1007,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
         </div>
       </div>
     </div>
-    <p class="mono tag">Warner Records Italy</p>
+    <a class="mono tag xr" href="#/chi" data-xray="warner" data-cur="Apri">Warner Records Italy</a>
   </section>
 
   <section class="song r" data-loop="viso">
@@ -976,7 +1028,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
         </div>
       </div>
     </div>
-    <p class="mono tag">24/7 · 01:11</p>
+    <a class="mono tag xr" href="#/musica" data-xray="disco" data-cur="Apri">Scheda del singolo</a>
   </section>
 
   <div class="tick" data-say="nep" data-dur="26"><div class="tk"></div></div>
@@ -1029,7 +1081,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
           </div>
         </div>
       </div>
-      <p class="mono rtag">24/7 · 00:53</p>
+      <a class="mono rtag xr" href="#/merch" data-xray="stampa" data-cur="Apri">Dettagli della stampa</a>
     </div>
   </section>
 </template>
@@ -1111,7 +1163,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     <div class="wrap">
       <div class="shead rv">
         <h2 class="h2 melt">Disponibile ora</h2>
-        <span class="mono">Italia €6 · gratis sopra €80</span>
+        <a class="mono xr" href="#/contatti" data-xray="spedizioni" data-cur="Apri">Spedizioni e resi</a>
       </div>
       <div class="grid rv" data-merch="all"></div>
     </div>
@@ -1250,6 +1302,35 @@ var RELEASES = [
   {t:'All U Can Eat',  m:'Feat. · Singolo'},
   {t:'Si sono Enny P', m:'Singolo · 2024'}
 ];
+/* Le lastre: quello che c'e' dietro a un dettaglio, senza cambiare pagina.
+   Il click porta comunque alla pagina intera — la lastra e' un'anteprima. */
+var XRAY = {
+  warner: {k:'Etichetta', h:'Warner Records Italy', go:'Chi è →', rows:[
+    ['Contratto','Warner Records Italy'],
+    ['Distribuzione','Warner Music Italy'],
+    ['Collaborazioni','Guè · Big Fish<br>LILCR · Macello'],
+    ['Cover story','GENb · Billboard Italia #16']
+  ]},
+  disco: {k:'Il singolo', h:'24/7', go:'Tutte le uscite →', rows:[
+    ['Uscita','Singolo · 2026'],
+    ['Etichetta','Warner Records Italy'],
+    ['Durata','2:42'],
+    ['Le immagini','Dal video ufficiale']
+  ]},
+  stampa: {k:'Il pezzo', h:'Cavallo cromato', go:'Merch →', rows:[
+    ['Tiratura','30 copie numerate'],
+    ['Formato','50 × 70 cm'],
+    ['Carta','Cotone 300 g'],
+    ['Spedizione','Italia inclusa · estero €18']
+  ]},
+  spedizioni: {k:'Shop', h:'Spedizioni e resi', go:'Contatti →', rows:[
+    ['Italia','€6 · gratis sopra €80'],
+    ['Europa','€14 · 4–7 giorni'],
+    ['Resi','30 giorni, taglia inclusa'],
+    ['Assistenza','shop@ennyp.it']
+  ]}
+};
+
 /* Insegne dei nastri. Poche e sempre le stesse: e' quello che le rende un
    marchio invece che un collage. Ogni nastro sceglie il suo gruppo con
    data-say; senza attributo prende il predefinito. */
@@ -1746,6 +1827,47 @@ function initFlip(root){
 }
 
 /* ======================================================================
+   Raggi X: la lastra segue l'innesco e si apre dall'alto
+   ====================================================================== */
+function initXray(root){
+  if (coarse) return;                     /* al tocco resta solo il link */
+  var panel = document.getElementById('xrp');
+  var box = panel.querySelector('.c');
+  var open = null;
+
+  function build(d){
+    box.innerHTML = '<p class="k">' + d.k + '</p><p class="h">' + d.h + '</p><dl>' +
+      d.rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'; }).join('') +
+      '</dl><span class="go">' + d.go + '</span>';
+  }
+  function place(el){
+    var r = el.getBoundingClientRect();
+    var pw = panel.offsetWidth, ph = panel.offsetHeight;
+    var left = clamp(r.left + r.width/2 - pw/2, 14, innerWidth - pw - 14);
+    var top = r.top - ph - 16;
+    if (top < 84) top = Math.min(r.bottom + 16, innerHeight - ph - 14);
+    panel.style.left = Math.round(left) + 'px';
+    panel.style.top  = Math.round(top) + 'px';
+  }
+  function show(e){
+    var el = e.currentTarget, d = XRAY[el.getAttribute('data-xray')];
+    if (!d) return;
+    open = el; build(d); place(el); panel.classList.add('on');
+  }
+  function hide(){ open = null; panel.classList.remove('on'); }
+
+  root.querySelectorAll('[data-xray]').forEach(function(el){
+    el.addEventListener('pointerenter', show);
+    el.addEventListener('pointerleave', hide);
+    el.addEventListener('focus', show);
+    el.addEventListener('blur', hide);
+  });
+  /* la lastra resta incollata al suo innesco mentre la pagina scorre */
+  onScroll.push(function(){ if (open) place(open); });
+  cleanups.push(hide);
+}
+
+/* ======================================================================
    Costruttori di liste
    ====================================================================== */
 function buildDates(root){
@@ -1821,6 +1943,7 @@ function render(k, instant){
   initStage(app);
   initLoop(app);
   initFlip(app);
+  initXray(app);
   initReveal(app);
   initScramble(app);
   initParallax(app);

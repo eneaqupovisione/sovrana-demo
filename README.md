@@ -56,6 +56,11 @@ anelli separati dietro due canzoni diverse.
   schermo coprono lo scambio; senza, si vedrebbe solo un salto di colore. Le
   bande dello strappo stanno sotto i 3 Hz e con `prefers-reduced-motion` il
   lampo non parte affatto
+- **raggi X** (`data-xray`): un dettaglio si apre in una lastra al passaggio del
+  puntatore — etichetta, scheda del singolo, specifiche della stampa,
+  spedizioni. Il click porta comunque alla pagina intera: la lastra è
+  un'anteprima, non un vicolo cieco. Al tocco non compare e resta il link.
+  Aggiungerne uno = una voce in `XRAY` e un `data-xray` sull'ancora
 - cursore acido in `difference`, bottoni magnetici, parallasse, grana e righe
 
 Tutto si disattiva con `prefers-reduced-motion`.
