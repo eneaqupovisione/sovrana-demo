@@ -817,9 +817,20 @@ body.flip .scan{opacity:.1}
   font-size:.92rem;text-transform:none}
 
 /* --------- lista d'attesa + piede --------------------------------------- */
+/* l'ultima cosa che si vede: lei in fondo alla stanza, e il modulo sopra.
+   L'addio e l'ultima cosa da fare, nello stesso posto. */
 #lista{
-  position:relative;padding:clamp(5rem,14vh,9rem) var(--pad);
+  position:relative;min-height:min(94vh,760px);
+  padding:clamp(6rem,16vh,10rem) var(--pad) clamp(5rem,13vh,8rem);
   border-top:1px solid var(--hair);text-align:center;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+}
+#lista canvas{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%}
+#lista .velo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 82% at 50% 62%,transparent 8%,rgba(3,4,5,.72) 62%,rgba(3,4,5,.94) 100%),
+    linear-gradient(to bottom,var(--void),rgba(3,4,5,.35) 26%,rgba(3,4,5,.5) 70%,var(--void));
 }
 #lista h2{font-family:var(--disp);font-weight:800;font-stretch:120%;text-transform:uppercase;
   font-size:clamp(2.2rem,8vw,5rem);color:var(--silver-w);letter-spacing:-.025em;line-height:.88}
@@ -961,9 +972,10 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
   <div class="tk"></div>
 </div>
 
-<section id="lista">
-  <div class="ghost" data-sp=".22">La lista</div>
-  <div class="wrap" style="position:relative;z-index:1">
+<section id="lista" data-loop="addio">
+  <canvas></canvas>
+  <div class="velo"></div>
+  <div class="wrap" style="position:relative;z-index:2">
     <h2 class="melt">La lista</h2>
     <p class="sub">Chi entra lo sa prima degli altri.</p>
     <!-- collegare a Mailchimp / Beehiiv / Klaviyo -->
@@ -1048,7 +1060,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
     <a class="mono tag xr" href="#/chi" data-xray="warner" data-cur="Apri">Warner Records Italy</a>
   </section>
 
-  <section class="song r" data-loop="viso">
+  <section class="song r" data-loop="occhi">
     <canvas></canvas>
     <div class="vig"></div>
     <div class="asc">
@@ -1067,6 +1079,27 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
       </div>
     </div>
     <a class="mono tag xr" href="#/musica" data-xray="disco" data-cur="Apri">Scheda del singolo</a>
+  </section>
+
+  <section class="song" data-loop="denti">
+    <canvas></canvas>
+    <div class="vig"></div>
+    <div class="asc">
+      <div class="wrap">
+        <div class="col">
+          <p class="mono a">Singolo — prod. NKO</p>
+          <h2 class="asc-t melt gx" data-t="Money Maker">Money Maker</h2>
+          <div class="plat">
+            <a class="pl" href="https://open.spotify.com/intl-it/artist/6BiW9C6z0jgaJee9d0btwj" target="_blank" rel="noopener" data-cur="Ascolta"><b>Spotify</b><span>→</span></a>
+            <a class="pl" href="https://music.apple.com/it/artist/enny-p/1625487221" target="_blank" rel="noopener" data-cur="Ascolta"><b>Apple Music</b><span>→</span></a>
+            <a class="pl" href="#" data-cur="Guarda"><b>YouTube</b><span>→</span></a>
+            <a class="pl" href="#" data-cur="Ascolta"><b>Amazon Music</b><span>→</span></a>
+          </div>
+          <a class="btn o asc-all" href="#/musica" data-cur="Apri"><span>Tutte le uscite</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="mono tag xr" href="#/musica" data-xray="money" data-cur="Apri">Scheda del singolo</a>
   </section>
 
   <div class="tick" data-say="nep" data-dur="26"><div class="tk"></div></div>
@@ -1355,6 +1388,12 @@ var XRAY = {
     ['Durata','2:42'],
     ['Le immagini','Dal video ufficiale']
   ]},
+  money: {k:'Il singolo', h:'Money Maker', go:'Tutte le uscite →', rows:[
+    ['Uscita','Singolo · 2026'],
+    ['Produzione','NKO'],
+    ['Etichetta','Warner Records Italy'],
+    ['Le immagini','Dal video 24/7']
+  ]},
   stampa: {k:'Il pezzo', h:'Cavallo cromato', go:'Merch →', rows:[
     ['Tiratura','30 copie numerate'],
     ['Formato','50 × 70 cm'],
@@ -1387,9 +1426,13 @@ var HERO = {dir:'frames/', pre:'f_', n:34, rev:true};
 var SEQS = {
   /* fx,fy = dov'e' il soggetto nel girato · px = dove lo vogliamo nel riquadro */
   collo:   {dir:'scene-collo/',   pre:'c_', n:20, ms:50, fx:.60, fy:.46, px:.68, zoom:1.06},
-  viso:    {dir:'scene-viso/',    pre:'v_', n:36, ms:50, fx:.54, fy:.44, px:.34, zoom:1.24},
-  cavallo: {dir:'scene-cavallo/', pre:'h_', n:24, ms:80, fx:.52, fy:.52, px:.66, zoom:1.30,
-              fit:'contain', fitZoom:1.06, py:.83}   /* su schermo stretto: intero, in basso */
+  occhi:   {dir:'scene-occhi/',   pre:'o_', n:15, ms:55, fx:.50, fy:.42, px:.34, zoom:1.10},
+  denti:   {dir:'scene-denti/',   pre:'d_', n:25, ms:55, fx:.50, fy:.50, px:.66, zoom:1.08},
+  cavallo: {dir:'scene-cavallo/', pre:'h_', n:25, ms:70, fx:.46, fy:.50, px:.60, zoom:1.0,
+              fit:'contain', fitZoom:1.04, py:.83},  /* su schermo stretto: intero, in basso */
+  /* qui lei e' piccola dentro la stanza: la si tiene intera, sempre. Il nero
+     attorno cade sul nero del sito e non si vede. */
+  addio:   {dir:'scene-addio/',   pre:'a_', n:19, ms:70, fit:'contain', sempre:true, py:.5}
 };
 var frames = new Array(HERO.n);
 var framesReady = false;
@@ -1434,7 +1477,7 @@ function cover(ctx, img, w, h, cfg){
   var fy = cfg.fy == null ? 0.5 : cfg.fy;
   var px = (largo && cfg.px != null) ? cfg.px : 0.5;
   var x, y;
-  if (!largo && cfg.fit === 'contain'){
+  if (cfg.fit === 'contain' && (cfg.sempre || !largo)){
     /* il cavallo sta sotto l'inchiostro: fuori dall'immagine il nero, dopo
        l'inversione, diventa bianco e il multiply lo restituisce acido — cioe'
        invisibile. Quindi qui si puo' contenere invece che riempire. */
@@ -2053,7 +2096,7 @@ function render(k, instant){
   buildDates(app); buildMerch(app); buildReleases(app);
   fillTickers(document);
   initStage(app);
-  initLoop(app);
+  initLoop(document);      /* anche la lista in fondo, che vive fuori dalle pagine */
   initFlip(app);
   initXray(app);
   initTouch(app);
