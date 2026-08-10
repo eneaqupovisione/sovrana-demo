@@ -471,8 +471,11 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 }
 .song.r .tag{left:auto;right:calc(var(--pad) - .85em)}
 @media (max-width:640px){
-  .asc .plat{grid-template-columns:1fr;gap:.5rem}
-  .asc .pl{padding:.85rem 1rem}
+  /* i tasti a tutta larghezza coprivano la scena: si stringono a poco piu'
+     di quello che serve al testo, e l'inquadratura resta visibile di lato */
+  .asc .plat{grid-template-columns:1fr;gap:.45rem;max-width:min(70%,300px)}
+  .asc .pl{padding:.8rem .95rem}
+  .asc-t{font-size:clamp(2.4rem,13vw,4rem)}
   .song.r .col{text-align:left}
 }
 
@@ -507,6 +510,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   transition:opacity .2s ease,clip-path .32s var(--ease);
 }
 #xrp.on{opacity:1;clip-path:inset(0 0 0 0)}
+#xrp.tap{pointer-events:auto}
 #xrp .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.24em;
   text-transform:uppercase;color:var(--acid)}
 #xrp .h{
@@ -520,6 +524,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 #xrp dd{font-size:.84rem;color:var(--silver-l);text-align:right;margin:0;line-height:1.35}
 #xrp .go{display:block;margin-top:1rem;font-family:var(--mono);font-size:.62rem;
   letter-spacing:.2em;text-transform:uppercase;color:var(--acid)}
+#xrp.tap .go{border:1px solid var(--acid);padding:.75rem .9rem;text-align:center;margin-top:1.1rem}
 /* la riga che scandisce: e' quello che lo fa sembrare una lastra */
 #xrp i{
   position:absolute;left:0;right:0;height:2px;background:var(--acid);opacity:0;
@@ -1996,10 +2001,10 @@ function initXray(root){
   var box = panel.querySelector('.c');
   var open = null;
 
-  function build(d){
+  function build(d, href){
     box.innerHTML = '<p class="k">' + d.k + '</p><p class="h">' + d.h + '</p><dl>' +
       d.rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'; }).join('') +
-      '</dl><span class="go">' + d.go + '</span>';
+      '</dl><a class="go" href="' + (href || '#') + '">' + d.go + '</a>';
   }
   function place(el){
     var r = el.getBoundingClientRect();
@@ -2013,30 +2018,31 @@ function initXray(root){
   function show(e){
     var el = e.currentTarget, d = XRAY[el.getAttribute('data-xray')];
     if (!d) return;
-    open = el; build(d); place(el); panel.classList.add('on');
+    open = el; build(d, el.getAttribute('href')); place(el); panel.classList.add('on');
   }
-  function hide(){ open = null; panel.classList.remove('on'); }
+  function hide(){ open = null; panel.classList.remove('on'); panel.classList.remove('tap'); }
 
   var inneschi = [].slice.call(root.querySelectorAll('[data-xray]'));
   cleanups.push(hide);
 
   if (coarse){
-    /* al tocco la lastra si apre da sola quando l'innesco passa per il centro */
+    /* Al tocco la lastra si apriva da sola passando per il centro: comoda in
+       teoria, addosso mentre si scorre. Ora la apre solo un tocco, e diventa
+       toccabile lei stessa — dentro c'e' il link alla pagina intera. */
     if (!inneschi.length) return;
-    onScroll.push(function(){
-      var mezzo = innerHeight*0.5, scelto = null, dist = 1e9;
-      inneschi.forEach(function(el){
-        var r = el.getBoundingClientRect();
-        var d = Math.abs(r.top + r.height/2 - mezzo);
-        if (d < dist){ dist = d; scelto = el; }
+    inneschi.forEach(function(el){
+      el.addEventListener('click', function(e){
+        var gia = (open === el);
+        e.preventDefault();
+        if (gia){ hide(); return; }
+        var d = XRAY[el.getAttribute('data-xray')];
+        if (!d) return;
+        open = el; build(d, el.getAttribute('href')); place(el);
+        panel.classList.add('on'); panel.classList.add('tap');
       });
-      var vivo = !!scelto && dist < innerHeight*0.26;
-      inneschi.forEach(function(el){ el.classList.toggle('hot', el === scelto && vivo); });
-      if (vivo){
-        if (open !== scelto){ open = scelto; build(XRAY[scelto.getAttribute('data-xray')]); }
-        place(scelto); panel.classList.add('on');
-      } else if (open) hide();
     });
+    /* basta muoversi per chiuderla: non deve mai restare fra i piedi */
+    onScroll.push(function(){ if (open) hide(); });
     return;
   }
 

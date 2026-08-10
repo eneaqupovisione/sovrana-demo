@@ -110,7 +110,12 @@ Non e' il sito rimpicciolito, e' un secondo montaggio:
 - **quello che su desktop fa il passaggio del puntatore, sul telefono lo fa lo
   scorrimento**: di ogni gruppo si accende un elemento solo, quello piu' vicino
   al centro dello schermo. Le stesse regole CSS, con `.hot` accanto a `:hover`.
-  Vale anche per le lastre a raggi X, che si aprono da sole.
+  Le lastre a raggi X invece **non** si aprono da sole: si aprivano passando
+  per il centro e finivano addosso a chi scorreva. Al tocco le apre un tocco,
+  diventano toccabili loro stesse (dentro c'è il link alla pagina intera) e
+  basta muoversi per chiuderle.
+- **i tasti d'ascolto** si stringono a 70% (max 300 px): a tutta larghezza
+  coprivano l'inquadratura
 - **il merch** passa a due colonne: un oggetto per riga erano dieci schermate.
 
 ## Una regola sul testo
