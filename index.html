@@ -814,7 +814,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     </div>
   </section>
 
-  <div class="tick" data-say="nep" data-dur="26"><div class="tk"></div></div>
+  <div class="tick" data-say="dove" data-dur="34"><div class="tk"></div></div>
 
   <section class="sect">
     <div class="ghost r" data-sp=".26">Eventi</div>
@@ -827,7 +827,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     </div>
   </section>
 
-  <div class="tick gh" data-say="dove" data-dur="46" data-rev="1"><div class="tk"></div></div>
+  <div class="tick gh" data-dur="46" data-rev="1"><div class="tk"></div></div>
 
   <section class="song" data-loop="collo">
     <canvas></canvas>
@@ -871,7 +871,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     <p class="mono tag">24/7 · 01:11</p>
   </section>
 
-  <div class="tick" data-dur="30"><div class="tk"></div></div>
+  <div class="tick" data-say="nep" data-dur="26"><div class="tk"></div></div>
 
   <section class="sect">
     <div class="ghost" data-sp=".18">Merch</div>
@@ -1137,7 +1137,9 @@ var HERO = {dir:'frames/', pre:'f_', n:34, rev:true};
    fra loro: tenerli insieme era un errore. Ora sono due anelli separati. */
 var SEQS = {
   collo:   {dir:'scene-collo/',   pre:'c_', n:20, ms:50},   /* la mano risale il collo */
-  viso:    {dir:'scene-viso/',    pre:'v_', n:36, ms:50},   /* le mani incorniciano il viso */
+  /* il viso sta a destra nel girato e i tasti gli finivano addosso:
+     si stringe un poco e lo si sposta verso sinistra */
+  viso:    {dir:'scene-viso/',    pre:'v_', n:36, ms:50, zoom:1.28, shift:.13},
   cavallo: {dir:'scene-cavallo/', pre:'h_', n:24, ms:80}
 };
 var frames = new Array(HERO.n);
@@ -1168,12 +1170,17 @@ addEventListener('scroll', pump, {passive:true});
 addEventListener('resize', function(){ pump(); }, {passive:true});
 
 /* disegna un'immagine "cover" dentro un canvas gia' dimensionato */
-function cover(ctx, img, w, h){
-  var s = Math.max(w/img.naturalWidth, h/img.naturalHeight);
+/* zoom stringe l'inquadratura, shift la sposta di lato (positivo = verso
+   sinistra). Servono insieme: senza un po' di zoom non c'e' margine da cui
+   attingere e lo spostamento scoprirebbe il nero. */
+function cover(ctx, img, w, h, zoom, shift){
+  var s = Math.max(w/img.naturalWidth, h/img.naturalHeight) * (zoom || 1);
   var iw = img.naturalWidth*s, ih = img.naturalHeight*s;
+  var x = (w-iw)/2 - (shift || 0)*w;
+  x = clamp(x, w-iw, 0);
   ctx.fillStyle = '#000';
   ctx.fillRect(0,0,w,h);
-  ctx.drawImage(img, (w-iw)/2, (h-ih)/2, iw, ih);
+  ctx.drawImage(img, x, (h-ih)/2, iw, ih);
 }
 
 /* ======================================================================
@@ -1509,7 +1516,7 @@ function initLoop(root){
     }
     function paint(){
       var im = imgs[i];
-      if (im && im.complete && im.naturalWidth && cssW) cover(ctx, im, cssW, cssH);
+      if (im && im.complete && im.naturalWidth && cssW) cover(ctx, im, cssW, cssH, cfg.zoom, cfg.shift);
     }
     /* avanti fino in fondo, poi indietro: il gesto non ha uno stacco */
     function tick(ts){
