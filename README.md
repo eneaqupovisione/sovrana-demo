@@ -39,7 +39,13 @@ Tutto estratto dal video ufficiale «24/7».
 | `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | il cavallo di «Limited» (lei sopra, 00:51.7 → 00:52.9): invertito e in `multiply`, diventa inchiostro sull'acido |
 | `img/` | 9 fermi immagine, 1500 px | testate di pagina, schede merch, tasti dei social |
 
-Un valore di inquadratura (`zoom`, `fx`, `fy`, `px`) può essere un numero
+`pw` dice quanto è larga l'immagine rispetto al riquadro. Sotto 1 resta del
+nero attorno — su fondo scuro non si vede — ed è l'unico modo di spostarla di
+lato **senza** stringerla: con il solo `zoom` spostare e ingrandire sono la
+stessa manopola, perché in una fascia larga il margine orizzontale a zoom 1 è
+esattamente zero.
+
+Un valore di inquadratura (`pw`, `zoom`, `fx`, `fy`, `px`) può essere un numero
 fisso oppure `[da, a]`: in quel caso lo si percorre lungo l'anello, e
 l'andata e ritorno lo fa entrare e uscire. La testata di Contatti lo usa per
 partire larga e stringersi sul viso.

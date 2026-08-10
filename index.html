@@ -1513,11 +1513,11 @@ var SEQS = {
      Il testo sta a sinistra, il soggetto va a destra. */
   t_musica:   {dir:'sc-musica/',   pre:'x_', n:19, ms:62, fx:.50, fy:.46, px:.70, zoom:1.10},
   t_eventi:   {dir:'sc-eventi/',   pre:'x_', n:20, ms:62, fx:.44, fy:.46, px:.70, zoom:1.15},
-  t_merch:    {dir:'sc-merch/',    pre:'x_', n:14, ms:55, fx:.55, fy:.40, px:.86, zoom:1.30},
+  t_merch:    {dir:'sc-merch/',    pre:'x_', n:14, ms:55, fx:.55, fy:.50, px:.72, pw:.62},
   t_social:   {dir:'sc-social/',   pre:'x_', n:14, ms:62, fx:.46, fy:.44, px:.70, zoom:1.12},
   /* campo lungo dentro una fascia bassa: si stringe sul busto o non si legge */
   /* lo zoom corre lungo l'anello: si parte larghi e ci si stringe sul viso */
-  t_contatti: {dir:'sc-contatti/', pre:'x_', n:21, ms:70, fx:.46, fy:[.52,.30], px:[.5,.72], zoom:[1.02,2.15]},
+  t_contatti: {dir:'sc-contatti/', pre:'x_', n:21, ms:70, fx:.46, fy:[.50,.30], px:[.70,.76], pw:[.56,2.2]},
   t_chi:      {dir:'sc-chi/',      pre:'x_', n:16, ms:62, fx:.46, fy:.50, px:.68, zoom:1.05},
   /* riquadri alti: qui ci sta la figura intera */
   ritratto:   {dir:'sc-ritratto/', pre:'x_', n:15, ms:66, fx:.50, fy:.50},
@@ -1567,9 +1567,17 @@ function val(v, t){
 function cover(ctx, img, w, h, cfg, t){
   cfg = cfg || {}; t = t || 0;
   var largo = (w/h) >= 1.25;
-  var base = Math.max(w/img.naturalWidth, h/img.naturalHeight);
-  var zoom = val(cfg.zoom, t); if (zoom == null) zoom = 1;
-  var s = base * (largo ? zoom : 1);
+  /* pw = quanto e' larga l'immagine rispetto al riquadro. Sotto 1 resta del
+     nero attorno — su fondo scuro non si vede — e questo e' l'unico modo di
+     spostarla di lato senza stringerla: con il solo zoom le due cose sono
+     la stessa manopola. */
+  var pw = largo ? val(cfg.pw, t) : null;
+  var s;
+  if (pw != null) s = (pw*w)/img.naturalWidth;
+  else {
+    var zoom = val(cfg.zoom, t); if (zoom == null) zoom = 1;
+    s = Math.max(w/img.naturalWidth, h/img.naturalHeight) * (largo ? zoom : 1);
+  }
   var iw = img.naturalWidth*s, ih = img.naturalHeight*s;
   var fx = val(cfg.fx, t); if (fx == null) fx = 0.5;
   var fy = val(cfg.fy, t); if (fy == null) fy = 0.5;
@@ -1585,8 +1593,8 @@ function cover(ctx, img, w, h, cfg, t){
     x = (w-iw)/2;
     y = (cfg.py == null ? 0.5 : cfg.py)*h - ih/2;
   } else {
-    x = clamp(px*w - fx*iw, w-iw, 0);
-    y = clamp(0.5*h - fy*ih, h-ih, 0);
+    x = px*w - fx*iw;  if (iw > w) x = clamp(x, w-iw, 0);
+    y = 0.5*h - fy*ih; if (ih > h) y = clamp(y, h-ih, 0);
   }
   ctx.fillStyle = '#000';
   ctx.fillRect(0,0,w,h);
