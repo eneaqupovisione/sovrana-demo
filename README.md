@@ -30,9 +30,9 @@ Tutto estratto dal video ufficiale «24/7».
 | `scene-addio/` | 15 quadri, 02:13.4 → 02:14.1, 1600 px | il bacio: l'ultima cosa che si vede, dietro la lista |
 | `sc-musica/` | 00:09.4 → 00:10.6 | testata Musica: denti e lingua, la faccia della voce |
 | `sc-eventi/` | 00:57.7 → 00:58.9 | testata Eventi: artigli sul viso, guarda in camera |
-| `sc-merch/` | 00:38.5 → 00:39.5 | testata Merch: labbra e artigli d'argento, roba che si indossa |
+| `sc-merch/` | 00:56.4 → 00:57.1 | testata Merch: gli artigli d'argento sulla pelle |
 | `sc-social/` | 01:27.0 → 01:27.9 | testata Social: occhiali e mosso, la faccia moltiplicata |
-| `sc-contatti/` | 01:57.0 → 01:58.2 | testata Contatti: primo piano verso l'obiettivo |
+| `sc-contatti/` | 01:04.5 → 01:05.7 | testata Contatti: lei sola nella stanza |
 | `sc-chi/` | 01:00.8 → 01:01.7 | testata Chi è: lei sul cavallo cromato |
 | `sc-ritratto/` | 02:31.4 → 02:32.3 | il ritratto in Chi è: figura intera |
 | `sc-menu/` | 00:03.2 → 00:04.4 | dietro il menu a tutto schermo |
@@ -136,6 +136,15 @@ nei riquadri alti: il ritratto di «Chi è» e il menu a tutto schermo.
 
 Il menu è `position:fixed` a tutto schermo: senza `data-loop-when="on"` il suo
 anello girerebbe anche da chiuso.
+
+## Il palco, in ordine
+
+Lo scroll del palco fa tre cose in fila, e non se ne sovrappongono mai due:
+la stretta si mangia il nome (fino a `p 0.60`), la voce risponde
+**«It's Enny P hoe!»** in acido con le due copie sfalsate che glitchano
+(`0.56 → 0.80`), poi compare l'uscita — il singolo e il tasto per ascoltarlo
+(`0.80 →`). Le copie stanno al 72% di opacità: devono restare frange, non
+diventare il testo.
 
 ## Una regola sul testo
 

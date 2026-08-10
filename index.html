@@ -310,6 +310,41 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
   display:flex;flex-direction:column;align-items:center;gap:.7rem;
 }
 .c-bc i{display:block;width:1px;height:36px;background:linear-gradient(var(--acid),transparent)}
+/* La stretta si porta via il nome e la voce risponde. Sta dove stava il
+   marchio, e se ne va prima che arrivi l'uscita. */
+#hoe{
+  position:absolute;left:0;right:0;top:50%;z-index:8;
+  transform:translateY(-50%);text-align:center;padding:0 var(--pad);
+  opacity:0;pointer-events:none;
+}
+#hoe b{
+  position:relative;display:inline-block;
+  font-family:var(--disp);font-weight:800;font-stretch:118%;text-transform:uppercase;
+  font-size:clamp(1.9rem,7.4vw,5rem);line-height:1;letter-spacing:-.02em;
+  color:var(--acid);text-shadow:0 0 44px rgba(201,255,46,.45);
+  animation:hoeShake .32s steps(2) infinite;
+}
+#hoe b::before,#hoe b::after{
+  content:attr(data-t);position:absolute;left:0;top:0;width:100%;
+}
+/* le due copie non devono coprire l'acido: restano frange, non testo */
+#hoe b::before{color:var(--ice);opacity:.72;mix-blend-mode:screen;animation:hoeA .46s steps(2) infinite}
+#hoe b::after{color:var(--mag);opacity:.72;mix-blend-mode:screen;animation:hoeB .38s steps(2) infinite reverse}
+@keyframes hoeShake{
+  0%{transform:translate3d(0,0,0)}50%{transform:translate3d(-.008em,.006em,0)}
+  100%{transform:translate3d(.006em,-.004em,0)}
+}
+@keyframes hoeA{
+  0%{transform:translate(-.05em,-.014em);clip-path:inset(0 0 58% 0)}
+  50%{transform:translate(.042em,.016em);clip-path:inset(42% 0 16% 0)}
+  100%{transform:translate(-.03em,0);clip-path:inset(68% 0 0 0)}
+}
+@keyframes hoeB{
+  0%{transform:translate(.05em,.014em);clip-path:inset(24% 0 42% 0)}
+  50%{transform:translate(-.044em,-.018em);clip-path:inset(0 0 74% 0)}
+  100%{transform:translate(.032em,0);clip-path:inset(54% 0 4% 0)}
+}
+
 /* dove il nome sparisce compare quello che c'e' da fare */
 #closing{
   position:absolute;left:0;right:0;bottom:18vh;z-index:7;
@@ -501,12 +536,16 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 }
 .xr::before{top:0;left:0;border-right:0;border-bottom:0}
 .xr::after{bottom:0;right:0;border-left:0;border-top:0}
-.xr:hover,.xr.hot{color:var(--silver-w);background:rgba(201,255,46,.09)}
-.xr:hover::before,.xr.hot::before{top:-4px;left:-4px;width:14px;height:14px;opacity:1}
-.xr:hover::after,.xr.hot::after{bottom:-4px;right:-4px;width:14px;height:14px;opacity:1}
+/* solo dove c'e' un puntatore vero: sul telefono il tocco lasciava lo stato
+   attaccato addosso all'innesco */
+@media (hover:hover){
+  .xr:hover{color:var(--silver-w);background:rgba(201,255,46,.09)}
+  .xr:hover::before{top:-4px;left:-4px;width:14px;height:14px;opacity:1}
+  .xr:hover::after{bottom:-4px;right:-4px;width:14px;height:14px;opacity:1}
+}
 .retro .xr{color:rgba(3,4,5,.75)}
 .retro .xr::before,.retro .xr::after{border-color:var(--void)}
-.retro .xr:hover,.retro .xr.hot{color:var(--void);background:rgba(3,4,5,.1)}
+@media (hover:hover){.retro .xr:hover{color:var(--void);background:rgba(3,4,5,.1)}}
 
 #xrp{
   position:fixed;top:0;left:0;z-index:126;width:min(360px,86vw);pointer-events:none;
@@ -940,6 +979,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
   #word .l i{animation:none;opacity:1}
   .rv{transition-duration:.01ms}
   .grain,.tk,#gl i,#xrp.on i{animation:none}
+  #hoe b,#hoe b::before,#hoe b::after{animation:none}
   .song{min-height:auto}
   #gl{display:none !important}
   .c-bc i{display:none}
@@ -1042,6 +1082,8 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
 
       <p class="corner c-tr mono">Warner Records Italy</p>
       <div class="corner c-bc"><span class="mono">Scorri</span><i></i></div>
+
+      <p id="hoe"><b data-t="It’s Enny P hoe!">It’s Enny P hoe!</b></p>
 
       <div id="closing">
         <p class="mono a">Il nuovo singolo</p>
@@ -1469,9 +1511,10 @@ var SEQS = {
      Il testo sta a sinistra, il soggetto va a destra. */
   t_musica:   {dir:'sc-musica/',   pre:'x_', n:19, ms:62, fx:.50, fy:.46, px:.70, zoom:1.10},
   t_eventi:   {dir:'sc-eventi/',   pre:'x_', n:20, ms:62, fx:.44, fy:.46, px:.70, zoom:1.15},
-  t_merch:    {dir:'sc-merch/',    pre:'x_', n:16, ms:62, fx:.46, fy:.50, px:.70, zoom:1.15},
+  t_merch:    {dir:'sc-merch/',    pre:'x_', n:14, ms:55, fx:.55, fy:.38, px:.70, zoom:1.10},
   t_social:   {dir:'sc-social/',   pre:'x_', n:14, ms:62, fx:.46, fy:.44, px:.70, zoom:1.12},
-  t_contatti: {dir:'sc-contatti/', pre:'x_', n:20, ms:62, fx:.48, fy:.46, px:.70, zoom:1.10},
+  /* campo lungo dentro una fascia bassa: si stringe sul busto o non si legge */
+  t_contatti: {dir:'sc-contatti/', pre:'x_', n:21, ms:62, fx:.46, fy:.33, px:.68, zoom:1.50},
   t_chi:      {dir:'sc-chi/',      pre:'x_', n:16, ms:62, fx:.46, fy:.50, px:.68, zoom:1.05},
   /* riquadri alti: qui ci sta la figura intera */
   ritratto:   {dir:'sc-ritratto/', pre:'x_', n:15, ms:66, fx:.50, fy:.50},
@@ -1730,6 +1773,7 @@ function initStage(root){
   var wordEl  = root.querySelector('#word');
   var blade   = root.querySelector('#blade');
   var closing = root.querySelector('#closing');
+  var hoe     = root.querySelector('#hoe');
   var corners = [].slice.call(root.querySelectorAll('#stage .corner'));
 
   var WORD = 'ENNY P';
@@ -1749,8 +1793,8 @@ function initStage(root){
   var mid = (letters.length - 1)/2;
   var win = letters.map(function(_,i){
     var d = mid ? Math.abs(i-mid)/mid : 0;
-    var start = 0.20 + (1-d)*0.40;
-    return {start:start, end:start + 0.22};
+    var start = 0.14 + (1-d)*0.28;
+    return {start:start, end:start + 0.18};
   });
 
   var cssW=0, cssH=0, lastIndex=-1, targetP=0, currentP=0, sraf=null;
@@ -1797,7 +1841,12 @@ function initStage(root){
     var fade = clamp(1 - p/0.3, 0, 1);
     corners.forEach(function(el){ el.style.opacity = fade.toFixed(3); });
 
-    var cv = clamp((p-0.74)/0.14, 0, 1);
+    /* la voce entra mentre le ultime lettere spariscono e se ne va prima
+       che arrivi l'uscita: le due cose non si sovrappongono mai */
+    var hv = clamp((p-0.56)/0.08, 0, 1) * (1 - clamp((p-0.74)/0.06, 0, 1));
+    hoe.style.opacity = hv.toFixed(3);
+
+    var cv = clamp((p-0.80)/0.08, 0, 1);
     closing.style.opacity = cv.toFixed(3);
     closing.style.pointerEvents = cv > 0.6 ? 'auto' : 'none';
   }
