@@ -1097,7 +1097,7 @@ footer .legal{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;line
     <a class="mono tag xr" href="#/musica" data-xray="disco" data-cur="Apri">Scheda del singolo</a>
   </section>
 
-  <section class="song" data-loop="denti">
+  <section class="song" data-loop="soldi">
     <canvas></canvas>
     <div class="vig"></div>
     <div class="asc">
@@ -1443,7 +1443,8 @@ var SEQS = {
   /* fx,fy = dov'e' il soggetto nel girato · px = dove lo vogliamo nel riquadro */
   collo:   {dir:'scene-collo/',   pre:'c_', n:20, ms:50, fx:.60, fy:.46, px:.68, zoom:1.06},
   occhi:   {dir:'scene-occhi/',   pre:'o_', n:15, ms:55, fx:.50, fy:.42, px:.34, zoom:1.10},
-  denti:   {dir:'scene-denti/',   pre:'d_', n:25, ms:55, fx:.50, fy:.50, px:.66, zoom:1.08},
+  /* campo lungo: lei e' piccola nel girato, quindi qui si stringe davvero */
+  soldi:   {dir:'scene-soldi/',   pre:'s_', n:24, ms:55, fx:.42, fy:.42, px:.70, zoom:1.32},
   /* senza un po' di zoom non c'e' margine da cui attingere e px non sposta
      niente: il ritaglio a schermo largo coincide con l'inquadratura */
   cavallo: {dir:'scene-cavallo/', pre:'h_', n:25, ms:70, fx:.42, fy:.46, px:.30, zoom:1.35,
