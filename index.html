@@ -475,33 +475,75 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   .song.r .col{text-align:left}
 }
 
-/* --------- cavallo cromato: anello in loop ------------------------------ */
-.horse{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
-  gap:clamp(2rem,5vw,4rem);align-items:center;
+/* --------- il ribaltone: nero che diventa acido ------------------------- */
+#flip{position:relative;height:250vh}
+#flip .pin{
+  position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  background:var(--acid);opacity:0;
 }
-.horse .box{
-  position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--hair);overflow:hidden;
+#flip canvas{
+  position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;
+  mix-blend-mode:screen;   /* il nero del girato sparisce nell'acido, resta il cromo */
 }
-.horse canvas{display:block;width:100%;height:100%;mix-blend-mode:screen}
-.horse .box::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.3) 0 1px,transparent 1px 3px);
-  opacity:.5;
+.retro{
+  position:relative;z-index:2;height:100%;display:flex;align-items:center;
+  padding:clamp(5rem,13vh,8rem) var(--pad) clamp(4rem,10vh,6rem);
 }
-.horse .box .tag{
-  position:absolute;top:.8rem;left:.9rem;z-index:2;
-  font-family:var(--mono);font-size:.52rem;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--acid);
+.retro .lab{color:rgba(3,4,5,.62)}
+.rt{
+  font-family:var(--disp);font-weight:800;font-stretch:122%;text-transform:uppercase;
+  font-size:clamp(3rem,12vw,8.5rem);line-height:.82;letter-spacing:-.035em;
+  color:var(--void);margin:.3rem 0 clamp(1.6rem,5vh,2.8rem);
 }
-.horse h3{
-  font-family:var(--disp);font-weight:800;font-stretch:112%;text-transform:uppercase;
-  font-size:clamp(1.7rem,4.4vw,3.4rem);line-height:.9;letter-spacing:-.02em;color:var(--silver-w);
-  overflow-wrap:anywhere;
+.klks{display:flex;flex-direction:column;gap:.55rem;max-width:560px}
+.klk{
+  display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
+  padding:1.05rem 1.25rem;border:1px solid rgba(3,4,5,.4);color:var(--void);
+  position:relative;overflow:hidden;
 }
-.horse h3 em{font-style:normal;color:transparent;-webkit-text-stroke:1.2px var(--acid)}
-.hbtn{margin-top:clamp(1.4rem,4vh,2.2rem);display:flex;gap:.6rem;flex-wrap:wrap}
-@media (max-width:860px){.horse{grid-template-columns:1fr}}
+.klk b{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;position:relative;z-index:1;transition:color .4s ease}
+.klk span{font-family:var(--mono);font-size:.85rem;position:relative;z-index:1;
+  transition:color .4s ease,transform .4s ease}
+.klk::before{
+  content:'';position:absolute;inset:0;background:var(--void);
+  transform:translateY(101%);transition:transform .45s var(--ease);
+}
+.klk:hover::before{transform:translateY(0)}
+.klk:hover b{color:var(--acid)}
+.klk:hover span{color:var(--acid);transform:translateX(6px)}
+.rtag{position:absolute;right:var(--pad);bottom:clamp(1.4rem,4vh,2.6rem);z-index:3;
+  color:rgba(3,4,5,.6)}
+
+/* mentre siamo dentro, anche l'interfaccia fissa cambia pelle */
+body.flip #hdr.solid{
+  background:linear-gradient(to bottom,rgba(201,255,46,.97),rgba(201,255,46,.88));
+  border-bottom-color:rgba(3,4,5,.28);
+}
+body.flip #hdr .brand{color:var(--void)}
+body.flip #hdr .brand i{background:var(--void)}
+body.flip #hdr nav a{color:rgba(3,4,5,.55)}
+body.flip #hdr nav a:hover,body.flip #hdr nav a[aria-current]{color:var(--void)}
+body.flip #hdr nav a::after{background:var(--void)}
+body.flip .burger{border-color:rgba(3,4,5,.35);color:var(--void)}
+body.flip .burger:hover{background:var(--void);color:var(--acid)}
+body.flip #prog{background:var(--void);box-shadow:none}
+body.flip .scan{opacity:.1}
+#hdr .brand,#hdr nav a,.burger,#prog{transition:color .16s linear,background .16s linear,border-color .16s linear}
+
+/* il lampo che copre lo scambio */
+#gl{
+  position:fixed;inset:0;z-index:146;pointer-events:none;display:none;opacity:0;
+  background:var(--acid);mix-blend-mode:difference;
+}
+#gl i{position:absolute;left:-12%;width:124%;display:block;background:var(--ice);mix-blend-mode:difference}
+#gl i:nth-child(1){top:6%;height:7%;animation:tear 620ms steps(2) infinite}
+#gl i:nth-child(2){top:31%;height:4%;animation:tear 760ms steps(2) infinite reverse}
+#gl i:nth-child(3){top:56%;height:9%;animation:tear 560ms steps(2) infinite}
+#gl i:nth-child(4){top:78%;height:5%;animation:tear 700ms steps(2) infinite reverse}
+@keyframes tear{
+  0%{transform:translateX(-7%)}50%{transform:translateX(8%)}100%{transform:translateX(-2%)}
+}
 
 /* --------- date ---------------------------------------------------------- */
 .dates{border-top:1px solid var(--hair)}
@@ -704,12 +746,15 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     background:linear-gradient(to bottom,rgba(3,4,5,.72),rgba(3,4,5,.34) 45%,var(--void));
   }
   .tick{transform:rotate(-1.4deg) scale(1.09)}
+  #flip{height:220vh}
+  .klks{max-width:none}
 }
 @media (prefers-reduced-motion:reduce){
   #word .l i{animation:none;opacity:1}
   .rv{transition-duration:.01ms}
-  .grain,.tk{animation:none}
+  .grain,.tk,#gl i{animation:none}
   .song{min-height:auto}
+  #gl{display:none !important}
   .c-bc i{display:none}
 }
 </style>
@@ -732,6 +777,7 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
 <div class="grain"></div>
 <div id="spot"></div>
 <div id="prog"></div>
+<div id="gl"><i></i><i></i><i></i><i></i></div>
 <div class="cur" id="cur"></div>
 <div class="curl" id="curl"></div>
 
@@ -884,22 +930,22 @@ footer .legal{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;line
     </div>
   </section>
 
-  <section class="sect">
-    <div class="wrap">
-      <div class="horse rv">
-        <div class="box" data-loop="cavallo">
-          <canvas></canvas>
-          <span class="tag">24/7 · 00:53</span>
-        </div>
-        <div>
-          <p class="mono a">Il video</p>
-          <h3 class="melt gx" data-t="24/7">24/7</h3>
-          <div class="hbtn">
-            <a class="btn" href="#" data-cur="Guarda"><span>Guarda su YouTube</span></a>
-            <a class="btn o" href="#/musica" data-cur="Ascolta"><span>Ascolta</span></a>
+  <!-- il ribaltone: il sito cambia pelle e mostra quello che tiene dietro -->
+  <section id="flip">
+    <div class="pin" data-loop="cavallo">
+      <canvas></canvas>
+      <div class="retro">
+        <div class="wrap">
+          <p class="mono lab" data-st>Sezione nascosta</p>
+          <h2 class="rt melt gx" data-t="Il retro" data-st>Il retro</h2>
+          <div class="klks">
+            <a class="klk" href="#" data-st data-cur="Guarda"><b>Guarda il video 24/7</b><span>→</span></a>
+            <a class="klk" href="#" data-st data-cur="Scarica"><b>Scarica il press kit</b><span>→</span></a>
+            <a class="klk" href="mailto:booking@ennyp.it" data-st data-cur="Scrivi"><b>Booking · booking@ennyp.it</b><span>→</span></a>
           </div>
         </div>
       </div>
+      <p class="mono rtag">24/7 · 00:53</p>
     </div>
   </section>
 </template>
@@ -1553,6 +1599,51 @@ function initLoop(root){
 }
 
 /* ======================================================================
+   Il ribaltone: per un tratto di scroll il sito cambia pelle. Due lampi
+   coprono lo scambio — senza, si vedrebbe un salto di colore e basta.
+   ====================================================================== */
+function initFlip(root){
+  var sec = root.querySelector('#flip');
+  if (!sec) return;
+  var pin = sec.querySelector('.pin');
+  var gl  = document.getElementById('gl');
+  var items = [].slice.call(sec.querySelectorAll('[data-st]'));
+  var on = false;
+
+  /* 0 ai bordi, 1 al centro: la forma di un lampo */
+  function bump(t){ return (t <= 0 || t >= 1) ? 0 : Math.sin(t*Math.PI); }
+
+  function frame(){
+    var travel = sec.offsetHeight - innerHeight;
+    var p = travel > 0 ? clamp(-sec.getBoundingClientRect().top/travel, 0, 1) : 0;
+
+    var open = p > 0.06 && p < 0.94;
+    if (open !== on){
+      on = open;
+      document.body.classList.toggle('flip', on);
+      pin.style.opacity = on ? '1' : '0';
+    }
+
+    var g = reduced ? 0 : Math.max(bump(p/0.10), bump((p-0.90)/0.10));
+    gl.style.display = g > 0.02 ? 'block' : 'none';
+    gl.style.opacity = (g*0.85).toFixed(3);
+
+    /* le voci entrano una dopo l'altra e si ritirano prima del secondo lampo */
+    items.forEach(function(el,i){
+      var t = clamp((p - (0.10 + i*0.045))/0.10, 0, 1) * (1 - clamp((p-0.78)/0.09, 0, 1));
+      el.style.opacity = t.toFixed(3);
+      el.style.transform = 'translate3d(0,' + ((1-t)*26).toFixed(1) + 'px,0)';
+    });
+  }
+  onScroll.push(frame);
+  cleanups.push(function(){
+    document.body.classList.remove('flip');
+    gl.style.display = 'none'; gl.style.opacity = '0';
+  });
+  frame();
+}
+
+/* ======================================================================
    Costruttori di liste
    ====================================================================== */
 function buildDates(root){
@@ -1627,6 +1718,7 @@ function render(k, instant){
   fillTickers(document);
   initStage(app);
   initLoop(app);
+  initFlip(app);
   initReveal(app);
   initScramble(app);
   initParallax(app);

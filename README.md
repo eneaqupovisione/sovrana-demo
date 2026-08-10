@@ -26,7 +26,7 @@ Tutto estratto dal video ufficiale «24/7».
 | `frames/` | 34 quadri, 00:00.8 → 00:02.2, 2560 px | il palco: la mano che stringe e si porta via il marchio |
 | `scene-collo/` | 20 quadri, 01:10 → 01:11, 1600 px | anello dietro i tasti di «Mi Piace» |
 | `scene-viso/` | 36 quadri, 01:11 → 01:12.9, 1600 px | anello dietro i tasti di «24/7» |
-| `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | anello in loop: il cavallo cromato |
+| `scene-cavallo/` | 24 quadri, 00:53 → 00:54.9, 1600 px | anello dentro «Il retro», in `screen` sull'acido |
 | `img/` | 9 fermi immagine, 1500 px | testate di pagina, schede merch, tasti dei social |
 
 `frames/` si carica sul loader ed è l'unica pilotata dallo scroll. Le altre tre
@@ -48,6 +48,11 @@ anelli separati dietro due canzoni diverse.
   stanno in `SAY` e ogni nastro sceglie il gruppo con `data-say`; senza
   attributo prende `Enny P` / `Faccio what I want 24/7`
 - **cromo liquido** sul marchio, gradiente animato ritagliato sul testo
+- **il ribaltone** (`#flip`, prima della lista): per un tratto di scroll il
+  sito cambia pelle — fondo acido, testo nero, testata invertita. Due lampi a
+  tutto schermo coprono lo scambio in entrata e in uscita; senza, si vedrebbe
+  solo un salto di colore. Le bande dello strappo stanno sotto i 3 Hz e con
+  `prefers-reduced-motion` il lampo non parte affatto
 - cursore acido in `difference`, bottoni magnetici, parallasse, grana e righe
 
 Tutto si disattiva con `prefers-reduced-motion`.
