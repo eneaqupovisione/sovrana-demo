@@ -467,9 +467,9 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 .asc .pl b{color:var(--silver-w)}
 .asc-all{margin-top:1.4rem}
 .song .tag{
-  position:absolute;left:var(--pad);bottom:clamp(1.4rem,4vh,2.6rem);z-index:3;
+  position:absolute;left:calc(var(--pad) - .85em);bottom:clamp(1.1rem,3.4vh,2.2rem);z-index:3;
 }
-.song.r .tag{left:auto;right:var(--pad)}
+.song.r .tag{left:auto;right:calc(var(--pad) - .85em)}
 @media (max-width:640px){
   .asc .plat{grid-template-columns:1fr;gap:.5rem}
   .asc .pl{padding:.85rem 1rem}
@@ -477,22 +477,26 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
 }
 
 /* --------- raggi X: la scheda che si apre senza cambiare pagina --------- */
+/* niente sottolineature: due angoli, come un mirino che si allarga
+   sulla cosa da guardare. */
 .xr{
-  display:inline-flex;align-items:center;gap:.6em;position:relative;
-  color:var(--silver);padding-bottom:.25em;transition:color .3s ease;
+  display:inline-flex;align-items:center;position:relative;isolation:isolate;
+  padding:.55em .85em;color:var(--silver);
+  transition:color .3s ease,background .3s ease;
 }
-.xr::before{content:'⌖';color:var(--acid);font-size:1.1em;line-height:1}
-.xr::after{
-  content:'';position:absolute;left:0;right:0;bottom:0;height:1px;opacity:.45;
-  background:repeating-linear-gradient(90deg,var(--acid) 0 3px,transparent 3px 6px);
-  transition:opacity .3s ease;
+.xr::before,.xr::after{
+  content:'';position:absolute;width:10px;height:10px;pointer-events:none;
+  border:1px solid var(--acid);opacity:.7;
+  transition:inset .35s var(--ease),opacity .3s ease,width .35s var(--ease),height .35s var(--ease);
 }
-.xr:hover{color:var(--silver-w)}
-.xr:hover::after{opacity:1}
-.retro .xr{color:rgba(3,4,5,.72)}
-.retro .xr::before{color:var(--void)}
-.retro .xr::after{background:repeating-linear-gradient(90deg,var(--void) 0 3px,transparent 3px 6px)}
-.retro .xr:hover{color:var(--void)}
+.xr::before{top:0;left:0;border-right:0;border-bottom:0}
+.xr::after{bottom:0;right:0;border-left:0;border-top:0}
+.xr:hover{color:var(--silver-w);background:rgba(201,255,46,.09)}
+.xr:hover::before{top:-4px;left:-4px;width:14px;height:14px;opacity:1}
+.xr:hover::after{bottom:-4px;right:-4px;width:14px;height:14px;opacity:1}
+.retro .xr{color:rgba(3,4,5,.75)}
+.retro .xr::before,.retro .xr::after{border-color:var(--void)}
+.retro .xr:hover{color:var(--void);background:rgba(3,4,5,.1)}
 
 #xrp{
   position:fixed;top:0;left:0;z-index:126;width:min(360px,86vw);pointer-events:none;
@@ -618,7 +622,7 @@ h2.h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--silve
   background:var(--void);transition:right .4s var(--ease)}
 .grezzo a:hover{color:var(--void)}
 .grezzo a:hover::after{right:0}
-.rtag{position:absolute;right:var(--pad);bottom:clamp(1.2rem,3.5vh,2.2rem);z-index:3;
+.rtag{position:absolute;right:calc(var(--pad) - .85em);bottom:clamp(1rem,3vh,1.9rem);z-index:3;
   color:rgba(3,4,5,.55)}
 @media (max-width:900px){
   .retro .col{max-width:none}
